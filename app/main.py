@@ -8,9 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
-from backend import crud, models, schemas
-from backend.database import SessionLocal, engine, get_session_local_for_set
-from backend.llm import grade_with_gemini
+from app import crud, models, schemas
+from app.database import open_sqlite_connection, get_db_path_for_subject, STORAGE_DIR
+from app.llm import grade_with_gemini
 
 
 # Create all tables for default engine
@@ -19,7 +19,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Basic debug logger (stdout). Quiet by default.
-logger = logging.getLogger("backend")
+logger = logging.getLogger("app")
 if not logger.handlers:
     _h = logging.StreamHandler()
     _h.setFormatter(logging.Formatter('[%(levelname)s] %(message)s'))
@@ -37,6 +37,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Ensure UTF-8 content-type for JSON to avoid client mis-decoding
+@app.middleware("http")
+async def ensure_utf8_json(request: Request, call_next):
+    response = await call_next(request)
+    try:
+        ct = response.headers.get("content-type", "")
+        if ct.startswith("application/json") and "charset" not in ct.lower():
+            response.headers["content-type"] = "application/json; charset=utf-8"
+    except Exception:
+        pass
+    return response
 
 
 # Dependency to get DB session (supports per-request DB set via header)

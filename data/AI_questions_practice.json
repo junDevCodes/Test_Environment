@@ -1,0 +1,92 @@
+[
+    {
+        "subject": "[실습] EDA",
+        "question_text": "Pandas DataFrame `df`의 각 컬럼에 있는 결측치(missing values)의 개수를 확인하고, 그 결과를 내림차순으로 정렬하는 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["df.isnull().count().sort_values(ascending=False)", "df.isna().sum().sort_values(ascending=False)", "df.missing().sum().sort(descending=True)", "df.isna().count().sort(ascending=False)"],
+        "model_answer": "df.isna().sum().sort_values(ascending=False)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "DataFrame `df`에서 수치형(numerical) 데이터 타입을 가진 컬럼들만 선택하는 올바른 코드는 무엇입니까? (numpy가 `np`로 import 되었다고 가정합니다.)",
+        "question_type": "multiple_choice",
+        "options": ["df.select_dtypes(include=[np.number])", "df.select(types='numerical')", "df.filter(like='number')", "df.get_dummies(dtype=np.number)"],
+        "model_answer": "df.select_dtypes(include=[np.number])",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "DataFrame `df`의 'cylinders' 컬럼을 기준으로 그룹화한 뒤, 각 그룹의 'mpg' 컬럼 평균을 계산하는 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["df.groupby('cylinders').agg({'mpg': 'mean'})", "df.group('cylinders')['mpg'].mean()", "df.pivot_table(index='cylinders', values='mpg')", "df.mean(by='cylinders')['mpg']"],
+        "model_answer": "df.groupby('cylinders').agg({'mpg': 'mean'})",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "NumPy 배열 `X_raw`에 대해 표준화(Standard Scaling)를 수행하는 올바른 코드는 무엇입니까? (평균 `mu`, 표준편차 `std`가 이미 계산되었다고 가정합니다.)",
+        "question_type": "multiple_choice",
+        "options": ["(X_raw - mu) / std", "(X_raw - std) / mu", "X_raw / (mu - std)", "(mu - X_raw) * std"],
+        "model_answer": "(X_raw - mu) / std",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "`m`개의 샘플을 가진 데이터 행렬 `X`의 맨 앞에 1로 채워진 절편(bias) 열을 추가하는 올바른 NumPy 코드는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["np.c_[np.ones((m, 1)), X]", "np.add_bias(X)", "np.ones((m, 1)) + X", "np.hstack([X, np.ones((m, 1))])"],
+        "model_answer": "np.c_[np.ones((m, 1)), X]",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "선형 회귀의 배치 경사 하강법(Batch Gradient Descent)에서 평균 제곱 오차(MSE) 손실 함수에 대한 그래디언트를 계산하는 올바른 수식은 무엇입니까? (`m`: 샘플 수, `X_b`: 설계 행렬, `theta`: 파라미터, `y`: 실제값)",
+        "question_type": "multiple_choice",
+        "options": ["(2/m) * X_b.T @ (X_b @ theta - y)", "(1/m) * X_b @ (X_b @ theta - y)", "(2/m) * (X_b @ theta - y)", "(2/m) * X_b.T @ (y - X_b @ theta)"],
+        "model_answer": "(2/m) * X_b.T @ (X_b @ theta - y)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain의 `TextLoader`를 사용하여 로컬 파일 시스템에 있는 `shipping_policy.txt` 파일을 로드하는 올바른 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["loader = TextLoader(\"shipping_policy.txt\")", "loader = load_text(\"shipping_policy.txt\")", "loader = TextLoader.from_file(\"shipping_policy.txt\")", "loader = DocumentLoader(\"shipping_policy.txt\")"],
+        "model_answer": "loader = TextLoader(\"shipping_policy.txt\")",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "`RecursiveCharacterTextSplitter`를 사용하여 텍스트를 최대 200자 크기의 청크로 분할하고, 청크 간에 20자의 겹침(overlap)을 설정하는 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)", "text_splitter = TextSplitter(max_size=200, overlap=20)", "text_splitter = RecursiveCharacterTextSplitter(size=200, overlap_size=20)", "text_splitter = CharacterSplitter(chunk_size=200, chunk_overlap=20)"],
+        "model_answer": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain에서 문서 청크 리스트(`chunks`)와 임베딩 모델(`embeddings`)을 사용하여 Chroma 벡터 저장소(Vector Store)를 생성하고 데이터를 저장하는 올바른 코드는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["vectorstore = Chroma.from_documents(documents=chunks, embedding=embeddings)", "vectorstore = Chroma(documents=chunks, embedder=embeddings)", "vectorstore = Chroma.create(chunks, embeddings)", "vectorstore = VectorStore.from_chroma(documents=chunks, embedding=embeddings)"],
+        "model_answer": "vectorstore = Chroma.from_documents(documents=chunks, embedding=embeddings)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain에서 이미 생성된 `retriever`를 에이전트가 사용할 수 있는 도구(Tool)로 만드는 가장 일반적인 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["tool = create_retriever_tool(retriever, name='search', description='Searches for information.')", "tool = retriever.as_tool(name='search')", "tool = AgentTool.from_retriever(retriever)", "tool = Tool(func=retriever.search, name='search')"],
+        "model_answer": "tool = create_retriever_tool(retriever, name='search', description='Searches for information.')",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    }
+]

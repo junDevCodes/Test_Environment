@@ -1,6 +1,6 @@
 
 from sqlalchemy.orm import Session
-from backend import models, schemas
+from app import models, schemas
 
 def get_questions_by_subject(db: Session, subject: str):
     return db.query(models.Question).filter(models.Question.subject == subject).all()
