@@ -1,0 +1,1774 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Microsoft Fluent Design System Refactor --- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+
+
+
+
+
+
+
+  /* -- Typography -- */
+
+
+
+
+
+
+
+  --fluent-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -- Colors (Dark Theme) -- */
+
+
+
+
+
+
+
+  --fluent-background-dark: #1c1c1c;
+
+
+
+
+
+
+
+  --fluent-card-background-acrylic: rgba(44, 44, 44, 0.85);
+
+
+
+
+
+
+
+  --fluent-accent-blue: #0078d4;
+
+
+
+
+
+
+
+  --fluent-accent-green: #107c10;
+
+
+
+
+
+
+
+  --fluent-accent-red: #d83b01;
+
+
+
+
+
+
+
+  --fluent-border-light: rgba(255, 255, 255, 0.1);
+
+
+
+
+
+
+
+  --fluent-text-primary: rgba(255, 255, 255, 0.9);
+
+
+
+
+
+
+
+  --fluent-text-secondary: rgba(255, 255, 255, 0.6);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -- Depth (Shadows) -- */
+
+
+
+
+
+
+
+  --fluent-shadow-depth-8: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 .6px 1.8px 0 rgba(0,0,0,.108);
+
+
+
+
+
+
+
+  --fluent-shadow-depth-16: 0 6.4px 14.4px 0 rgba(0,0,0,.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -- Other Variables -- */
+
+
+
+
+
+
+
+  --fluent-border-radius: 4px;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+
+
+
+
+
+
+
+  margin: 0;
+
+
+
+
+
+
+
+  display: flex;
+
+
+
+
+
+
+
+  justify-content: center;
+
+
+
+
+
+
+
+  align-items: center;
+
+
+
+
+
+
+
+  min-height: 100vh;
+
+
+
+
+
+
+
+  font-family: var(--fluent-font-family);
+
+
+
+
+
+
+
+  background-color: var(--fluent-background-dark);
+
+
+
+
+
+
+
+  color: var(--fluent-text-primary);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.quiz-app-container {
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    max-width: 720px;
+
+
+
+
+
+
+
+    margin: 1rem;
+
+
+
+
+
+
+
+    padding: 1rem;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Accessibility --- */
+
+
+
+
+
+
+
+.visually-hidden {
+
+
+
+
+
+
+
+  border: 0;
+
+
+
+
+
+
+
+  clip: rect(0 0 0 0);
+
+
+
+
+
+
+
+  height: 1px;
+
+
+
+
+
+
+
+  margin: -1px;
+
+
+
+
+
+
+
+  overflow: hidden;
+
+
+
+
+
+
+
+  padding: 0;
+
+
+
+
+
+
+
+  position: absolute;
+
+
+
+
+
+
+
+  width: 1px;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Fluent Card --- */
+
+
+
+
+
+
+
+.fluent-card {
+
+
+
+
+
+
+
+    background-color: var(--fluent-card-background-acrylic);
+
+
+
+
+
+
+
+    backdrop-filter: blur(20px);
+
+
+
+
+
+
+
+    border: 1px solid var(--fluent-border-light);
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    padding: 2.5rem;
+
+
+
+
+
+
+
+    margin-bottom: 1rem;
+
+
+
+
+
+
+
+    box-shadow: var(--fluent-shadow-depth-16);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-card__question-text {
+
+
+
+
+
+
+
+    font-size: 1.25rem;
+
+
+
+
+
+
+
+    font-weight: 600;
+
+
+
+
+
+
+
+    margin-bottom: 2rem;
+
+
+
+
+
+
+
+    color: var(--fluent-text-primary);
+
+
+
+
+
+
+
+}
+
+/* --- Focus Visibility for Keyboard Navigation --- */
+.fluent-button:focus-visible {
+    outline: 2px solid var(--fluent-accent-blue);
+    outline-offset: 2px;
+}
+
+.fluent-option:focus-within {
+    outline: 2px solid var(--fluent-accent-blue);
+    outline-offset: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-card__actions {
+
+
+
+
+
+
+
+    margin-top: 2rem;
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+
+
+
+
+    gap: 0.75rem;
+
+
+
+
+
+
+
+    justify-content: space-between;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Fluent Options --- */
+
+
+
+
+
+
+
+.fluent-options-group {
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+
+
+
+
+    flex-direction: column;
+
+
+
+
+
+
+
+    gap: 0.75rem;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-option {
+
+
+
+
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    padding: 1rem;
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    border: 1px solid var(--fluent-border-light);
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+
+
+
+
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+
+
+
+
+
+
+
+    font-size: 1rem;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-option:hover {
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+
+
+
+
+
+
+    border-color: rgba(255, 255, 255, 0.2);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-option.selected {
+
+
+
+
+
+
+
+    border-color: var(--fluent-accent-blue);
+
+
+
+
+
+
+
+    background-color: rgba(0, 120, 212, 0.2);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Correct/Incorrect feedback styles */
+
+
+
+
+
+
+
+.fluent-option.correct {
+
+
+
+
+
+
+
+    border-color: var(--fluent-accent-green);
+
+
+
+
+
+
+
+    background-color: rgba(16, 124, 16, 0.2);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-option.incorrect {
+
+
+
+
+
+
+
+    border-color: var(--fluent-accent-red);
+
+
+
+
+
+
+
+    background-color: rgba(216, 59, 1, 0.2);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Fluent Progress Bar --- */
+
+
+
+
+
+
+
+.fluent-progress {
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    background-color: var(--fluent-border-light);
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    margin-bottom: 1.5rem;
+
+
+
+
+
+
+
+    height: 4px;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-progress__bar {
+
+
+
+
+
+
+
+    height: 100%;
+
+
+
+
+
+
+
+    background-color: var(--fluent-accent-blue);
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    transition: width 0.4s ease-in-out;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Fluent Button --- */
+
+
+
+
+
+
+
+.fluent-button {
+
+
+
+
+
+
+
+    flex-grow: 1; /* Allow buttons to grow */
+
+
+
+
+
+
+
+    padding: 0.75rem 1rem;
+
+
+
+
+
+
+
+    font-size: 1rem;
+
+
+
+
+
+
+
+    font-weight: 600;
+
+
+
+
+
+
+
+    color: var(--fluent-text-primary);
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.1);
+
+
+
+
+
+
+
+    border: 1px solid var(--fluent-border-light);
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+
+
+
+
+    transition: background-color 0.2s ease-out;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-button:hover {
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.15);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-button--primary {
+
+
+
+
+
+
+
+    background-color: var(--fluent-accent-blue);
+
+
+
+
+
+
+
+    border-color: var(--fluent-accent-blue);
+
+
+
+
+
+
+
+    color: #ffffff;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fluent-button--primary:hover {
+
+
+
+
+
+
+
+    background-color: #1086e0;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Other Components --- */
+
+
+
+
+
+
+
+.text-input, .textarea-input {
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    padding: 12px;
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    border: 1px solid var(--fluent-border-light);
+
+
+
+
+
+
+
+    background-color: var(--fluent-background-dark);
+
+
+
+
+
+
+
+    color: var(--fluent-text-primary);
+
+
+
+
+
+
+
+    font-size: 1em;
+
+
+
+
+
+
+
+    margin-top: 1rem;
+
+
+
+
+
+
+
+    box-sizing: border-box;
+
+
+
+
+
+
+
+}
+
+/* --- Inline Messages --- */
+.inline-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--fluent-border-radius);
+    background-color: var(--fluent-card-background-acrylic);
+}
+
+.inline-message.info {
+    border: 1px solid var(--fluent-accent-blue);
+    color: var(--fluent-text-primary);
+}
+
+.inline-message.error {
+    border: 1px solid var(--fluent-accent-red);
+    color: #ffd6d6;
+}
+
+.inline-message.success {
+    border: 1px solid var(--fluent-accent-green);
+    color: #d5f0d5;
+}
+
+/* --- Code Blocks (Results) --- */
+.code-block {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #1a1a1a;
+    border: 1px solid var(--fluent-border-light);
+    border-radius: var(--fluent-border-radius);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* --- Modal (API Key) --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 100%;
+    max-width: 520px;
+    padding: 1.5rem;
+    border-radius: var(--fluent-border-radius);
+    background-color: var(--fluent-card-background-acrylic);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--fluent-shadow-depth-16);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.results-summary {
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+
+
+
+
+    margin-bottom: 2rem;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.result-card {
+
+
+
+
+
+
+
+    background-color: var(--fluent-card-background-acrylic);
+
+
+
+
+
+
+
+    backdrop-filter: blur(20px);
+
+
+
+
+
+
+
+    border: 1px solid var(--fluent-border-light);
+
+
+
+
+
+
+
+    padding: 1.5rem;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.result-card.correct {
+
+
+
+
+
+
+
+    border-left: 4px solid var(--fluent-accent-green);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.result-card.incorrect {
+
+
+
+
+
+
+
+    border-left: 4px solid var(--fluent-accent-red);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.result-card__user-answer {
+
+
+
+
+
+
+
+    background-color: rgba(255, 255, 255, 0.05);
+
+
+
+
+
+
+
+    padding: 0.75rem;
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    margin-top: 1rem;
+
+
+
+
+
+
+
+    font-style: italic;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.error {
+
+
+
+
+
+
+
+    color: #fde7e9;
+
+
+
+
+
+
+
+    background-color: #442726;
+
+
+
+
+
+
+
+    padding: 1rem;
+
+
+
+
+
+
+
+    border-radius: var(--fluent-border-radius);
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
