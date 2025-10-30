@@ -1,0 +1,447 @@
+from sqlalchemy import create_engine, Column, Integer, String, JSON
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+import os
+class _JSONPassthrough:
+    def dumps(self, obj, ensure_ascii=False):
+        return obj
+json = _JSONPassthrough()
+
+# --- Database Setup ---
+DB_DIR = "prob_db"
+DB_NAME = "AI_prob.db"
+DATABASE_URL = f"sqlite:///./{DB_DIR}/{DB_NAME}"
+
+Base = declarative_base()
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# --- Model Definition ---
+class Question(Base):
+    __tablename__ = "questions"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    subject = Column(String, index=True)
+    question_text = Column(String, index=True)
+    question_type = Column(String, index=True)
+    options = Column(JSON)
+    model_answer = Column(String)
+    keywords_full_credit = Column(JSON)
+    keywords_partial_credit = Column(JSON)
+
+# --- Theory Question Generation ---
+def generate_theory_questions():
+    """
+    Generates a list of theory questions based on the provided knowledge base.
+    """
+    questions = [
+        {
+            "subject": "[이론] Machine Learning",
+            "question_text": "다음 중 지도 학습(Supervised Learning)에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["정답지가 없는 데이터를 사용하여 모델을 학습시킨다.", "보상과 벌을 통해 최적의 행동을 학습한다.", "연속적인 숫자 값을 예측하는 회귀와 특정 카테고리를 분류하는 문제에 사용된다.", "데이터의 숨겨진 구조나 패턴을 찾는 데 중점을 둔다."], ensure_ascii=False),
+            "model_answer": "연속적인 숫자 값을 예측하는 회귀와 특정 카테고리를 분류하는 문제에 사용된다."
+        },
+        {
+            "subject": "[이론] Machine Learning",
+            "question_text": "로지스틱 회귀(Logistic Regression)에 대한 설명으로 틀린 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["주로 이진 분류 문제에 사용된다.", "선형 회귀 모델의 예측값에 시그모이드 함수를 적용하여 확률을 계산한다.", "다중 클래스 분류를 위해 소프트맥스 함수를 사용할 수 있다.", "연속적인 값을 예측하는 회귀 문제에 가장 적합하다."], ensure_ascii=False),
+            "model_answer": "연속적인 값을 예측하는 회귀 문제에 가장 적합하다."
+        },
+        {
+            "subject": "[이론] Gradient Descent",
+            "question_text": "경사 하강법(Gradient Descent)에서 '학습률(Learning Rate)'의 역할로 가장 적절한 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["전체 데이터셋을 몇 번이나 반복하여 학습할지를 결정한다.", "한 번의 학습 단계에서 가중치를 얼마나 업데이트할지를 결정하는 보폭(step size) 역할을 한다.", "학습을 언제 중단할지를 결정하는 오차의 임계값이다.", "한 번에 몇 개의 데이터를 사용하여 그래디언트를 계산할지를 결정한다."], ensure_ascii=False),
+            "model_answer": "한 번의 학습 단계에서 가중치를 얼마나 업데이트할지를 결정하는 보폭(step size) 역할을 한다."
+        },
+        {
+            "subject": "[이론] EDA",
+            "question_text": "데이터 시각화에서 이상치(Outlier)를 탐지하는 데 가장 효과적인 그래프는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["히스토그램 (Histogram)", "박스 플롯 (Box Plot)", "산점도 (Scatter Plot)", "히트맵 (Heatmap)"], ensure_ascii=False),
+            "model_answer": "박스 플롯 (Box Plot)"
+        },
+        {
+            "subject": "[이론] Model Evaluation",
+            "question_text": "모델 평가 지표 중, 실제 Positive인 것들 중에서 모델이 Positive라고 예측한 것의 비율을 나타내는 것은 무엇입니까? (암 환자 진단과 같이 실제 환자를 놓치면 안 되는 경우에 중요합니다.)",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["정확도 (Accuracy)", "정밀도 (Precision)", "재현율 (Recall)", "F1 점수 (F1 Score)"], ensure_ascii=False),
+            "model_answer": "재현율 (Recall)"
+        },
+        {
+            "subject": "[이론] Deep Learning",
+            "question_text": "MLP(다중 퍼셉트론)의 역전파(Backpropagation) 과정에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["입력 데이터가 은닉층을 거쳐 출력층으로 전달되며 예측값을 계산하는 과정이다.", "모델의 과적합을 막기 위해 일부 뉴런을 랜덤하게 비활성화시키는 과정이다.", "예측값과 실제값의 오차를 기반으로 출력층에서부터 입력층 방향으로 가중치를 업데이트하는 과정이다.", "가중치를 무작위로 초기화하여 학습을 시작하는 과정이다."], ensure_ascii=False),
+            "model_answer": "예측값과 실제값의 오차를 기반으로 출력층에서부터 입력층 방향으로 가중치를 업데이트하는 과정이다."
+        },
+        {
+            "subject": "[이론] Deep Learning",
+            "question_text": "활성화 함수 ReLU(Rectified Linear Unit)의 주요 특징으로 옳은 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["입력값이 0보다 작으면 -1을, 크면 1을 출력하여 항상 일정한 출력을 보장한다.", "입력값이 0보다 작으면 0을 출력하여 기울기 소실(Vanishing Gradient) 문제를 완화한다.", "모든 입력값에 대해 항상 0과 1 사이의 값을 출력하여 확률적 해석을 가능하게 한다.", "계산이 복잡하지만, 시그모이드 함수보다 항상 더 나은 성능을 보인다."], ensure_ascii=False),
+            "model_answer": "입력값이 0보다 작으면 0을 출력하여 기울기 소실(Vanishing Gradient) 문제를 완화한다."
+        },
+        {
+            "subject": "[이론] Deep Learning",
+            "question_text": "다음 중 Adam 옵티마이저에 대한 설명으로 가장 적절한 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["모든 가중치를 동일한 학습률로 업데이트하는 가장 기본적인 최적화 알고리즘이다.", "과거의 그래디언트 방향을 참고하는 '관성'과 적응적인 학습률 조정을 결합한 방식이다.", "학습 과정에서 일부 가중치를 0으로 만들어 모델을 희소(sparse)하게 만든다.", "전체 데이터셋을 사용해야만 가중치를 업데이트할 수 있다."], ensure_ascii=False),
+            "model_answer": "과거의 그래디언트 방향을 참고하는 '관성'과 적응적인 학습률 조정을 결합한 방식이다."
+        },
+        {
+            "subject": "[이론] CNN",
+            "question_text": "CNN(합성곱 신경망)에서 풀링(Pooling) 계층의 주된 역할은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["이미지의 특징을 추출하기 위해 필터 연산을 수행한다.", "추출된 특징 맵(Feature Map)의 크기를 줄여 계산 효율성을 높이고 과적합을 방지한다.", "비선형성을 추가하여 모델의 표현력을 높인다.", "최종적으로 이미지를 분류하기 위해 모든 특징을 종합한다."], ensure_ascii=False),
+            "model_answer": "추출된 특징 맵(Feature Map)의 크기를 줄여 계산 효율성을 높이고 과적합을 방지한다."
+        },
+        {
+            "subject": "[이론] RNN",
+            "question_text": "RNN(순환 신경망)이 기존의 신경망과 구별되는 가장 큰 특징은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["여러 개의 은닉층을 깊게 쌓아 복잡한 패턴을 학습한다.", "이미지 데이터 처리에 특화된 필터와 풀링 연산을 사용한다.", "이전 시점의 정보를 기억하는 '은닉 상태(hidden state)'를 통해 순차적인 데이터를 처리한다.", "정답이 없는 데이터로부터 스스로 특징을 학습하는 비지도 학습 방식이다."], ensure_ascii=False),
+            "model_answer": "이전 시점의 정보를 기억하는 '은닉 상태(hidden state)'를 통해 순차적인 데이터를 처리한다."
+        },
+        {
+            "subject": "[이론] RNN",
+            "question_text": "LSTM(Long Short-Term Memory)이 기존 RNN의 장기 의존성(Long-Term Dependency) 문제를 해결하기 위해 도입한 핵심적인 메커니즘은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["드롭아웃(Dropout)을 통해 뉴런을 무작위로 비활성화한다.", "어텐션(Attention) 메커니즘을 통해 입력의 특정 부분에 집중한다.", "셀 상태(Cell State)와 여러 게이트(Forget, Input, Output)를 사용하여 정보의 흐름을 제어한다.", "합성곱(Convolution) 연산을 통해 지역적인 특징을 추출한다."], ensure_ascii=False),
+            "model_answer": "셀 상태(Cell State)와 여러 게이트(Forget, Input, Output)를 사용하여 정보의 흐름을 제어한다."
+        },
+        {
+            "subject": "[이론] NLP",
+            "question_text": "트랜스포머(Transformer) 모델의 셀프 어텐션(Self-Attention) 메커니즘에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["순차적인 데이터 처리를 위해 재귀적인 구조를 사용한다.", "문장 내 단어들 간의 관계를 한 번에 병렬적으로 계산하여 문맥을 파악한다.", "이미지의 지역적인 특징을 추출하는 데 주로 사용된다.", "이전 단어의 정보만을 사용하여 다음 단어를 예측한다."], ensure_ascii=False),
+            "model_answer": "문장 내 단어들 간의 관계를 한 번에 병렬적으로 계산하여 문맥을 파악한다."
+        },
+        {
+            "subject": "[이론] NLP",
+            "question_text": "BERT 모델이 양방향 문맥을 학습하기 위해 사용하는 주요 학습 방법 두 가지는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["다음 문장 예측(NSP)과 마스크된 언어 모델(MLM)", "감성 분석과 개체명 인식", "기계 번역과 텍스트 요약", "오토인코더와 생성적 적대 신경망(GAN)"], ensure_ascii=False),
+            "model_answer": "다음 문장 예측(NSP)과 마스크된 언어 모델(MLM)"
+        },
+        {
+            "subject": "[이론] CNN",
+            "question_text": "ResNet(Residual Network) 아키텍처가 매우 깊은 신경망을 효과적으로 학습시킬 수 있는 핵심적인 이유는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["드롭아웃을 사용하여 과적합을 방지하기 때문", "배치 정규화를 통해 학습을 안정화시키기 때문", "잔차 연결(Residual Connection)을 통해 기울기 소실 문제를 완화하기 때문", "합성곱 필터의 크기를 동적으로 조절하기 때문"], ensure_ascii=False),
+            "model_answer": "잔차 연결(Residual Connection)을 통해 기울기 소실 문제를 완화하기 때문"
+        },
+        {
+            "subject": "[이론] CNN",
+            "question_text": "Vision Transformer(ViT) 모델이 이미지를 처리하는 방식에 대한 설명으로 가장 적절한 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["이미지를 여러 개의 작은 패치로 나누고, 이를 시퀀스 데이터처럼 트랜스포머 인코더에 입력한다.", "이미지 전체에 대해 단일 합성곱 필터를 적용하여 특징을 추출한다.", "순환 신경망을 사용하여 이미지의 픽셀을 순차적으로 처리한다.", "이미지의 각 픽셀을 독립적인 데이터 포인트로 간주하여 처리한다."], ensure_ascii=False),
+            "model_answer": "이미지를 여러 개의 작은 패치로 나누고, 이를 시퀀스 데이터처럼 트랜스포머 인코더에 입력한다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "검색 증강 생성(RAG) 모델이 기존 LLM의 환각(Hallucination) 현상을 완화하는 주된 원리는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["모델의 파라미터 수를 대폭 늘려 지식의 양을 증가시킨다.", "답변 생성 시, 외부의 신뢰할 수 있는 지식 소스에서 검색한 정보를 근거로 활용한다.", "더 많은 데이터셋으로 모델을 추가 학습시켜 잘못된 정보를 수정한다.", "사용자의 질문 의도를 더 잘 파악하기 위해 복잡한 프롬프트를 사용한다."], ensure_ascii=False),
+            "model_answer": "답변 생성 시, 외부의 신뢰할 수 있는 지식 소스에서 검색한 정보를 근거로 활용한다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "PEFT(Parameter-Efficient Fine-Tuning)의 주된 목적은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["사전 학습된 모델의 모든 파라미터를 미세 조정하여 최고 성능을 달성하는 것", "적은 수의 파라미터만 업데이트하여 계산 비용과 메모리 사용량을 줄이면서 모델을 특정 작업에 맞게 조정하는 것", "모델의 크기를 줄이기 위해 중요하지 않은 가중치를 제거하는 것", "모델의 추론 속도를 높이기 위해 가중치를 낮은 정밀도로 변환하는 것"], ensure_ascii=False),
+            "model_answer": "적은 수의 파라미터만 업데이트하여 계산 비용과 메모리 사용량을 줄이면서 모델을 특정 작업에 맞게 조정하는 것"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "LoRA(Low-Rank Adaptation) 기법에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["기존 모델의 가중치는 고정한 채, 학습 가능한 저차원 행렬을 추가하여 파라미터 업데이트를 효율화한다.", "모델의 마지막 레이어만 재학습하여 새로운 작업에 적응시킨다.", "모델의 모든 레이어에 작은 노이즈를 추가하여 일반화 성능을 높인다.", "학습 데이터에 없는 새로운 단어를 처리하기 위해 어휘 사전을 확장한다."], ensure_ascii=False),
+            "model_answer": "기존 모델의 가중치는 고정한 채, 학습 가능한 저차원 행렬을 추가하여 파라미터 업데이트를 효율화한다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "모델 양자화(Quantization) 기술의 주된 이점은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["모델의 정확도를 항상 향상시킨다.", "모델의 파라미터를 더 낮은 정밀도로 표현하여 모델 크기와 연산량을 줄인다.", "모델이 다양한 언어를 이해할 수 있도록 돕는다.", "모델의 학습 과정을 안정화시킨다."], ensure_ascii=False),
+            "model_answer": "모델의 파라미터를 더 낮은 정밀도로 표현하여 모델 크기와 연산량을 줄인다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "다음 중 LLM의 '창발적 능력(Emergent Property)'에 해당하는 예시로 가장 적절한 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["간단한 문법 오류를 수정하는 능력", "모델의 규모가 특정 임계점을 넘었을 때, 별도의 학습 없이 복잡한 추론이나 문맥 기반 학습(In-Context Learning)을 수행하는 능력", "입력된 텍스트의 다음 단어를 예측하는 능력", "학습 데이터에 포함된 특정 사실을 기억하는 능력"], ensure_ascii=False),
+            "model_answer": "모델의 규모가 특정 임계점을 넘었을 때, 별도의 학습 없이 복잡한 추론이나 문맥 기반 학습(In-Context Learning)을 수행하는 능력"
+        },
+        {
+            "subject": "[이론] NLP",
+            "question_text": "Word2Vec의 CBOW(Continuous Bag of Words) 모델과 Skip-gram 모델의 차이점으로 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["CBOW는 중심 단어로 주변 단어를 예측하고, Skip-gram은 주변 단어들로 중심 단어를 예측한다.", "CBOW는 주변 단어들로 중심 단어를 예측하고, Skip-gram은 중심 단어로 주변 단어를 예측한다.", "CBOW는 단어의 순서를 고려하지만, Skip-gram은 고려하지 않는다.", "CBOW는 희귀 단어 표현에 강하고, Skip-gram은 학습 속도가 빠르다."], ensure_ascii=False),
+            "model_answer": "CBOW는 주변 단어들로 중심 단어를 예측하고, Skip-gram은 중심 단어로 주변 단어를 예측한다."
+        },
+        {
+            "subject": "[이론] Model Evaluation",
+            "question_text": "데이터 불균형이 심한 분류 문제에서 모델 성능을 평가할 때, 정확도(Accuracy)보다 F1 점수(F1-Score)가 더 선호되는 이유는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["F1 점수는 계산이 더 간단하기 때문이다.", "F1 점수는 정밀도(Precision)와 재현율(Recall)의 조화 평균으로, 두 지표를 모두 고려하여 클래스 불균형에 더 강건하기 때문이다.", "F1 점수는 항상 정확도보다 높은 값을 가지기 때문이다.", "F1 점수는 모델의 학습 속도를 나타내는 지표이기 때문이다."], ensure_ascii=False),
+            "model_answer": "F1 점수는 정밀도(Precision)와 재현율(Recall)의 조화 평균으로, 두 지표를 모두 고려하여 클래스 불균형에 더 강건하기 때문이다."
+        },
+        {
+            "subject": "[이론] Deep Learning",
+            "question_text": "과적합(Overfitting)을 방지하기 위한 규제(Regularization) 기법이 아닌 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["L1 규제 (Lasso)", "L2 규제 (Ridge)", "드롭아웃 (Dropout)", "학습률 증가 (Increasing Learning Rate)"], ensure_ascii=False),
+            "model_answer": "학습률 증가 (Increasing Learning Rate)"
+        },
+        {
+            "subject": "[이론] CNN",
+            "question_text": "CNN에서 합성곱(Convolution) 연산의 출력 크기를 계산하는 공식으로 옳은 것은 무엇입니까? (입력 크기: W, 필터 크기: K, 패딩: P, 스트라이드: S)",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["(W - K + 2P) / S + 1", "(W + K - 2P) / S + 1", "(W - K - 2P) * S + 1", "(W + K + 2P) / S - 1"], ensure_ascii=False),
+            "model_answer": "(W - K + 2P) / S + 1"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "LLM의 디코딩 전략 중, 항상 확률이 가장 높은 다음 토큰을 선택하는 방식은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["Greedy Decoding", "Beam Search", "Top-K Sampling", "Top-P Sampling"], ensure_ascii=False),
+            "model_answer": "Greedy Decoding"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "Top-P (Nucleus) 샘플링 방식에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["확률이 가장 높은 K개의 토큰 중에서만 샘플링한다.", "누적 확률이 특정 임계값 P를 넘는 최소한의 토큰 집합에서 샘플링한다.", "모든 토큰을 대상으로 확률에 비례하여 랜덤하게 샘플링한다.", "가장 확률이 높은 단 하나의 토큰만을 선택한다."], ensure_ascii=False),
+            "model_answer": "누적 확률이 특정 임계값 P를 넘는 최소한의 토큰 집합에서 샘플링한다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "RLHF(인간 피드백을 통한 강화학습)의 주요 단계가 아닌 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["사전 훈련된 언어 모델 준비", "사람의 선호도 데이터를 수집하여 보상 모델(Reward Model) 학습", "보상 모델을 사용하여 강화학습으로 언어 모델 미세 조정", "모델의 모든 가중치를 무작위로 재초기화"], ensure_ascii=False),
+            "model_answer": "모델의 모든 가중치를 무작위로 재초기화"
+        },
+        {
+            "subject": "[이론] RAG",
+            "question_text": "RAG 시스템에서 텍스트를 의미 있는 작은 단위로 나누는 '청킹(Chunking)'을 수행하는 주된 이유는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["텍스트의 전체 길이를 늘리기 위해", "LLM의 컨텍스트 창(Context Window) 한계를 극복하고 관련성 높은 정보 검색을 용이하게 하기 위해", "텍스트를 암호화하여 보안을 강화하기 위해", "텍스트에 포함된 모든 단어의 빈도를 계산하기 위해"], ensure_ascii=False),
+            "model_answer": "LLM의 컨텍스트 창(Context Window) 한계를 극복하고 관련성 높은 정보 검색을 용이하게 하기 위해"
+        },
+        {
+            "subject": "[이론] RAG",
+            "question_text": "RAG 파이프라인에서 'Retriever'의 역할은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["사용자의 질문을 LLM이 이해할 수 있는 형태로 변환한다.", "Vector Store에서 사용자의 질문과 의미적으로 가장 유사한 문서 청크를 검색한다.", "LLM이 생성한 답변을 최종 사용자에게 전달한다.", "문서 청크를 벡터로 변환하는 임베딩 모델을 학습시킨다."], ensure_ascii=False),
+            "model_answer": "Vector Store에서 사용자의 질문과 의미적으로 가장 유사한 문서 청크를 검색한다."
+        },
+        {
+            "subject": "[이론] Machine Learning",
+            "question_text": "비지도 학습(Unsupervised Learning)의 대표적인 예시로 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["주택 가격 예측", "스팸 메일 분류", "고객 데이터 군집화(Clustering)", "이미지 속 객체 인식"], ensure_ascii=False),
+            "model_answer": "고객 데이터 군집화(Clustering)"
+        },
+        {
+            "subject": "[이론] Data Preprocessing",
+            "question_text": "데이터 전처리에서 표준화(Standardization)와 정규화(Normalization)의 주된 차이점은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["표준화는 데이터를 0과 1 사이로 조정하고, 정규화는 평균 0, 표준편차 1로 조정한다.", "표준화는 평균 0, 표준편차 1로 조정하고, 정규화는 데이터를 0과 1 사이로 조정한다.", "표준화는 범주형 데이터에, 정규화는 수치형 데이터에 사용된다.", "표준화는 이상치에 민감하고, 정규화는 이상치에 덜 민감하다."], ensure_ascii=False),
+            "model_answer": "표준화는 평균 0, 표준편차 1로 조정하고, 정규화는 데이터를 0과 1 사이로 조정한다."
+        },
+        {
+            "subject": "[이론] NLP",
+            "question_text": "어텐션(Attention) 메커니즘이 기존의 Seq2Seq 모델이 가진 '고정 길이 문맥 벡터(Bottleneck)' 문제를 해결하는 방식은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["입력 시퀀스의 모든 단어를 하나의 벡터로 압축한다.", "디코더가 각 타임스텝에서 출력 단어를 생성할 때, 입력 시퀀스의 특정 부분에 더 집중(가중치 부여)할 수 있도록 한다.", "입력 시퀀스의 길이를 강제로 고정시킨다.", "은닉층의 개수를 늘려 모델의 용량을 키운다."], ensure_ascii=False),
+            "model_answer": "디코더가 각 타임스텝에서 출력 단어를 생성할 때, 입력 시퀀스의 특정 부분에 더 집중(가중치 부여)할 수 있도록 한다."
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "지시 학습(Instruction Tuning)의 주요 목표는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["LLM이 더 많은 사실적 지식을 암기하도록 하는 것", "LLM이 사람의 지시를 더 잘 따르고 의도에 맞는 응답을 생성하도록 하는 것", "LLM의 사전 학습 속도를 높이는 것", "LLM이 생성하는 텍스트의 길이를 늘리는 것"], ensure_ascii=False),
+            "model_answer": "LLM이 사람의 지시를 더 잘 따르고 의도에 맞는 응답을 생성하도록 하는 것"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "모델 가지치기(Pruning) 기법 중, 모델의 특정 구조(채널, 필터 등) 단위로 가중치를 제거하는 방식은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["비정형 가지치기 (Unstructured Pruning)", "정형 가지치기 (Structured Pruning)", "크기 기반 가지치기 (Magnitude-based Pruning)", "랜덤 가지치기 (Random Pruning)"], ensure_ascii=False),
+            "model_answer": "정형 가지치기 (Structured Pruning)"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "지식 증류(Knowledge Distillation)의 핵심 아이디어는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["작은 모델 여러 개를 합쳐 큰 모델 하나를 만드는 것", "크고 성능이 좋은 교사 모델(Teacher Model)의 지식을 작고 빠른 학생 모델(Student Model)에게 전달하는 것", "데이터를 증강하여 모델의 일반화 성능을 높이는 것", "모델의 특정 레이어만 선택하여 학습시키는 것"], ensure_ascii=False),
+            "model_answer": "크고 성능이 좋은 교사 모델(Teacher Model)의 지식을 작고 빠른 학생 모델(Student Model)에게 전달하는 것"
+        },
+        {
+            "subject": "[이론] NLP",
+            "question_text": "텍스트 데이터의 전처리 단계에서 불용어(Stopwords)를 제거하는 이유는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["문장의 길이를 늘려 모델의 입력 크기를 맞추기 위해", "문법적 오류를 수정하여 문장의 완성도를 높이기 위해", "'a', 'the', 'is'와 같이 의미 분석에 큰 도움이 되지 않으면서 빈번하게 등장하는 단어를 제거하여 분석 효율을 높이기 위해", "모든 단어를 소문자로 변환하여 일관성을 유지하기 위해"], ensure_ascii=False),
+            "model_answer": "'a', 'the', 'is'와 같이 의미 분석에 큰 도움이 되지 않으면서 빈번하게 등장하는 단어를 제거하여 분석 효율을 높이기 위해"
+        },
+        {
+            "subject": "[이론] Model Evaluation",
+            "question_text": "분류 모델의 성능을 시각적으로 평가하는 데 사용되며, 실제 클래스와 모델이 예측한 클래스의 관계를 보여주는 행렬은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["상관 행렬 (Correlation Matrix)", "혼동 행렬 (Confusion Matrix)", "공분산 행렬 (Covariance Matrix)", "특징 중요도 행렬 (Feature Importance Matrix)"], ensure_ascii=False),
+            "model_answer": "혼동 행렬 (Confusion Matrix)"
+        },
+        {
+            "subject": "[이론] Machine Learning",
+            "question_text": "K-평균 군집화(K-Means Clustering) 알고리즘에 대한 설명으로 올바른 것은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["데이터를 미리 정해진 K개의 군집으로 그룹화하는 비지도 학습 알고리즘이다.", "데이터를 회귀선을 기준으로 분류하는 지도 학습 알고리즘이다.", "각 데이터 포인트에 대해 상과 벌을 부여하여 최적의 정책을 학습하는 강화 학습 알고리즘이다.", "데이터의 차원을 축소하여 시각화하는 데 사용되는 알고리즘이다."], ensure_ascii=False),
+            "model_answer": "데이터를 미리 정해진 K개의 군집으로 그룹화하는 비지도 학습 알고리즘이다."
+        },
+        {
+            "subject": "[이론] Deep Learning",
+            "question_text": "딥러닝에서 '에포크(Epoch)'는 무엇을 의미합니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["한 번의 가중치 업데이트에 사용되는 데이터 샘플의 수", "전체 훈련 데이터셋이 신경망을 한 번 통과하는 과정", "모델의 손실 함수 값", "신경망의 전체 레이어 수"], ensure_ascii=False),
+            "model_answer": "전체 훈련 데이터셋이 신경망을 한 번 통과하는 과정"
+        },
+        {
+            "subject": "[이론] LLM",
+            "question_text": "LLM에서 'Chain-of-Thought (CoT)' 프롬프팅 기법의 핵심 아이디어는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["모델에게 최종 답변만 요구하여 응답 속도를 높이는 것", "모델이 정답에 도달하기까지의 중간 추론 과정을 단계별로 생각하고 설명하도록 유도하여 복잡한 문제 해결 능력을 향상시키는 것", "질문에 대한 답변을 한 단어로만 생성하도록 제한하는 것", "모델에게 여러 예시를 보여주어 문체나 형식을 모방하도록 하는 것"], ensure_ascii=False),
+            "model_answer": "모델이 정답에 도달하기까지의 중간 추론 과정을 단계별로 생각하고 설명하도록 유도하여 복잡한 문제 해결 능력을 향상시키는 것"
+        }
+    ]
+    return questions
+
+# --- Practice Question Generation ---
+def generate_practice_questions():
+    """
+    Generates a list of practice questions based on the answer notebooks.
+    """
+    questions = [
+        {
+            "subject": "[실습] EDA",
+            "question_text": "Pandas DataFrame `df`의 각 컬럼에 있는 결측치(missing values)의 개수를 확인하고, 그 결과를 내림차순으로 정렬하는 방법은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["df.isnull().count().sort_values(ascending=False)", "df.isna().sum().sort_values(ascending=False)", "df.missing().sum().sort(descending=True)", "df.isna().count().sort(ascending=False)"], ensure_ascii=False),
+            "model_answer": "df.isna().sum().sort_values(ascending=False)"
+        },
+        {
+            "subject": "[실습] EDA",
+            "question_text": "DataFrame `df`에서 수치형(numerical) 데이터 타입을 가진 컬럼들만 선택하는 올바른 코드는 무엇입니까? (numpy가 `np`로 import 되었다고 가정합니다.)",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["df.select_dtypes(include=[np.number])", "df.select(types='numerical')", "df.filter(like='number')", "df.get_dummies(dtype=np.number)"], ensure_ascii=False),
+            "model_answer": "df.select_dtypes(include=[np.number])"
+        },
+        {
+            "subject": "[실습] EDA",
+            "question_text": "DataFrame `df`의 'cylinders' 컬럼을 기준으로 그룹화한 뒤, 각 그룹의 'mpg' 컬럼 평균을 계산하는 방법은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["df.groupby('cylinders').agg({'mpg': 'mean'})", "df.group('cylinders')['mpg'].mean()", "df.pivot_table(index='cylinders', values='mpg')", "df.mean(by='cylinders')['mpg']"], ensure_ascii=False),
+            "model_answer": "df.groupby('cylinders').agg({'mpg': 'mean'})"
+        },
+        {
+            "subject": "[실습] Linear Regression",
+            "question_text": "NumPy 배열 `X_raw`에 대해 표준화(Standard Scaling)를 수행하는 올바른 코드는 무엇입니까? (평균 `mu`, 표준편차 `std`가 이미 계산되었다고 가정합니다.)",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["(X_raw - mu) / std", "(X_raw - std) / mu", "X_raw / (mu - std)", "(mu - X_raw) * std"], ensure_ascii=False),
+            "model_answer": "(X_raw - mu) / std"
+        },
+        {
+            "subject": "[실습] Linear Regression",
+            "question_text": "`m`개의 샘플을 가진 데이터 행렬 `X`의 맨 앞에 1로 채워진 절편(bias) 열을 추가하는 올바른 NumPy 코드는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["np.c_[np.ones((m, 1)), X]", "np.add_bias(X)", "np.ones((m, 1)) + X", "np.hstack([X, np.ones((m, 1))])"], ensure_ascii=False),
+            "model_answer": "np.c_[np.ones((m, 1)), X]"
+        },
+        {
+            "subject": "[실습] Linear Regression",
+            "question_text": "선형 회귀의 배치 경사 하강법(Batch Gradient Descent)에서 평균 제곱 오차(MSE) 손실 함수에 대한 그래디언트를 계산하는 올바른 수식은 무엇입니까? (`m`: 샘플 수, `X_b`: 설계 행렬, `theta`: 파라미터, `y`: 실제값)",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["(2/m) * X_b.T @ (X_b @ theta - y)", "(1/m) * X_b @ (X_b @ theta - y)", "(2/m) * (X_b @ theta - y)", "(2/m) * X_b.T @ (y - X_b @ theta)"], ensure_ascii=False),
+            "model_answer": "(2/m) * X_b.T @ (X_b @ theta - y)"
+        },
+        {
+            "subject": "[실습] RAG",
+            "question_text": "LangChain의 `TextLoader`를 사용하여 로컬 파일 시스템에 있는 `shipping_policy.txt` 파일을 로드하는 올바른 방법은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["loader = TextLoader(\"shipping_policy.txt\")", "loader = load_text(\"shipping_policy.txt\")", "loader = TextLoader.from_file(\"shipping_policy.txt\")", "loader = DocumentLoader(\"shipping_policy.txt\")"], ensure_ascii=False),
+            "model_answer": "loader = TextLoader(\"shipping_policy.txt\")"
+        },
+        {
+            "subject": "[실습] RAG",
+            "question_text": "`RecursiveCharacterTextSplitter`를 사용하여 텍스트를 최대 200자 크기의 청크로 분할하고, 청크 간에 20자의 겹침(overlap)을 설정하는 방법은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)", "text_splitter = TextSplitter(max_size=200, overlap=20)", "text_splitter = RecursiveCharacterTextSplitter(size=200, overlap_size=20)", "text_splitter = CharacterSplitter(chunk_size=200, chunk_overlap=20)"], ensure_ascii=False),
+            "model_answer": "text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)"
+        },
+        {
+            "subject": "[실습] RAG",
+            "question_text": "LangChain에서 문서 청크 리스트(`chunks`)와 임베딩 모델(`embeddings`)을 사용하여 Chroma 벡터 저장소(Vector Store)를 생성하고 데이터를 저장하는 올바른 코드는 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["vectorstore = Chroma.from_documents(documents=chunks, embedding=embeddings)", "vectorstore = Chroma(documents=chunks, embedder=embeddings)", "vectorstore = Chroma.create(chunks, embeddings)", "vectorstore = VectorStore.from_chroma(documents=chunks, embedding=embeddings)"], ensure_ascii=False),
+            "model_answer": "vectorstore = Chroma.from_documents(documents=chunks, embedding=embeddings)"
+        },
+        {
+            "subject": "[실습] RAG",
+            "question_text": "LangChain에서 이미 생성된 `retriever`를 에이전트가 사용할 수 있는 도구(Tool)로 만드는 가장 일반적인 방법은 무엇입니까?",
+            "question_type": "multiple_choice",
+            "options": json.dumps(["tool = create_retriever_tool(retriever, name='search', description='Searches for information.')", "tool = retriever.as_tool(name='search')", "tool = AgentTool.from_retriever(retriever)", "tool = Tool(func=retriever.search, name='search')"], ensure_ascii=False),
+            "model_answer": "tool = create_retriever_tool(retriever, name='search', description='Searches for information.')"
+        }
+    ]
+    return questions
+
+# --- Main Execution ---
+def create_database_and_tables():
+    """Creates the database and tables if they don't exist."""
+    if not os.path.exists(DB_DIR):
+        os.makedirs(DB_DIR)
+    
+    Base.metadata.create_all(bind=engine)
+    print(f"Database '{DB_NAME}' and tables created successfully in '{DB_DIR}'.")
+
+def main():
+    """Main function to generate the database."""
+    create_database_and_tables()
+    
+    db = SessionLocal()
+    try:
+        # Clear existing data for a clean slate
+        print("Clearing existing questions from the database...")
+        db.query(Question).delete()
+        db.commit()
+        print("Database cleared.")
+
+        # Stage 1: Generate and add theory questions
+        print("--- Stage 1: Inserting theory questions ---")
+        theory_questions = generate_theory_questions()
+        for q_data in theory_questions:
+            db_question = Question(**q_data)
+            db.add(db_question)
+        db.commit()
+        print(f"{db.query(Question).count()} total questions in DB after theory stage.")
+
+        # Stage 2: Generate and add practice questions
+        print("\n--- Stage 2: Inserting practice questions ---")
+        practice_questions = generate_practice_questions()
+        for q_data in practice_questions:
+            exists = db.query(Question).filter(Question.question_text == q_data["question_text"]).first()
+            if not exists:
+                db_question = Question(**q_data)
+                db.add(db_question)
+        db.commit()
+        print(f"{db.query(Question).count()} total questions in DB after practice stage.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        db.rollback()
+    finally:
+        db.close()
+
+if __name__ == "__main__":
+    main()

@@ -8,6 +8,7 @@ interface Result {
     is_correct: boolean;
     score: number;
     model_answer: string;
+    explanation?: string | null;
 }
 
 interface Question {
@@ -84,12 +85,15 @@ const Results: React.FC = () => {
                                 </>
                             )}
                             <p><strong>Result:</strong> {result.is_correct ? 'Correct' : 'Incorrect'} (Score: {scorePct}%)</p>
+                            {result.explanation && (
+                                <p><strong>Explanation:</strong> {result.explanation}</p>
+                            )}
                         </div>
                     );
                 })}
             </div>
 
-            <Link to="/" className="fluent-button" style={{marginTop: '2rem', textAlign: 'center'}}>Take Another Quiz</Link>
+            <Link to="/" className="fluent-button" style={{marginTop: '2rem', textAlign: 'center'}}>홈화면 돌아가기</Link>
         </div>
     );
 };
