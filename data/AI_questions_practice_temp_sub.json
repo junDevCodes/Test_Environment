@@ -1,0 +1,182 @@
+[
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "Python의 리스트 컴프리헨션(List Comprehension)을 사용하여, 0부터 9까지의 숫자 중 짝수만을 제곱한 리스트를 생성하는 한 줄 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "[x**2 for x in range(10) if x % 2 == 0]"
+    },
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "`collections` 모듈의 `Counter`를 사용하여 주어진 리스트 `fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']`에서 각 과일의 개수를 세는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from collections import Counter; fruit_counts = Counter(fruits)"
+    },
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "Python의 `itertools` 모듈을 사용하여, 리스트 `[1, 2, 3]`의 원소로 만들 수 있는 모든 순열(permutations)을 구하는 코드를 작성하시오. (순열의 길이는 2로 가정)",
+        "question_type": "short_answer",
+        "model_answer": "from itertools import permutations; list(permutations([1, 2, 3], 2))"
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "Pandas DataFrame에서 `object` 데이터 타입을 가진 범주형 컬럼들만 선택하여 새로운 DataFrame으로 만드는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "df.select_dtypes(include=['object'])"
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "Seaborn의 `heatmap`을 사용하여 DataFrame `df`의 컬럼 간 상관계수 행렬 `corr_matrix`를 시각화하는 코드를 작성하시오. (색상 맵은 'viridis'로 설정)",
+        "question_type": "short_answer",
+        "model_answer": "import seaborn as sns; sns.heatmap(corr_matrix, cmap='viridis')"
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "Pandas를 사용하여 'horsepower' 컬럼의 결측치(`np.nan`)를 해당 컬럼의 중앙값(median)으로 채우는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "df['horsepower'].fillna(df['horsepower'].median(), inplace=True)"
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "Scikit-learn의 `StandardScaler`를 사용하여 훈련 데이터 `X_train`에 맞게 스케일러를 학습(fit)시키고, 그 스케일러를 사용하여 `X_train`과 `X_test` 데이터를 변환하는 코드를 순서대로 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from sklearn.preprocessing import StandardScaler; scaler = StandardScaler(); X_train_scaled = scaler.fit_transform(X_train); X_test_scaled = scaler.transform(X_test)"
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "경사 하강법을 구현할 때, 학습 과정에서 손실(loss)이 어떻게 변하는지 기록하기 위해 에포크마다 계산된 손실 값을 저장할 리스트를 초기화하는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "losses = []"
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "학습된 선형 회귀 모델의 가중치(weights)와 절편(bias)을 확인하는 코드를 작성하시오. (모델 변수명은 `model`로 가정)",
+        "question_type": "short_answer",
+        "model_answer": "print(f'Weights: {model.coef_}, Bias: {model.intercept_}')"
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch에서 `nn.Sequential`을 사용하여 2개의 은닉층을 가진 MLP(다층 퍼셉트론) 모델을 정의하는 코드를 작성하시오. (입력_차원: 64, 은닉층1: 128, 은닉층2: 64, 출력_차원: 10, 활성화함수: ReLU)",
+        "question_type": "short_answer",
+        "model_answer": "model = nn.Sequential(nn.Linear(64, 128), nn.ReLU(), nn.Linear(128, 64), nn.ReLU(), nn.Linear(64, 10))"
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch에서 모델 학습 시, 검증 손실(validation loss)이 더 이상 개선되지 않을 때 학습을 조기 종료(Early Stopping)하는 로직을 구현하기 위해 필요한 주요 변수 3가지를 나열하시오.",
+        "question_type": "short_answer",
+        "model_answer": "최저 검증 손실(best_val_loss), 개선되지 않은 에포크 수(epochs_no_improve), 최대 허용 에포크 수(patience)"
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch의 `TensorDataset`과 `DataLoader`를 사용하여 훈련 데이터 `X_train_t`, `y_train_t`를 배치 크기 64로 섞어서(shuffle) 로드하는 `train_loader`를 생성하는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from torch.utils.data import TensorDataset, DataLoader; train_ds = TensorDataset(X_train_t, y_train_t); train_loader = DataLoader(train_ds, batch_size=64, shuffle=True)"
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "Hugging Face의 `tokenizers` 라이브러리를 사용하여, 주어진 텍스트 파일(`corpus.txt`)로부터 `vocab_size`가 30000인 WordPiece 토크나이저를 훈련시키는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from tokenizers import BertWordPieceTokenizer; tokenizer = BertWordPieceTokenizer(); tokenizer.train(files=['corpus.txt'], vocab_size=30000)"
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "훈련된 토크나이저를 사용하여 문장 \"I love deep learning\"을 토큰 ID 시퀀스로 변환하고, 다시 원래 문장으로 디코딩하는 코드를 작성하시오. (토크나이저 변수명은 `tokenizer`)",
+        "question_type": "short_answer",
+        "model_answer": "encoded = tokenizer.encode(\"I love deep learning\"); decoded_text = tokenizer.decode(encoded.ids)"
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "PyTorch에서 `nn.LSTM` 레이어를 사용하여 단방향(bidirectional=False), 1개 층(num_layers=1)을 가진 LSTM 인코더를 정의하는 코드를 작성하시오. (입력 차원: 256, 은닉 상태 차원: 512)",
+        "question_type": "short_answer",
+        "model_answer": "import torch.nn as nn; lstm_encoder = nn.LSTM(input_size=256, hidden_size=512, num_layers=1, bidirectional=False)"
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "Torchvision의 `transforms.Compose`를 사용하여 이미지에 순서대로 리사이즈(224x224), 텐서 변환, 정규화(Normalize)를 적용하는 `transform`을 정의하는 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from torchvision import transforms; transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])"
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "사전 학습된 ResNet-18 모델을 불러온 뒤, 마지막 분류층(fc layer)만 학습시키기 위해 다른 모든 파라미터의 그래디언트 계산을 비활성화하는 코드를 작성하시오. (모델 변수명은 `model`)",
+        "question_type": "short_answer",
+        "model_answer": "for name, param in model.named_parameters(): if 'fc' not in name: param.requires_grad = False"
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "PyTorch에서 학습률(learning rate)을 특정 에포크마다 감소시키기 위해 사용하는 `torch.optim.lr_scheduler`의 한 종류를 예시로 드시오.",
+        "question_type": "short_answer",
+        "model_answer": "StepLR 또는 CosineAnnealingLR"
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "Hugging Face의 `diffusers` 라이브러리를 사용하여 Stable Diffusion 파이프라인을 로드하고, \"a photograph of an astronaut riding a horse on Mars\"라는 프롬프트로 이미지를 생성하는 기본 코드를 작성하시오.",
+        "question_type": "short_answer",
+        "model_answer": "from diffusers import StableDiffusionPipeline; pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5'); image = pipe('a photograph of an astronaut riding a horse on Mars').images[0]"
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "CLIP 모델을 사용하여 주어진 이미지(`image`)와 여러 텍스트 레이블(`labels`) 간의 유사도 점수를 계산하고, 가장 높은 점수를 가진 레이블을 찾는 과정을 설명하시오.",
+        "question_type": "short_answer",
+        "model_answer": "이미지와 각 텍스트 레이블을 CLIP 모델로 인코딩하여 임베딩 벡터를 얻습니다. 그 후, 이미지 벡터와 각 텍스트 벡터 간의 코사인 유사도를 계산하여 가장 높은 점수를 가진 텍스트 레이블을 최종 예측으로 선택합니다."
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "전통적인 CNN(예: ResNet)과 CLIP을 사용한 제로샷(zero-shot) 분류의 가장 큰 차이점은 무엇인지 서술하시오.",
+        "question_type": "short_answer",
+        "model_answer": "ResNet은 미리 정의된 한정된 수의 클래스에 대해서만 분류할 수 있지만, CLIP은 학습 때 보지 못한 새로운 텍스트 레이블이 주어져도 이미지와 텍스트 간의 의미적 유사도를 기반으로 분류할 수 있습니다."
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "LLM을 사용하여 합성 데이터를 생성할 때, 생성된 결과물의 다양성을 높이고 싶다면 `temperature` 파라미터를 어떻게 조절해야 하는지 서술하시오.",
+        "question_type": "short_answer",
+        "model_answer": "`temperature` 값을 1에 가깝거나 더 높게 설정합니다. 값이 높을수록 모델은 확률이 낮은 토큰도 샘플링하여 더 다양하고 창의적인 결과물을 생성하는 경향이 있습니다."
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "'LLM as a Judge' 기법을 사용할 때, 평가자(Judge) LLM이 일관성 있는 평가를 하도록 하기 위해 `temperature` 값을 어떻게 설정하는 것이 일반적인지 설명하시오.",
+        "question_type": "short_answer",
+        "model_answer": "`temperature` 값을 0 또는 매우 낮은 값으로 설정하여, 모델이 가장 확률 높은 토큰을 일관되게 선택하도록 함으로써 평가의 무작위성을 줄이고 일관성을 높입니다."
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "합성 데이터 생성 시, 원하는 출력 형식을 JSON으로 지정하는 프롬프트 엔지니어링 기법을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "구조화된 출력 프롬프팅 (Structured Output Prompting) 또는 JSON 모드(JSON Mode) 활용"
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain에서 `create_retriever_tool` 함수를 사용하여 Retriever를 도구(Tool)로 만들 때, 에이전트가 해당 도구의 용도를 이해할 수 있도록 설정해야 하는 중요한 파라미터는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "`description` 파라미터. 이 파라미터는 도구가 어떤 역할을 하는지에 대한 자연어 설명을 제공하여 에이전트가 언제 이 도구를 사용해야 할지 결정하는 데 도움을 줍니다."
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "RAG 시스템에서 Cross-encoder 모델이 Bi-encoder에 비해 일반적으로 더 높은 정확도를 보이지만, 검색(retrieval) 단계에서 단독으로 사용되지 않는 이유는 무엇인지 서술하시오.",
+        "question_type": "short_answer",
+        "model_answer": "Cross-encoder는 (질문, 문서) 쌍을 함께 입력받아 처리해야 하므로, 모든 문서와 질문을 쌍으로 만들어 계산해야 합니다. 이는 계산 비용이 매우 높아 대규모 문서 검색에는 비효율적이기 때문입니다."
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain Expression Language (LCEL)에서, 여러 구성 요소를 순차적으로 연결하기 위해 사용하는 연산자는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "파이프(|) 연산자"
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "PEFT 기법 중 LoRA를 적용할 때, `target_modules` 파라미터에 일반적으로 지정되는 트랜스포머 모델의 레이어들을 두 종류 이상 나열하시오.",
+        "question_type": "short_answer",
+        "model_answer": "q_proj (Query projection), k_proj (Key projection), v_proj (Value projection), o_proj (Output projection), gate_proj, up_proj, down_proj 등 어텐션 및 MLP의 선형 레이어"
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "Unsloth 라이브러리를 사용하여 LoRA 파인튜닝을 수행한 후, 추론 속도 저하를 방지하기 위해 학습된 어댑터와 베이스 모델을 병합하는 함수는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "`model.merge_and_unload()`"
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "SFTTrainer를 사용하여 모델을 학습시킬 때, 사용자 입력 부분은 손실 계산에서 제외하고 오직 모델의 응답 부분에 대해서만 학습을 진행하도록 하는 Unsloth의 유틸리티 함수는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "`train_on_responses_only`"
+    }
+]

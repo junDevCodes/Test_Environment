@@ -1,0 +1,272 @@
+[
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "Python의 `itertools` 모듈에서 데카르트 곱(Cartesian product)을 계산하여 중첩 반복과 동일한 결과를 내는 함수는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["permutations", "combinations", "product", "accumulate"],
+        "model_answer": "product",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "리스트 `l = [1, 2, 3, 4]`가 있을 때, 리스트의 모든 원소를 제거하여 빈 리스트로 만드는 메소드는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["l.delete()", "l.remove_all()", "l.clear()", "l.empty()"],
+        "model_answer": "l.clear()",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Python for AI",
+        "question_text": "문자열에 포함된 모든 숫자(digit)의 합을 구하는 가장 파이썬스러운(Pythonic) 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["for char in s: if char.isdigit(): total += int(char)", "sum([int(c) for c in s if c.isdigit()])", "reduce(lambda x, y: int(x) + int(y), filter(str.isdigit, s))", "np.sum(int(c) for c in s if c.isdigit())"],
+        "model_answer": "sum([int(c) for c in s if c.isdigit()])",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "Scikit-learn의 `train_test_split` 함수에서 훈련/테스트 데이터 분할 시 클래스 비율을 유지하기 위해 사용되는 파라미터는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["balance", "stratify", "keep_ratio", "class_weight"],
+        "model_answer": "stratify",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "Seaborn 라이브러리를 사용하여 두 변수 간의 산점도와 함께 각 변수의 히스토그램을 동시에 시각화하는 가장 적절한 플롯은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["pairplot", "jointplot", "scatterplot", "lmplot"],
+        "model_answer": "jointplot",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch에서 모델을 훈련 모드에서 평가 모드로 전환할 때 사용하는 메소드는 무엇이며, 이로 인해 주로 동작이 변경되는 레이어는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["model.eval(), nn.Linear", "model.test(), nn.Conv2d", "model.eval(), nn.Dropout", "model.freeze(), nn.BatchNorm2d"],
+        "model_answer": "model.eval(), nn.Dropout",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch의 `DataLoader`의 역할로 가장 올바른 설명은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["데이터셋의 각 샘플을 개별적으로 변환합니다.", "데이터셋을 배치(batch) 단위로 묶고, 셔플링 및 병렬 로딩을 지원합니다.", "모델의 파라미터를 저장하고 불러옵니다.", "데이터의 통계적 특성(평균, 표준편차)을 계산합니다."],
+        "model_answer": "데이터셋을 배치(batch) 단위로 묶고, 셔플링 및 병렬 로딩을 지원합니다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] MLP",
+        "question_text": "PyTorch에서 `optimizer.zero_grad()`를 호출하는 주된 이유는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["모델의 가중치를 0으로 초기화하기 위해", "이전 배치의 그래디언트가 현재 배치에 누적되는 것을 방지하기 위해", "그래디언트 계산을 시작하기 위해", "학습률을 0으로 만들기 위해"],
+        "model_answer": "이전 배치의 그래디언트가 현재 배치에 누적되는 것을 방지하기 위해",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "자연어 처리에서 텍스트를 더 작은 단위(토큰)로 분할하는 과정을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["임베딩(Embedding)", "정규화(Normalization)", "토큰화(Tokenization)", "벡터화(Vectorization)"],
+        "model_answer": "토큰화(Tokenization)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "PyTorch의 `nn.Embedding` 레이어를 초기화할 때 반드시 필요한 두 개의 인자는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["num_embeddings, embedding_dim", "vocab_size, hidden_size", "input_size, output_size", "num_tokens, vector_size"],
+        "model_answer": "num_embeddings, embedding_dim",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "RNN(Recurrent Neural Network)의 출력에서, 모든 시퀀스 스텝의 은닉 상태(hidden state)들을 포함하는 텐서는 무엇이며, 마지막 시점(time step)의 은닉 상태만을 포함하는 텐서는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["hidden_states, h_n", "context_vector, final_state", "all_outputs, last_output", "sequence_output, pooled_output"],
+        "model_answer": "hidden_states, h_n",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "사전 학습된(pre-trained) 모델의 가중치를 새로운 문제에 활용하는 학습 기법을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["전이 학습(Transfer Learning)", "강화 학습(Reinforcement Learning)", "자가 지도 학습(Self-supervised Learning)", "생성 학습(Generative Learning)"],
+        "model_answer": "전이 학습(Transfer Learning)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "전이 학습(Transfer Learning)의 한 방법인 '선형 프로빙(Linear Probing)'에 대한 가장 올바른 설명은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["모델의 모든 레이어를 새로운 데이터로 다시 학습시킵니다.", "사전 학습된 모델의 특징 추출 부분(backbone)은 동결하고, 마지막 분류층만 새로 학습시킵니다.", "모델의 입력층과 출력층만 학습시킵니다.", "새로운 데이터에 맞게 모델 구조를 완전히 변경합니다."],
+        "model_answer": "사전 학습된 모델의 특징 추출 부분(backbone)은 동결하고, 마지막 분류층만 새로 학습시킵니다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "PyTorch에서 모델의 특정 파라미터가 학습 중에 업데이트되지 않도록 동결(freeze)하는 방법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["param.requires_grad = False", "param.frozen = True", "param.lock()", "param.set_trainable(False)"],
+        "model_answer": "param.requires_grad = False",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "Stable Diffusion과 같은 Text-to-Image 모델에서 원하지 않는 결과물(예: '흐릿한 이미지', '추상적인')을 피하기 위해 사용하는 프롬프트를 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["Positive Prompt", "Negative Prompt", "Exclusion Prompt", "Filter Prompt"],
+        "model_answer": "Negative Prompt",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "CLIP(Contrastive Language-Image Pre-training) 모델의 주요 기능은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["이미지를 캡션으로 변환하는 것", "텍스트 설명으로부터 고품질 이미지를 생성하는 것", "주어진 이미지와 텍스트 설명 간의 의미적 유사도를 측정하는 것", "이미지에서 객체를 탐지하고 위치를 찾는 것"],
+        "model_answer": "주어진 이미지와 텍스트 설명 간의 의미적 유사도를 측정하는 것",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Image Generate",
+        "question_text": "이미지 분류 작업에서 ResNet과 같은 전통적인 CNN 모델과 CLIP과 같은 멀티모달 모델의 가장 큰 차이점은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["ResNet은 학습된 클래스만 분류할 수 있지만, CLIP은 학습되지 않은 새로운 텍스트 레이블로도 분류(Zero-shot classification)가 가능하다.", "ResNet은 텍스트 입력을 받을 수 있지만, CLIP은 이미지 입력만 받는다.", "CLIP은 ResNet보다 항상 더 높은 분류 정확도를 보인다.", "ResNet은 전이학습이 불가능하지만, CLIP은 가능하다."],
+        "model_answer": "ResNet은 학습된 클래스만 분류할 수 있지만, CLIP은 학습되지 않은 새로운 텍스트 레이블로도 분류(Zero-shot classification)가 가능하다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "합성 데이터(Synthetic Data)를 생성하는 주된 이유로 가장 적절하지 않은 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["실제 데이터 수집이 어렵거나 비용이 많이 드는 경우", "개인정보와 같은 민감한 정보를 보호해야 하는 경우", "실제 데이터의 편향(bias)을 그대로 재현하기 위해", "모델의 강건성(robustness)을 테스트하기 위해 다양한 시나리오의 데이터를 만드는 경우"],
+        "model_answer": "실제 데이터의 편향(bias)을 그대로 재현하기 위해",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "LLM(Large Language Model)을 사용하여 생성된 데이터의 품질을 다른 LLM이 평가하도록 하는 기법을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["LLM as a Critic", "LLM as a Judge", "Self-Correction", "Reinforcement Learning from AI Feedback"],
+        "model_answer": "LLM as a Judge",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Data Augmentation",
+        "question_text": "프롬프트 엔지니어링에서, AI 모델에게 특정 역할(페르소나)을 부여하고, 명확한 목표와 제약 조건을 제시하는 목적은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["모델의 창의성을 극대화하여 예측 불가능한 답변을 얻기 위해", "모델이 더 빠르고 간결하게 답변하도록 만들기 위해", "원하는 결과물을 일관되고 정확하게 얻기 위해", "모델의 내부 파라미터를 직접 수정하기 위해"],
+        "model_answer": "원하는 결과물을 일관되고 정확하게 얻기 위해",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "RAG(Retrieval-Augmented Generation) 모델에서 Retriever의 주요 역할은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["사용자의 질문에 최종 답변을 생성한다.", "주어진 질문과 가장 관련성이 높은 문서를 외부 지식 소스에서 검색한다.", "검색된 문서의 내용을 요약한다.", "언어 모델의 파라미터를 업데이트한다."],
+        "model_answer": "주어진 질문과 가장 관련성이 높은 문서를 외부 지식 소스에서 검색한다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] RAG",
+        "question_text": "LangChain에서 여러 단계를 순차적으로 또는 조건부로 연결하여 복잡한 작업을 수행하는 구성 요소를 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["Chain", "Agent", "Tool", "Memory"],
+        "model_answer": "Chain",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "PEFT(Parameter-Efficient Fine-Tuning)의 주요 목표는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["사전 학습된 모델보다 더 큰 모델을 만드는 것", "전체 모델 파라미터를 모두 미세 조정하여 최고의 성능을 달성하는 것", "적은 수의 파라미터만 업데이트하여 계산 비용과 메모리 사용량을 줄이면서 모델을 특정 작업에 맞게 조정하는 것", "모델의 학습 과정을 처음부터 다시 시작하는 것"],
+        "model_answer": "적은 수의 파라미터만 업데이트하여 계산 비용과 메모리 사용량을 줄이면서 모델을 특정 작업에 맞게 조정하는 것",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "LoRA(Low-Rank Adaptation) 기법에서, 학습 가능한 새로운 가중치 행렬(Adapter)을 추가하는 대상이 되는 기존 LLM의 주요 레이어는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["임베딩(Embedding) 레이어", "어텐션(Attention) 및 MLP 레이어의 선형(Linear) 변환 부분", "레이어 정규화(Layer Normalization) 부분", "활성화 함수(Activation Function) 부분"],
+        "model_answer": "어텐션(Attention) 및 MLP 레이어의 선형(Linear) 변환 부분",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "Unsloth 라이브러리를 사용하여 LLM을 파인튜닝할 때 얻을 수 있는 주요 이점은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["모델의 추론 속도를 향상시킨다.", "더 적은 GPU 메모리를 사용하고 학습 속도를 크게 향상시킨다.", "모델의 파라미터 수를 증가시켜 성능을 높인다.", "다양한 종류의 모델 아키텍처를 자동으로 생성한다."],
+        "model_answer": "더 적은 GPU 메모리를 사용하고 학습 속도를 크게 향상시킨다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] EDA",
+        "question_text": "데이터프레임의 'horsepower' 컬럼에 결측치가 '?'로 표시되어 있을 때, 이를 NumPy의 `np.nan`으로 변환하는 올바른 코드는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["df['horsepower'].replace('?', np.nan, inplace=True)", "df['horsepower'] = df['horsepower'].replace('?', np.nan)", "df.replace({'horsepower': {'?': np.nan}})", "위 세 가지 모두 가능하다."],
+        "model_answer": "위 세 가지 모두 가능하다.",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Linear Regression",
+        "question_text": "선형 회귀 모델의 성능을 평가하는 지표로, 실제값과 예측값 사이의 평균 제곱 오차의 제곱근을 의미하는 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["MAE (Mean Absolute Error)", "MSE (Mean Squared Error)", "R^2 (R-squared)", "RMSE (Root Mean Squared Error)"],
+        "model_answer": "RMSE (Root Mean Squared Error)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] CNN",
+        "question_text": "학습 데이터의 다양성을 높여 모델의 과적합(overfitting)을 방지하기 위해, 이미지에 무작위 변환(예: 회전, 자르기, 뒤집기)을 적용하는 기법을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["데이터 정규화(Data Normalization)", "데이터 증강(Data Augmentation)", "특성 공학(Feature Engineering)", "데이터 양자화(Data Quantization)"],
+        "model_answer": "데이터 증강(Data Augmentation)",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] Tokenizer & Embedding",
+        "question_text": "LSTM(Long Short-Term Memory)이 기존의 RNN에 비해 장기 의존성 문제를 더 잘 처리할 수 있는 이유는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": ["더 많은 파라미터를 가지고 있기 때문에", "셀 상태(Cell State)와 여러 게이트(Gate)를 통해 정보의 흐름을 제어하기 때문에", "양방향(bidirectional)으로 정보를 처리하기 때문에", "어텐션 메커니즘을 사용하기 때문에"],
+        "model_answer": "셀 상태(Cell State)와 여러 게이트(Gate)를 통해 정보의 흐름을 제어하기 때문에",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "subject": "[실습] PEFT",
+        "question_text": "LoRA 파인튜닝 후, 추론 속도 저하를 방지하기 위해 학습된 어댑터(adapter) 가중치를 원래 모델의 가중치에 병합하는 과정을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": ["Quantization", "Pruning", "Merging", "Distillation"],
+        "model_answer": "Merging",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    }
+]
