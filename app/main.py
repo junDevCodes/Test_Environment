@@ -257,6 +257,18 @@ def on_startup():
 # API 라우팅
 # -------------------------------------------------
 
+@app.get("/")
+def root():
+    return {"status": "ok"}
+
+@app.head("/")
+def root_head():
+    return {"status": "ok"}
+
+@app.get("/api/status")
+def status():
+    return {"status": "ok"}
+
 @app.get("/api/sets", response_model=List[schemas.ProblemSet])
 def list_sets():
     """
