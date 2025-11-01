@@ -2,12 +2,12 @@ import os
 import json
 import logging
 import sqlite3
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Union
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import get_db_path_for_subject, STORAGE_DIR
+from app.database import STORAGE_DIR
 from app.llm import grade_with_gemini
 from app import schemas
 
@@ -57,22 +57,10 @@ async def ensure_utf8_json(request: Request, call_next):
 # -------------------------------------------------
 # 파싱/채점 유틸
 # -------------------------------------------------
-def _normalize_list_field(value) -> List[str]:
+def _normalize_list_field(value) -> list[str]:
     """
-    DB의 TEXT(으로 저장된 JSON 배열 문자열)를 Python list[str] 형태로 복원.
-    관측된 변형들을 유연하게 파싱해 깨짐 방지.
+    DB TEXT(JSON) 필드 → Python list 복원 (한글 깨짐 방지용 단순화 버전)
     """
-    def _unesc(s: str) -> str:
-        t = s.strip()
-        # 양끝 따옴표 제거
-        if (t.startswith('"') and t.endswith('"')) or (t.startswith("'") and t.endswith("'")):
-            t = t[1:-1]
-        t = t.replace('\\"', '"').replace("\\'", "'")
-        try:
-            return t.encode('utf-8').decode('unicode_escape')
-        except Exception:
-            return t
-
     if value is None:
         return []
     if isinstance(value, list):
@@ -81,49 +69,20 @@ def _normalize_list_field(value) -> List[str]:
         s = value.strip()
         if not s:
             return []
-        # 1) 우선 엄격한 JSON 시도
+        # 기본: JSON 배열이면 그대로 반환
         try:
             v = json.loads(s)
             if isinstance(v, list):
-                # ["[\"a\",\"b\"]"] 방어
-                if len(v) == 1 and isinstance(v[0], str) and v[0].strip().startswith('['):
-                    try:
-                        inner_v = json.loads(v[0].strip())
-                        if isinstance(inner_v, list):
-                            return [_unesc(x) if isinstance(x, str) else x for x in inner_v]
-                    except Exception:
-                        pass
-                return [_unesc(x) if isinstance(x, str) else x for x in v]
-        except Exception:
+                return [x if isinstance(x, str) else str(x) for x in v]
+        except json.JSONDecodeError:
             pass
-
-        # 2) 바깥 따옴표 벗기고 JSON 시도
-        if (s.startswith('"') and s.endswith('"')) or (s.startswith("'") and s.endswith("'")):
-            inner = s[1:-1]
-            try:
-                v3 = json.loads(inner)
-                if isinstance(v3, list):
-                    return [_unesc(x) if isinstance(x, str) else x for x in v3]
-            except Exception:
-                pass
-
-        # 3) single-quote → double-quote 변환 시도
-        try:
-            s2 = s.replace("'", '"')
-            v2 = json.loads(s2)
-            if isinstance(v2, list):
-                return [_unesc(x) if isinstance(x, str) else x for x in v2]
-        except Exception:
-            pass
-
-        # 4) 마지막: 콤마 분리
+        # 대체: 쉼표 분리
         if s.startswith('[') and s.endswith(']'):
             s = s[1:-1]
         parts = [p.strip().strip('"').strip("'") for p in s.split(',') if p.strip()]
-        return [_unesc(x) for x in parts]
-
-    # 알 수 없는 타입은 빈 리스트
+        return parts
     return []
+
 
 
 def _grade_answer(
@@ -212,15 +171,35 @@ def _row_to_question_schema(row) -> schemas.Question:
         keywords_partial_credit=norm_kp,
     )
 
-
 def _open_conn_by_set(db_set: str) -> sqlite3.Connection:
     db_path = STORAGE_DIR / db_set
     if not db_path.exists():
         raise FileNotFoundError(f"DB set '{db_set}' not found")
     conn = sqlite3.connect(os.fspath(db_path))
     conn.row_factory = sqlite3.Row
+    conn.text_factory = str
     return conn
 
+def _fetch_question_by_id(db_set: str, q_id: int) -> Optional[dict]:
+    """
+    storage/<db_set> 안의 questions 테이블에서 특정 id의 문제 한 개 가져와서
+    dict로 리턴. 리스트 필드(options, keywords_*)는 파싱해서 넣어줌.
+    못 찾으면 None.
+    """
+    conn = _open_conn_by_set(db_set)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM questions WHERE id = ?", (q_id,))
+    row = cur.fetchone()
+    conn.close()
+
+    if not row:
+        return None
+
+    m = dict(row)
+    m["options"] = _normalize_list_field(m.get("options"))
+    m["keywords_full_credit"] = _normalize_list_field(m.get("keywords_full_credit"))
+    m["keywords_partial_credit"] = _normalize_list_field(m.get("keywords_partial_credit"))
+    return m
 
 # -------------------------------------------------
 # 기동 시 처리
@@ -258,7 +237,10 @@ def read_questions(subject: str, request: Request):
     """
     db_set = request.headers.get("X-DB-SET")
     if not db_set:
-        raise HTTPException(status_code=400, detail="X-DB-SET header required")
+        raise HTTPException(
+            status_code=400,
+            detail="X-DB-SET 헤더가 필요합니다. 예) X-DB-SET: AI_prob.db",
+        )
 
     try:
         conn = _open_conn_by_set(db_set)
@@ -278,16 +260,19 @@ def read_questions(subject: str, request: Request):
 
 
 @app.post("/api/submit/{subject}", response_model=List[schemas.AnswerResult])
-def submit_answers(subject: str, answers: List[schemas.UserAnswer], request: Request):
+def submit_answers(subject: str, answers: Union[List[schemas.UserAnswer], schemas.UserAnswer], request: Request):
     """
     여러 문제에 대한 답안을 한 번에 제출 → 채점 결과 리스트 반환.
     """
     db_set = request.headers.get("X-DB-SET")
     if not db_set:
-        raise HTTPException(status_code=400, detail="X-DB-SET header required")
+        raise HTTPException(status_code=400, detail="X-DB-SET 헤더가 필요합니다. 예) X-DB-SET: AI_prob.db")
+
+    # 단일 객체(JSON)도 자동으로 리스트로 처리
+    payloads: List[schemas.UserAnswer] = answers if isinstance(answers, list) else [answers]
 
     results = []
-    for user_answer in answers:
+    for user_answer in payloads:
         q = _fetch_question_by_id(db_set, user_answer.question_id)
         if not q:
             raise HTTPException(status_code=404, detail=f"Question {user_answer.question_id} not found in set '{db_set}'")
@@ -316,7 +301,7 @@ def check_answer(subject: str, payload: schemas.UserAnswer, request: Request):
     """
     db_set = request.headers.get("X-DB-SET")
     if not db_set:
-        raise HTTPException(status_code=400, detail="X-DB-SET header required")
+        raise HTTPException(status_code=400, detail="X-DB-SET 헤더가 필요합니다. 예) X-DB-SET: AI_prob.db")
 
     q = _fetch_question_by_id(db_set, payload.question_id)
     if not q:
@@ -336,6 +321,37 @@ def check_answer(subject: str, payload: schemas.UserAnswer, request: Request):
         explanation=explanation,
     )
 
+# ---- Docstrings (runtime override for examples) ----
+submit_answers.__doc__ = (
+    """
+    여러 문제에 대한 사용자의 답안을 한 번에 제출 후 채점 결과 리스트 반환.
+
+    사용 예시
+    - PowerShell (다건/배열):
+      Invoke-RestMethod -Uri http://localhost:8000/api/submit/all -Method POST -Headers @{ 'X-DB-SET'='AI_prob.db' } -Body '[{"question_id":31,"answer":"오답"}]' -ContentType 'application/json'
+    - PowerShell (단건/객체 허용):
+      Invoke-RestMethod -Uri http://localhost:8000/api/submit/all -Method POST -Headers @{ 'X-DB-SET'='AI_prob.db' } -Body '{"question_id":31,"answer":"오답"}' -ContentType 'application/json'
+    - curl (배열 권장):
+      curl -H "X-DB-SET: AI_prob.db" -H "Content-Type: application/json" \
+           -d '[{"question_id":31,"answer":"오답"}]' \
+           http://localhost:8000/api/submit/all
+    """
+)
+
+check_answer.__doc__ = (
+    """
+    단일 문항 즉시 채점.
+
+    사용 예시
+    - PowerShell:
+      Invoke-RestMethod -Uri http://localhost:8000/api/check-answer/all -Method POST -Headers @{ 'X-DB-SET'='AI_prob.db' } -Body '{"question_id":31,"answer":"정답"}' -ContentType 'application/json'
+    - curl:
+      curl -H "X-DB-SET: AI_prob.db" -H "Content-Type: application/json" \
+           -d '{"question_id":31,"answer":"정답"}' \
+           http://localhost:8000/api/check-answer/all
+    """
+)
+
 
 # --- Gemini key mgmt (in-memory only) ---
 @app.get("/api/config/status", response_model=schemas.KeyStatus)
@@ -353,4 +369,3 @@ def set_gemini_key(payload: schemas.GeminiKeyPayload):
 def clear_gemini_key():
     app.state.gemini_api_key = None
     return schemas.KeyStatus(gemini_key_set=False)
-

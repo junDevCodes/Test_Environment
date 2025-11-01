@@ -9,8 +9,8 @@ Base = declarative_base()
 
 # 프로젝트 루트에서 storage 디렉토리 찾기
 # (app/database.py 기준으로 ../storage)
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-STORAGE_DIR = Path(os.getenv("STORAGE_DIR", PROJECT_ROOT / "storage"))
+BASE_DIR  = Path(__file__).resolve().parents[1]
+STORAGE_DIR = Path(os.getenv("STORAGE_DIR", BASE_DIR  / "storage"))
 
 def get_db_path_for_subject(subject: str) -> Path:
     """

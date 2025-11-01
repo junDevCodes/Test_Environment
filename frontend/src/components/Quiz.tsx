@@ -5,6 +5,7 @@ import api from '../lib/api';
 // --- Type Definitions ---
 interface Question {
   id: number;
+  subject: string; // e.g., "1. [실습] Python for AI"
   question_text: string;
   question_type: 'multiple_choice' | 'short_answer' | 'descriptive' | 'coding';
   options?: string[];
@@ -59,7 +60,14 @@ const Quiz: React.FC = () => {
   useEffect(() => {
     api.get(`/api/questions/${subject}`)
       .then(response => {
-        setQuestions(response.data);
+        const data: Question[] = response.data || [];
+        // Shuffle questions order
+        const shuffled = [...data];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        setQuestions(shuffled);
         setLoading(false);
       })
       .catch(() => {
@@ -90,7 +98,7 @@ const Quiz: React.FC = () => {
       setUiMessage({ type: 'error', text: 'Please provide an answer before checking.' });
       return;
     }
-    api.post('/api/check-answer', { question_id: currentQuestion.id, answer: userAnswer })
+    api.post(`/api/check-answer/${subject}`, { question_id: currentQuestion.id, answer: userAnswer })
       .then(response => {
         setFeedback(prev => ({ ...prev, [currentQuestion.id]: response.data }));
         setUiMessage(null);
@@ -107,7 +115,7 @@ const Quiz: React.FC = () => {
       question_id: parseInt(id),
       answer: answers[parseInt(id)],
     }));
-    api.post('/api/submit', payload)
+    api.post(`/api/submit/${subject}`, payload)
       .then(response => {
         navigate('/results', { state: { results: response.data, questions, answers } });
       })
@@ -122,7 +130,7 @@ const Quiz: React.FC = () => {
       question_id: q.id,
       answer: (answers[q.id] ?? '').trim(),
     }));
-    api.post('/api/submit', payload)
+    api.post(`/api/submit/${subject}`, payload)
       .then(response => {
         const answersForResults: { [key: number]: string } = {};
         questions.forEach(q => { answersForResults[q.id] = answers[q.id] ?? ''; });
@@ -149,6 +157,9 @@ const Quiz: React.FC = () => {
 
       <ProgressBar current={currentQuestionIndex + 1} total={questions.length} />
       <div className="fluent-card">
+        <div style={{ opacity: 0.8, marginBottom: '0.25rem' }}>
+          {`${currentQuestionIndex + 1}. ${currentQuestion.subject || ''}`}
+        </div>
         <p id={labelId} className="fluent-card__question-text">{currentQuestion.question_text}</p>
 
         {currentQuestion.question_type === 'multiple_choice' && (
@@ -233,4 +244,3 @@ const Quiz: React.FC = () => {
 };
 
 export default Quiz;
-
