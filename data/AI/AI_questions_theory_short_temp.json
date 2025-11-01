@@ -1,0 +1,162 @@
+[
+    {
+        "subject": "[이론] 최적화",
+        "question_text": "경사 하강법에서 학습률이 너무 클 때, 최적점을 지나치며 손실 값이 오히려 증가하는 현상을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "발산 또는 오버슈팅(Overshooting)",
+        "keywords_full_credit": ["발산", "오버슈팅"],
+        "keywords_partial_credit": ["학습률"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "MLP의 학습 과정에서, 예측값과 실제값의 차이를 계산하는 함수를 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "손실 함수 (Loss Function)",
+        "keywords_full_credit": ["손실 함수", "Loss Function"],
+        "keywords_partial_credit": ["오차"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "Word2Vec 모델 중, 중심 단어를 이용하여 주변 단어를 예측하는 방식은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "Skip-gram",
+        "keywords_full_credit": ["Skip-gram"],
+        "keywords_partial_credit": ["Word2Vec", "중심 단어"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "LSTM에서 장기 기억을 담당하며, 정보가 전체 시퀀스에 걸쳐 흐를 수 있도록 하는 핵심 구성 요소를 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "셀 상태 (Cell State)",
+        "keywords_full_credit": ["셀 상태", "Cell State"],
+        "keywords_partial_credit": ["LSTM", "장기 기억"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "트랜스포머에서, 단어의 순서 정보를 모델에 알려주기 위해 입력 임베딩에 더해지는 벡터를 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "위치 인코딩 (Positional Encoding)",
+        "keywords_full_credit": ["위치 인코딩", "Positional Encoding"],
+        "keywords_partial_credit": ["트랜스포머", "순서 정보"]
+    },
+    {
+        "subject": "[이론] CV",
+        "question_text": "CNN에서, 입력 데이터의 가장자리에 0과 같은 값을 채워 넣어 출력 특징 맵의 크기가 줄어드는 것을 방지하는 기법은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "패딩 (Padding)",
+        "keywords_full_credit": ["패딩", "Padding"],
+        "keywords_partial_credit": ["CNN", "특징 맵 크기"]
+    },
+    {
+        "subject": "[이론] CV",
+        "question_text": "사전 학습된 모델을 새로운 작업에 재사용하는 머신러닝 기법을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "전이 학습 (Transfer Learning)",
+        "keywords_full_credit": ["전이 학습", "Transfer Learning"],
+        "keywords_partial_credit": ["사전 학습된 모델", "재사용"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM이 별도의 예시 없이, 프롬프트에 주어진 지시만으로 작업을 수행하는 능력을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "제로샷 학습 (Zero-shot Learning)",
+        "keywords_full_credit": ["제로샷 학습", "Zero-shot"],
+        "keywords_partial_credit": ["예시 없음"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM의 규모가 특정 임계점을 넘었을 때, 작은 모델에서는 보이지 않던 새로운 능력이 갑자기 나타나는 현상을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "창발적 능력 (Emergent Abilities)",
+        "keywords_full_credit": ["창발적 능력", "Emergent Abilities"],
+        "keywords_partial_credit": ["모델 규모", "임계점"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "사람의 선호도 데이터를 기반으로 보상 모델을 학습하고, 이를 강화학습에 활용하여 LLM을 미세 조정하는 기법은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "RLHF (Reinforcement Learning from Human Feedback)",
+        "keywords_full_credit": ["RLHF", "인간 피드백 기반 강화학습"],
+        "keywords_partial_credit": ["보상 모델", "선호도 데이터"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG 파이프라인에서 긴 문서를 의미 있는 단위로 나누는 과정을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "청킹 (Chunking)",
+        "keywords_full_credit": ["청킹", "Chunking"],
+        "keywords_partial_credit": ["RAG", "문서 분할"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG에서 키워드 일치를 기반으로 문서를 검색하는 검색기 유형을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "희소 검색기 (Sparse Retriever)",
+        "keywords_full_credit": ["희소 검색기", "Sparse Retriever"],
+        "keywords_partial_credit": ["키워드 기반", "TF-IDF"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "LoRA 기법에서, 학습이 끝난 후 추론 속도 저하를 방지하기 위해 어댑터 가중치를 원본 모델 가중치에 합치는 과정을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "병합 (Merging)",
+        "keywords_full_credit": ["병합", "Merging"],
+        "keywords_partial_credit": ["LoRA", "추론 속도"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "모델의 가중치를 더 낮은 정밀도의 데이터 타입(예: 32-bit 부동소수점 -> 8-bit 정수)으로 변환하여 모델 크기와 연산량을 줄이는 기술은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "양자화 (Quantization)",
+        "keywords_full_credit": ["양자화", "Quantization"],
+        "keywords_partial_credit": ["모델 경량화", "낮은 정밀도"]
+    },
+    {
+        "subject": "[이론] 모델 평가",
+        "question_text": "모델이 얼마나 문장을 확률적으로 자연스럽게 생성하는지 측정하는 지표로, 값이 낮을수록 좋은 모델로 평가되는 것은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "Perplexity (PPL)",
+        "keywords_full_credit": ["Perplexity", "PPL"],
+        "keywords_partial_credit": ["언어 모델 평가", "낮을수록 좋음"]
+    },
+    {
+        "subject": "[이론] 모델 평가",
+        "question_text": "LLM을 평가할 때, 평가자 LLM이 답변의 길이에 따라 편향된 점수를 주는 현상을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "길이 편향 (Length Bias)",
+        "keywords_full_credit": ["길이 편향", "Length Bias"],
+        "keywords_partial_credit": ["LLM-as-a-judge", "평가 편향"]
+    },
+    {
+        "subject": "[이론] 머신러닝",
+        "question_text": "데이터의 분산을 최대한 보존하는 새로운 축을 찾아 고차원 데이터를 저차원으로 변환하는 대표적인 차원 축소 기법은 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "주성분 분석 (PCA)",
+        "keywords_full_credit": ["주성분 분석", "PCA"],
+        "keywords_partial_credit": ["차원 축소", "분산 보존"]
+    },
+    {
+        "subject": "[이론] 최적화",
+        "question_text": "경사 하강법에서, 한 번의 가중치 업데이트에 사용되는 데이터의 묶음(개수)을 무엇이라고 합니까?",
+        "question_type": "short_answer",
+        "model_answer": "배치 크기 (Batch Size)",
+        "keywords_full_credit": ["배치 크기", "Batch Size"],
+        "keywords_partial_credit": ["경사 하강법", "미니배치"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "다중 클래스 분류 문제에서, 모델의 최종 출력층에 주로 사용되어 각 클래스에 대한 확률 분포를 출력하는 활성화 함수는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "소프트맥스 (Softmax)",
+        "keywords_full_credit": ["소프트맥스", "Softmax"],
+        "keywords_partial_credit": ["다중 클래스 분류", "확률 분포"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "트랜스포머의 멀티-헤드 어텐션에서, 여러 개의 어텐션 헤드를 사용하는 주된 이유는 무엇입니까?",
+        "question_type": "short_answer",
+        "model_answer": "하나의 어텐션 헤드가 한 가지 관점의 관계만 학습하는 한계를 넘어, 다양한 관점에서 단어 간의 관계를 동시에 학습하기 위함이다.",
+        "keywords_full_credit": ["다양한 관점", "관계 동시 학습"],
+        "keywords_partial_credit": ["멀티-헤드 어텐션"]
+    }
+]
