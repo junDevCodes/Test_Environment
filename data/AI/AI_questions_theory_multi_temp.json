@@ -1,0 +1,548 @@
+[
+    {
+        "subject": "[이론] 머신러닝",
+        "question_text": "소프트맥스(Softmax) 함수가 다중 클래스 분류 문제에서 어떻게 각 클래스에 대한 확률을 계산하는지 설명하는 것으로 가장 올바른 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "각 클래스에 대한 선형 회귀 예측값을 그대로 사용한다.",
+            "각 클래스에 대한 예측값에 지수 함수를 적용한 뒤, 모든 클래스의 지수 함수 값의 총합으로 나누어 정규화한다.",
+            "각 클래스에 대한 예측값 중 가장 큰 값을 1로, 나머지를 0으로 변환한다.",
+            "각 클래스에 대한 예측값을 모두 더한 값이 1이 되도록 단순히 나눗셈을 수행한다."
+        ],
+        "model_answer": "각 클래스에 대한 예측값에 지수 함수를 적용한 뒤, 모든 클래스의 지수 함수 값의 총합으로 나누어 정규화한다.",
+        "keywords_full_credit": ["소프트맥스", "지수 함수", "총합으로 나누어 정규화"],
+        "keywords_partial_credit": ["다중 클래스 분류", "확률"]
+    },
+    {
+        "subject": "[이론] 머신러닝",
+        "question_text": "차원 축소 기법인 주성분 분석(PCA)의 주된 목표는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "데이터의 이상치를 제거하는 것",
+            "데이터의 분산을 최대한 보존하는 새로운 축(주성분)을 찾는 것",
+            "데이터를 특정 클래스로 분류하는 것",
+            "데이터의 결측치를 채우는 것"
+        ],
+        "model_answer": "데이터의 분산을 최대한 보존하는 새로운 축(주성분)을 찾는 것",
+        "keywords_full_credit": ["PCA", "차원 축소", "분산 보존"],
+        "keywords_partial_credit": ["주성분"]
+    },
+    {
+        "subject": "[이론] 최적화",
+        "question_text": "미니배치 경사 하강법(Mini-batch Gradient Descent)이 확률적 경사 하강법(SGD)에 비해 갖는 장점으로 가장 적절한 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "항상 전역 최적점에 더 빠르게 수렴한다.",
+            "학습 과정이 더 안정적이고, 하드웨어 병렬 처리의 이점을 활용할 수 있다.",
+            "학습률(learning rate)을 설정할 필요가 없다.",
+            "전체 데이터셋을 메모리에 올릴 필요가 없어 메모리 효율성이 가장 뛰어나다."
+        ],
+        "model_answer": "학습 과정이 더 안정적이고, 하드웨어 병렬 처리의 이점을 활용할 수 있다.",
+        "keywords_full_credit": ["미니배치", "안정적 학습", "병렬 처리"],
+        "keywords_partial_credit": ["SGD", "경사 하강법"]
+    },
+    {
+        "subject": "[이론] EDA",
+        "question_text": "데이터 시각화에서 페어 플롯(Pair Plot)을 사용하는 주된 목적은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "단일 변수의 분포만을 상세하게 확인하기 위해",
+            "시간의 흐름에 따른 데이터 변화를 추적하기 위해",
+            "데이터프레임에 있는 여러 변수들 간의 관계를 한 번에 시각적으로 파악하기 위해",
+            "지리적 데이터의 분포를 지도 위에 표시하기 위해"
+        ],
+        "model_answer": "데이터프레임에 있는 여러 변수들 간의 관계를 한 번에 시각적으로 파악하기 위해",
+        "keywords_full_credit": ["페어 플롯", "여러 변수 간 관계", "한 번에 파악"],
+        "keywords_partial_credit": ["산점도", "히스토그램"]
+    },
+    {
+        "subject": "[이론] 모델 평가",
+        "question_text": "K-Fold 교차 검증(K-Fold Cross-Validation)에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "데이터를 훈련, 검증, 테스트 세트로 한 번만 나누어 평가하는 방식이다.",
+            "전체 데이터를 K개의 부분집합(fold)으로 나눈 뒤, 각 폴드가 한 번씩 검증 세트가 되어 총 K번 학습 및 평가를 진행하는 방식이다.",
+            "데이터의 순서를 무작위로 섞어 모델의 강건성을 높이는 기법이다.",
+            "오직 K개의 데이터 포인트만 샘플링하여 모델을 검증하는 방식이다."
+        ],
+        "model_answer": "전체 데이터를 K개의 부분집합(fold)으로 나눈 뒤, 각 폴드가 한 번씩 검증 세트가 되어 총 K번 학습 및 평가를 진행하는 방식이다.",
+        "keywords_full_credit": ["K-Fold 교차 검증", "K개의 부분집합", "K번 학습 및 평가"],
+        "keywords_partial_credit": ["일반화 성능", "데이터 분할 편향 방지"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "신경망의 학습 과정에서 드롭아웃(Dropout)을 적용했을 때, 추론(inference) 시점에는 일반적으로 어떻게 처리해야 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "학습 때와 동일하게 무작위로 뉴런을 비활성화한다.",
+            "모든 뉴런을 활성화하되, 학습 시의 드롭아웃 비율(p)만큼 가중치를 곱하여 출력을 보정한다.",
+            "모든 뉴런을 비활성화하여 출력을 0으로 만든다.",
+            "드롭아웃 비율(p)을 2배로 늘려 적용한다."
+        ],
+        "model_answer": "모든 뉴런을 활성화하되, 학습 시의 드롭아웃 비율(p)만큼 가중치를 곱하여 출력을 보정한다.",
+        "keywords_full_credit": ["드롭아웃", "추론 시점", "모든 뉴런 활성화", "가중치 보정"],
+        "keywords_partial_credit": ["과적합 방지"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "원-핫 인코딩(One-Hot Encoding)이 단어의 의미적 유사성을 표현하지 못하는 문제를 해결하기 위해 등장한 기법으로 가장 적절한 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "N-gram",
+            "Bag-of-Words (BoW)",
+            "워드 임베딩 (Word Embedding)",
+            "TF-IDF"
+        ],
+        "model_answer": "워드 임베딩 (Word Embedding)",
+        "keywords_full_credit": ["워드 임베딩", "의미적 유사성", "밀집 벡터"],
+        "keywords_partial_credit": ["원-핫 인코딩", "차원의 저주"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "Seq2Seq 모델의 학습 과정에서, 디코더의 입력으로 이전 스텝의 모델 예측값이 아닌 실제 정답을 넣어주는 기법을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "빔 서치 (Beam Search)",
+            "교사 강요 (Teacher Forcing)",
+            "어텐션 (Attention)",
+            "드롭아웃 (Dropout)"
+        ],
+        "model_answer": "교사 강요 (Teacher Forcing)",
+        "keywords_full_credit": ["교사 강요", "Teacher Forcing", "실제 정답 입력"],
+        "keywords_partial_credit": ["Seq2Seq", "학습 안정성"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "트랜스포머(Transformer)의 디코더에서 사용되는 마스크드 셀프 어텐션(Masked Self-Attention)의 주된 목적은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "입력 문장의 패딩 토큰에 어텐션이 적용되지 않도록 하기 위해",
+            "현재 위치의 단어가 미래 위치의 단어 정보를 미리 참고하는 것을 방지하기 위해",
+            "인코더의 출력에 더 많은 가중치를 부여하기 위해",
+            "여러 어텐션 헤드가 서로 다른 정보를 학습하도록 강제하기 위해"
+        ],
+        "model_answer": "현재 위치의 단어가 미래 위치의 단어 정보를 미리 참고하는 것을 방지하기 위해",
+        "keywords_full_credit": ["마스크드 셀프 어텐션", "미래 정보 참고 방지"],
+        "keywords_partial_credit": ["트랜스포머 디코더", "자기회귀"]
+    },
+    {
+        "subject": "[이론] CV",
+        "question_text": "MobileNet 아키텍처가 기존 CNN에 비해 연산량을 크게 줄일 수 있었던 핵심적인 연산 방식은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "더 큰 크기의 필터를 사용",
+            "깊이별 분리형 합성곱 (Depthwise Separable Convolution)",
+            "잔차 연결 (Residual Connection)",
+            "인셉션 모듈 (Inception Module)"
+        ],
+        "model_answer": "깊이별 분리형 합성곱 (Depthwise Separable Convolution)",
+        "keywords_full_credit": ["MobileNet", "깊이별 분리형 합성곱"],
+        "keywords_partial_credit": ["경량 CNN", "연산량 감소"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM의 '인컨텍스트 학습(In-Context Learning)'에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "새로운 작업에 대해 모델의 가중치를 직접 업데이트하여 미세 조정하는 방식이다.",
+            "프롬프트에 몇 개의 예시(few-shot)를 제공하여 모델이 해당 작업의 패턴을 파악하고 해결하도록 유도하는 방식이다.",
+            "모델의 지식을 외부 데이터베이스와 연결하여 확장하는 방식이다.",
+            "모델의 출력에 대해 인간이 피드백을 제공하여 학습시키는 방식이다."
+        ],
+        "model_answer": "프롬프트에 몇 개의 예시(few-shot)를 제공하여 모델이 해당 작업의 패턴을 파악하고 해결하도록 유도하는 방식이다.",
+        "keywords_full_credit": ["인컨텍스트 학습", "프롬프트 예시", "few-shot"],
+        "keywords_partial_credit": ["가중치 업데이트 없음", "창발적 능력"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM을 평가하는 벤치마크 중, 다양한 주제와 난이도의 다지선다형 문제를 통해 모델의 종합적인 지식과 추론 능력을 평가하는 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "SQuAD",
+            "GLUE",
+            "MMLU",
+            "ImageNet"
+        ],
+        "model_answer": "MMLU",
+        "keywords_full_credit": ["MMLU", "다지선다형 문제", "지식 및 추론 능력"],
+        "keywords_partial_credit": ["LLM 평가", "벤치마크"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG 시스템에서 텍스트를 벡터로 변환하여 Vector Store에 저장하는 전체 과정을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "청킹 (Chunking)",
+            "파싱 (Parsing)",
+            "인덱싱 (Indexing)",
+            "프롬프팅 (Prompting)"
+        ],
+        "model_answer": "인덱싱 (Indexing)",
+        "keywords_full_credit": ["인덱싱", "벡터 변환", "Vector Store 저장"],
+        "keywords_partial_credit": ["RAG", "임베딩"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG 시스템에서 Sparse Retriever(예: TF-IDF)가 Dense Retriever에 비해 갖는 장점은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "문장의 의미적 유사성을 더 잘 파악할 수 있다.",
+            "학습 데이터에 없던 새로운 단어에 대해 강건하다.",
+            "특정 키워드나 용어가 정확히 일치하는 문서를 찾는 데 효과적이다.",
+            "대규모 언어 모델을 필요로 한다."
+        ],
+        "model_answer": "특정 키워드나 용어가 정확히 일치하는 문서를 찾는 데 효과적이다.",
+        "keywords_full_credit": ["Sparse Retriever", "키워드 일치"],
+        "keywords_partial_credit": ["TF-IDF", "어휘적 유사도"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "모델 경량화 기법 중, 크고 복잡한 교사 모델(Teacher Model)의 지식을 작고 효율적인 학생 모델(Student Model)에게 전달하는 학습 기법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "가지치기 (Pruning)",
+            "양자화 (Quantization)",
+            "지식 증류 (Knowledge Distillation)",
+            "LoRA"
+        ],
+        "model_answer": "지식 증류 (Knowledge Distillation)",
+        "keywords_full_credit": ["지식 증류", "교사 모델", "학생 모델"],
+        "keywords_partial_credit": ["모델 경량화", "소프트 레이블"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "양자화(Quantization) 기법 중, 모델 학습이 완료된 후에 가중치를 낮은 정밀도로 변환하는 방식을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "QAT (Quantization-Aware Training)",
+            "PTQ (Post-Training Quantization)",
+            "비대칭 양자화 (Asymmetric Quantization)",
+            "혼합 정밀도 양자화 (Mixed-Precision Quantization)"
+        ],
+        "model_answer": "PTQ (Post-Training Quantization)",
+        "keywords_full_credit": ["PTQ", "학습 완료 후"],
+        "keywords_partial_credit": ["양자화", "정확도 손실"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "가지치기(Pruning) 기법 중, 개별 가중치가 아닌 필터, 채널 등 구조적인 단위를 통째로 제거하는 방식은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "크기 기반 가지치기 (Magnitude-based Pruning)",
+            "비정형 가지치기 (Unstructured Pruning)",
+            "정형 가지치기 (Structured Pruning)",
+            "랜덤 가지치기 (Random Pruning)"
+        ],
+        "model_answer": "정형 가지치기 (Structured Pruning)",
+        "keywords_full_credit": ["정형 가지치기", "구조적 단위 제거"],
+        "keywords_partial_credit": ["Pruning", "필터", "채널"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM의 '정렬(Alignment)' 학습 과정에서, 인간의 선호도 데이터를 수집하여 특정 응답이 얼마나 좋은지를 평가하는 모델을 학습하는 단계를 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "지도 미세조정 (Supervised Fine-Tuning)",
+            "보상 모델링 (Reward Modeling)",
+            "강화학습 (Reinforcement Learning)",
+            "사전 학습 (Pre-training)"
+        ],
+        "model_answer": "보상 모델링 (Reward Modeling)",
+        "keywords_full_credit": ["보상 모델링", "인간 선호도 데이터"],
+        "keywords_partial_credit": ["RLHF", "정렬"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM이 사실과 다르거나 맥락에 맞지 않는 정보를 생성하는 현상을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "창발성 (Emergence)",
+            "환각 (Hallucination)",
+            "탈옥 (Jailbreaking)",
+            "편향 (Bias)"
+        ],
+        "model_answer": "환각 (Hallucination)",
+        "keywords_full_credit": ["환각", "Hallucination"],
+        "keywords_partial_credit": ["사실과 다른 정보"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM의 응답 생성 시, '단계별로 생각하자(Let's think step by step)'와 같은 문구를 추가하여 모델 스스로 추론 과정을 생성하도록 유도하는 프롬프팅 기법은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "Few-shot Prompting",
+            "Chain-of-Thought (CoT) Prompting",
+            "Zero-shot-Chain-of-Thought (Zero-shot-CoT) Prompting",
+            "Self-Consistency"
+        ],
+        "model_answer": "Zero-shot-Chain-of-Thought (Zero-shot-CoT) Prompting",
+        "keywords_full_credit": ["Zero-shot-CoT", "단계별로 생각하자"],
+        "keywords_partial_credit": ["추론 과정 유도"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "다음 중 손실 함수(Loss Function)에 대한 설명으로 가장 올바른 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "모델의 예측값이 얼마나 정확한지를 나타내는 지표이다.",
+            "모델의 예측값과 실제 정답값 사이의 오차(차이)를 측정하는 함수이다.",
+            "모델의 복잡도를 측정하는 함수이다.",
+            "모델의 학습 속도를 결정하는 함수이다."
+        ],
+        "model_answer": "모델의 예측값과 실제 정답값 사이의 오차(차이)를 측정하는 함수이다.",
+        "keywords_full_credit": ["손실 함수", "오차 측정", "예측값과 실제값"],
+        "keywords_partial_credit": ["Loss Function"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "신경망에서 다중공선성(Multicollinearity) 문제가 있을 때 L2 규제가 도움이 되는 이유는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "관련 없는 특성의 가중치를 0으로 만들기 때문에",
+            "모델의 가중치 값을 전반적으로 작게 만들어 특정 변수에 대한 과도한 의존을 줄이기 때문에",
+            "학습률을 동적으로 조정하기 때문에",
+            "모델의 층 수를 줄여주기 때문에"
+        ],
+        "model_answer": "모델의 가중치 값을 전반적으로 작게 만들어 특정 변수에 대한 과도한 의존을 줄이기 때문에",
+        "keywords_full_credit": ["L2 규제", "다중공선성", "가중치 값 감소"],
+        "keywords_partial_credit": ["과도한 의존", "Ridge"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "N-gram 언어 모델의 주요 한계점은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "학습 데이터에 없는 단어(OOV)를 처리할 수 없다.",
+            "N값보다 멀리 떨어진 단어의 문맥 정보를 반영하기 어렵다.",
+            "항상 적은 메모리만 사용한다.",
+            "병렬 처리가 용이하여 학습 속도가 매우 빠르다."
+        ],
+        "model_answer": "N값보다 멀리 떨어진 단어의 문맥 정보를 반영하기 어렵다.",
+        "keywords_full_credit": ["N-gram", "장기 의존성 약함", "문맥 정보"],
+        "keywords_partial_credit": ["N값"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "어텐션(Attention) 메커니즘에서, 디코더가 특정 출력 단어를 생성하기 위해 인코더의 모든 은닉 상태에 다른 가중치를 부여하는 이유는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "계산량을 줄이기 위해",
+            "입력 시퀀스의 모든 단어는 출력 단어 생성에 동일한 중요도를 가지기 때문에",
+            "출력 단어와 의미적으로 관련이 높은 입력 단어에 더 집중하기 위해",
+            "모델의 과적합을 방지하기 위해"
+        ],
+        "model_answer": "출력 단어와 의미적으로 관련이 높은 입력 단어에 더 집중하기 위해",
+        "keywords_full_credit": ["어텐션", "관련성 높은 입력", "집중"],
+        "keywords_partial_credit": ["가중치", "디코더"]
+    },
+    {
+        "subject": "[이론] CV",
+        "question_text": "CNN의 완전 연결 계층(Fully Connected Layer) 직전에 수행되는 Flatten 연산의 역할은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "이미지의 채널 수를 늘리는 것",
+            "다차원 특징 맵(Feature Map)을 1차원 벡터로 변환하는 것",
+            "이미지의 노이즈를 제거하는 것",
+            "이미지를 여러 개의 패치로 나누는 것"
+        ],
+        "model_answer": "다차원 특징 맵(Feature Map)을 1차원 벡터로 변환하는 것",
+        "keywords_full_credit": ["Flatten", "완전 연결 계층", "1차원 벡터 변환"],
+        "keywords_partial_credit": ["CNN", "특징 맵"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "폐쇄형(Closed-source) LLM이 개방형(Open-source) LLM에 비해 갖는 일반적인 장점은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "항상 무료로 사용할 수 있다.",
+            "모델의 내부 구조와 가중치가 모두 공개되어 있다.",
+            "일반적으로 더 우수한 성능과 최신 기능을 먼저 제공한다.",
+            "사용자가 원하는 대로 모델을 수정하고 재학습하기 용이하다."
+        ],
+        "model_answer": "일반적으로 더 우수한 성능과 최신 기능을 먼저 제공한다.",
+        "keywords_full_credit": ["폐쇄형 LLM", "우수한 성능", "최신 기능"],
+        "keywords_partial_credit": ["개방형 LLM", "비용"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "'LLM-as-a-judge'에서 발생할 수 있는 '자기 선호 편향'이란 무엇을 의미합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "평가 모델이 이전에 자신이 선호했던 답변과 유사한 답변에 더 높은 점수를 주는 편향",
+            "평가 모델이 자신이 직접 생성했을 법한 스타일의 답변에 더 높은 점수를 주는 편향",
+            "평가 모델이 더 긴 답변에 무조건 높은 점수를 주는 편향",
+            "평가 모델이 답변 목록의 특정 위치에 있는 답변을 선호하는 편향"
+        ],
+        "model_answer": "평가 모델이 자신이 직접 생성했을 법한 스타일의 답변에 더 높은 점수를 주는 편향",
+        "keywords_full_credit": ["LLM-as-a-judge", "자기 선호 편향", "자신이 생성했을 법한 스타일"],
+        "keywords_partial_credit": ["편향", "평가"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG의 구성요소 중, LLM이 문서를 더 잘 이해할 수 있도록 PDF, TXT 등 다양한 형식의 원본 문서에서 순수한 텍스트와 메타데이터를 추출하는 과정을 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "청킹 (Chunking)",
+            "인덱싱 (Indexing)",
+            "파싱 (Parsing)",
+            "임베딩 (Embedding)"
+        ],
+        "model_answer": "파싱 (Parsing)",
+        "keywords_full_credit": ["파싱", "텍스트 추출", "메타데이터 추출"],
+        "keywords_partial_credit": ["RAG", "원본 문서"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG에서 'Lost in the Middle' 문제가 발생하는 주된 원인은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "검색된 문서의 청크 크기가 너무 작아서",
+            "LLM의 컨텍스트 창이 너무 길어서",
+            "LLM이 컨텍스트 창의 시작이나 끝 부분보다 중간에 있는 정보에 덜 집중하는 경향이 있어서",
+            "Retriever가 관련 없는 문서를 검색해서"
+        ],
+        "model_answer": "LLM이 컨텍스트 창의 시작이나 끝 부분보다 중간에 있는 정보에 덜 집중하는 경향이 있어서",
+        "keywords_full_credit": ["Lost in the Middle", "중간 정보 집중 저하"],
+        "keywords_partial_credit": ["RAG", "컨텍스트 창"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "다음 중 PEFT(Parameter-Efficient Fine-Tuning) 기법에 속하지 않는 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "LoRA",
+            "Adapter Tuning",
+            "Prompt Tuning",
+            "Full Fine-Tuning"
+        ],
+        "model_answer": "Full Fine-Tuning",
+        "keywords_full_credit": ["Full Fine-Tuning", "PEFT"],
+        "keywords_partial_credit": ["LoRA", "Adapter Tuning", "Prompt Tuning"]
+    },
+    {
+        "subject": "[이론] 머신러닝",
+        "question_text": "다음 중 분류(Classification) 모델의 성능 평가 지표가 아닌 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "정확도 (Accuracy)",
+            "F1 점수 (F1-Score)",
+            "평균 제곱 오차 (MSE)",
+            "혼동 행렬 (Confusion Matrix)"
+        ],
+        "model_answer": "평균 제곱 오차 (MSE)",
+        "keywords_full_credit": ["평균 제곱 오차", "MSE"],
+        "keywords_partial_credit": ["분류", "회귀"]
+    },
+    {
+        "subject": "[이론] 딥러닝",
+        "question_text": "최적화 알고리즘 중, 그래디언트의 방향과 학습률을 모두 적응적으로 조절하는 가장 대표적인 옵티마이저는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "SGD (Stochastic Gradient Descent)",
+            "Momentum",
+            "RMSProp",
+            "Adam"
+        ],
+        "model_answer": "Adam",
+        "keywords_full_credit": ["Adam", "관성", "적응적 학습률"],
+        "keywords_partial_credit": ["옵티마이저"]
+    },
+    {
+        "subject": "[이론] NLP",
+        "question_text": "트랜스포머의 인코더와 디코더에 모두 포함되며, 각 층의 출력이 정규분포에 가깝도록 만들어 학습을 안정시키는 역할을 하는 구성요소는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "셀프 어텐션 (Self-Attention)",
+            "피드 포워드 네트워크 (Feed-Forward Network)",
+            "잔차 연결과 레이어 정규화 (Add & Norm)",
+            "위치 인코딩 (Positional Encoding)"
+        ],
+        "model_answer": "잔차 연결과 레이어 정규화 (Add & Norm)",
+        "keywords_full_credit": ["Add & Norm", "잔차 연결", "레이어 정규화"],
+        "keywords_partial_credit": ["트랜스포머", "학습 안정화"]
+    },
+    {
+        "subject": "[이론] CV",
+        "question_text": "VGGNet이 CNN 역사에서 보여준 주요 아이디어는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "네트워크의 깊이가 깊어질수록 성능이 향상될 수 있음을 보여주었다.",
+            "인셉션 모듈을 통해 연산량을 획기적으로 줄였다.",
+            "잔차 연결을 처음으로 도입하여 매우 깊은 네트워크 학습을 가능하게 했다.",
+            "어텐션 메커니즘을 이미지 분류에 성공적으로 적용했다."
+        ],
+        "model_answer": "네트워크의 깊이가 깊어질수록 성능이 향상될 수 있음을 보여주었다.",
+        "keywords_full_credit": ["VGGNet", "네트워크 깊이", "성능 향상"],
+        "keywords_partial_credit": ["3x3 합성곱 필터"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "LLM이 학습한 데이터에만 의존하지 않고, 외부의 최신 정보를 검색하여 답변에 활용하는 기술을 총칭하여 무엇이라고 합니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "Fine-tuning",
+            "In-Context Learning",
+            "Retrieval-Augmented Generation (RAG)",
+            "Reinforcement Learning"
+        ],
+        "model_answer": "Retrieval-Augmented Generation (RAG)",
+        "keywords_full_credit": ["RAG", "검색 증강 생성", "외부 정보 활용"],
+        "keywords_partial_credit": ["환각 방지"]
+    },
+    {
+        "subject": "[이론] RAG",
+        "question_text": "RAG에서 Bi-encoder와 Cross-encoder를 조합한 2단계 검색(Two-stage Retrieval)을 사용하는 가장 주된 이유는 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "Bi-encoder의 높은 정확도와 Cross-encoder의 빠른 속도를 결합하기 위해",
+            "Bi-encoder의 빠른 속도와 Cross-encoder의 높은 정확도를 결합하기 위해",
+            "두 인코더가 동일한 방식으로 작동하기 때문에",
+            "모델의 복잡성을 낮추기 위해"
+        ],
+        "model_answer": "Bi-encoder의 빠른 속도와 Cross-encoder의 높은 정확도를 결합하기 위해",
+        "keywords_full_credit": ["2단계 검색", "Bi-encoder 속도", "Cross-encoder 정확도"],
+        "keywords_partial_credit": ["RAG", "효율성"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "다음 중 PEFT(Parameter-Efficient Fine-Tuning) 기법을 사용하는 주된 이유로 가장 적절한 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "모델의 사전 학습 속도를 높이기 위해",
+            "적은 계산 자원으로 특정 작업에 대한 LLM의 미세 조정을 수행하기 위해",
+            "모델의 파라미터 수를 늘려 성능을 극대화하기 위해",
+            "모델의 환각 현상을 완벽하게 제거하기 위해"
+        ],
+        "model_answer": "적은 수의 파라미터만 업데이트하여 계산 비용과 메모리 사용량을 줄이면서 모델을 특정 작업에 맞게 조정하는 것",
+        "keywords_full_credit": ["PEFT", "적은 계산 자원", "미세 조정"],
+        "keywords_partial_credit": ["파라미터 효율적"]
+    },
+    {
+        "subject": "[이론] PEFT",
+        "question_text": "QLoRA에서 사용되는 양자화(Quantization)의 주된 목적은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "모델의 지식 범위를 확장하는 것",
+            "모델의 가중치를 더 높은 정밀도로 변환하여 정확도를 높이는 것",
+            "사전 학습된 모델의 메모리 사용량을 크게 줄여 더 적은 GPU 자원으로 LoRA 학습을 가능하게 하는 것",
+            "모델의 추론 결과 다양성을 높이는 것"
+        ],
+        "model_answer": "사전 학습된 모델의 메모리 사용량을 크게 줄여 더 적은 GPU 자원으로 LoRA 학습을 가능하게 하는 것",
+        "keywords_full_credit": ["QLoRA", "양자화", "메모리 사용량 감소"],
+        "keywords_partial_credit": ["4-bit", "GPU"]
+    },
+    {
+        "subject": "[이론] LLM",
+        "question_text": "지시 학습(Instruction Tuning)이 LLM의 성능에 미치는 영향으로 가장 올바른 것은 무엇입니까?",
+        "question_type": "multiple_choice",
+        "options": [
+            "모델이 새로운 사실적 지식을 학습하게 한다.",
+            "모델이 기존에 가지고 있던 지식을 활용하여 사람의 다양한 지시를 따르는 능력을 향상시킨다.",
+            "모델의 파라미터 수를 감소시킨다.",
+            "모델의 추론 속도를 항상 빠르게 만든다."
+        ],
+        "model_answer": "모델이 기존에 가지고 있던 지식을 활용하여 사람의 다양한 지시를 따르는 능력을 향상시킨다.",
+        "keywords_full_credit": ["지시 학습", "지시 수행 능력 향상"],
+        "keywords_partial_credit": ["정렬(Alignment)", "Fine-tuning"]
+    }
+]

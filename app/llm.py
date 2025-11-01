@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from typing import Optional, Tuple
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
 
 
-def grade_with_gemini(question_text: str, model_answer: str, user_answer: str, api_key: str) -> Optional[Tuple[bool, float, str]]:
+def grade_with_gemini(question_text: str, model_answer: str, user_answer: str, api_key: str, timeout_seconds: float = 8.0) -> Optional[Tuple[bool, float, str]]:
     """
     Attempt to grade using Gemini. Returns (is_correct, score, reason) or None on failure/unavailable.
     - score: 0.0 to 1.0
@@ -32,16 +33,24 @@ def grade_with_gemini(question_text: str, model_answer: str, user_answer: str, a
         )
 
         # Some SDKs support response_mime_type; guard if unsupported
-        try:
-            response = model.generate_content([
-                {"role": "user", "parts": system_prompt},
-                {"role": "user", "parts": user_prompt},
-            ], generation_config={"response_mime_type": "application/json"})
-        except Exception:  # Fallback without mime type
-            response = model.generate_content([
-                system_prompt,
-                user_prompt,
-            ])
+        def _call_gen():
+            try:
+                return model.generate_content([
+                    {"role": "user", "parts": system_prompt},
+                    {"role": "user", "parts": user_prompt},
+                ], generation_config={"response_mime_type": "application/json"})
+            except Exception:
+                return model.generate_content([
+                    system_prompt,
+                    user_prompt,
+                ])
+
+        with ThreadPoolExecutor(max_workers=1) as ex:
+            fut = ex.submit(_call_gen)
+            try:
+                response = fut.result(timeout=timeout_seconds)
+            except FuturesTimeout:
+                return None
 
         text = getattr(response, "text", None) or str(response)
 
@@ -55,4 +64,3 @@ def grade_with_gemini(question_text: str, model_answer: str, user_answer: str, a
         return is_correct, score, reason
     except Exception:
         return None
-

@@ -858,6 +858,35 @@ body {
 
 }
 
+/* --- Problem Set Selection styles (stronger selection visibility, equal sizing) --- */
+.set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.set-item {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--fluent-border-light);
+  border-radius: var(--fluent-border-radius);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, transform 0.05s ease-out;
+}
+
+.set-item:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.set-item.selected {
+  border-width: 2px;
+  border-color: var(--fluent-accent-blue);
+  background: rgba(0, 120, 212, 0.15);
+}
+
 
 
 
@@ -1446,6 +1475,54 @@ body {
     word-break: break-word;
 }
 
+/* --- Problem Set Selection --- */
+.set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  width: 100%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.set-item {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  border: 1px solid var(--fluent-border-light);
+  background-color: var(--fluent-card-background-acrylic);
+  border-radius: var(--fluent-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.set-item:hover {
+  border-color: var(--fluent-accent-blue);
+}
+
+.set-item.selected {
+  border-color: var(--fluent-accent-blue);
+  border-width: 2px;
+  background-color: var(--fluent-accent-blue);
+  color: #ffffff;
+  box-shadow: var(--fluent-shadow-depth-16);
+}
+
+.set-item__name {
+  font-weight: 600;
+  text-align: left;
+}
+
+.set-item.selected .set-item__name {
+  color: inherit;
+}
+
 /* --- Modal (API Key) --- */
 .modal-overlay {
     position: fixed;
@@ -1754,10 +1831,6 @@ body {
 
 
 }
-
-
-
-
 
 
 
