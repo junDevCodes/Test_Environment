@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../lib/api';
+import { api, setDbSet } from '../lib/api';
 
 // --- Type Definitions ---
 interface Question {
@@ -56,7 +56,61 @@ const Quiz: React.FC = () => {
   const [uiMessage, setUiMessage] = useState<{ type: 'error' | 'info'; text: string } | null>(null);
   const [showEndModal, setShowEndModal] = useState<boolean>(false);
 
+const [dbSets, setDbSets] = useState<string[]>([]);
+  const [currentDbSet, setCurrentDbSet] = useState<string>('');
+
   // --- Data Fetching ---
+  useEffect(() => {
+      api.get('/api/sets')
+        .then(res => {
+          const sets: string[] = res.data || [];
+          setDbSets(sets);
+
+          // 기본 선택 세트가 아직 없고, 서버가 준 세트가 있다면 첫 번째 세트로 자동 지정
+          if (sets.length > 0 && !currentDbSet) {
+            setCurrentDbSet(sets[0]);      // React state로 현재 세트 기록
+            setDbSet(sets[0]);             // 추가: axios 전역 헤더 X-DB-SET 세팅 + localStorage 저장
+          }
+        })
+        .catch(() => {
+          setError('문제집 목록을 불러오지 못했습니다.');
+        });
+      // 의도: 첫 마운트 시 한 번만 호출
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // 추가: 빈 deps → 최초 1회만 실행
+
+  useEffect(() => {
+      if (!subject) return;          // 기존과 동일: URL 파라미터 없으면 대기
+      if (!currentDbSet) return;     // 추가: 아직 어떤 문제집 쓸지 모르면 문제 로드하지 않음
+
+      setLoading(true);
+
+      // 여기서부터는 api 인스턴스에 이미 X-DB-SET 헤더가 들어가 있으므로
+      // 따로 headers: { 'X-DB-SET': ... } 안 줘도 된다.
+      api.get(`/api/questions/${subject}`)
+        .then(response => {
+          const data: Question[] = response.data || [];
+
+          // 문제 순서 섞기 (기존 로직 유지)
+          const shuffled = [...data];
+          for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          }
+
+          setQuestions(shuffled);
+          setCurrentQuestionIndex(0);
+          setAnswers({});
+          setFeedback({});
+          setUiMessage(null);
+          setLoading(false);
+        })
+        .catch(() => {
+          setError('Failed to load questions. Please ensure the backend server is running.');
+          setLoading(false);
+        });
+    }, [subject, currentDbSet]); // 변경: currentDbSet을 의존성에 추가 → 세트 바뀌면 새 문제 로드
+
   useEffect(() => {
     api.get(`/api/questions/${subject}`)
       .then(response => {
@@ -140,6 +194,14 @@ const Quiz: React.FC = () => {
       .catch(() => setError('Failed to submit answers.'));
   };
 
+  // 사용자가 드롭다운으로 문제집을 바꿀 때 호출되는 핸들러
+  const handleDbSetChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newSet = e.target.value;
+    setCurrentDbSet(newSet); // React state
+    setDbSet(newSet);        // 추가: axios 기본 헤더(X-DB-SET)도 같이 교체 + localStorage 갱신
+    // 바뀌면 useEffect([subject, currentDbSet])가 다시 돌면서 새 문제집에서 문제를 불러온다
+  };
+
   if (loading) return <div className="quiz-app-container"><h1>Loading Quiz...</h1></div>;
   if (error) return <div className="quiz-app-container error">{error}</div>;
   if (questions.length === 0) return <div className="quiz-app-container"><h1>No questions found.</h1></div>;
@@ -152,6 +214,23 @@ const Quiz: React.FC = () => {
     <div className="quiz-app-container">
       <div className="fluent-card__actions" style={{ justifyContent: 'space-between', marginBottom: '0.75rem' }}>
         <button className="fluent-button" onClick={() => navigate('/')}>홈화면</button>
+        {/* ⭐ 추가: 문제집 세트 선택 드롭다운 */}
+        <div className="fluent-select-group">
+          <label style={{ fontSize: '0.8rem', opacity: 0.8, marginRight: '0.5rem' }}>
+            문제집 세트
+          </label>
+          <select
+            value={currentDbSet}
+            onChange={handleDbSetChange}
+            className="fluent-select"
+          >
+            {dbSets.map(setName => (
+              <option key={setName} value={setName}>
+                {setName}
+              </option>
+            ))}
+          </select>
+        </div>
         <button className="fluent-button fluent-button--primary" onClick={handleEndExam}>시험 종료</button>
       </div>
 
