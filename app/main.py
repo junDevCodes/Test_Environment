@@ -2,11 +2,15 @@ import os
 import json
 import logging
 import sqlite3
+from pathlib import Path
 from typing import List, Tuple, Optional, Union
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 
+from db_builder.db_generator import build_all_subject_dbs
+from db_builder.validator import validate_db
+import glob
 from app.database import STORAGE_DIR
 from app.llm import grade_with_gemini
 from app import schemas
@@ -201,6 +205,42 @@ def _fetch_question_by_id(db_set: str, q_id: int) -> Optional[dict]:
     m["keywords_partial_credit"] = _normalize_list_field(m.get("keywords_partial_credit"))
     return m
 
+def _prepare_db_on_startup():
+    """
+    1. storage/*.db 없으면 data 기반으로 DB 새로 생성
+    2. 모든 생성된 DB를 validator로 검증
+    3. 하나라도 유효하지 않으면 예외를 던져서 서버 기동을 중단
+    """
+    project_root = Path(__file__).resolve().parents[1]
+    storage_dir = project_root / "storage"
+    data_dir = project_root / "data"
+
+    storage_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1) DB 없으면 자동 생성
+    has_db = list(storage_dir.glob("*.db"))
+    if not has_db:
+        logging.info("[startup] no DB found under storage/. building now ...")
+        build_all_subject_dbs()
+    else:
+        logging.info("[startup] DB already exists under storage/. skipping build")
+
+    # 2) 생성/존재하는 DB 전체 검증
+    problems = []
+    for db_path in storage_dir.glob("*.db"):
+        try:
+            validate_db(db_path)
+            logging.info(f"[startup] validated OK: {db_path.name}")
+        except Exception as e:
+            logging.error(f"[startup] DB validation failed for {db_path.name}: {e}")
+            problems.append((db_path.name, str(e)))
+
+    # 3) 문제가 있으면 서버 띄우지 말고 중단
+    if problems:
+        details = "\n".join([f"- {name}: {msg}" for name, msg in problems])
+        raise RuntimeError("DB validation failed on startup:\n" + details)
+
+
 # -------------------------------------------------
 # 기동 시 처리
 # -------------------------------------------------
@@ -208,6 +248,8 @@ def _fetch_question_by_id(db_set: str, q_id: int) -> Optional[dict]:
 def on_startup():
     # 메모리에 Gemini 키(있으면) 저장
     app.state.gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    _prepare_db_on_startup()
+
 
 
 # -------------------------------------------------
