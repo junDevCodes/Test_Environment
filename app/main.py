@@ -369,3 +369,7 @@ def set_gemini_key(payload: schemas.GeminiKeyPayload):
 def clear_gemini_key():
     app.state.gemini_api_key = None
     return schemas.KeyStatus(gemini_key_set=False)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
