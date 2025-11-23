@@ -54,6 +54,31 @@ const Results: React.FC = () => {
         const subject = questions[0]?.subject?.split('.')[0] || 'quiz';
         navigate(`/quiz/${subject}`);
     };
+
+    // 퀴즈 히스토리 저장
+    React.useEffect(() => {
+        const historyData = {
+            date: Date.now(),
+            correct: totalScore,
+            total: questions.length,
+            timeSpent: elapsedSeconds || 0
+        };
+
+        try {
+            const existingHistory = localStorage.getItem('quiz_history');
+            const history = existingHistory ? JSON.parse(existingHistory) : [];
+            history.push(historyData);
+            
+            // 최대 100개까지만 저장
+            if (history.length > 100) {
+                history.shift();
+            }
+            
+            localStorage.setItem('quiz_history', JSON.stringify(history));
+        } catch (e) {
+            console.error('Failed to save quiz history:', e);
+        }
+    }, [totalScore, questions.length, elapsedSeconds]);
     
     const formatTime = (seconds: number) => {
         const hrs = Math.floor(seconds / 3600);
