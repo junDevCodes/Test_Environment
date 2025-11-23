@@ -96,7 +96,13 @@ const Quiz: React.FC = () => {
   const [quizSettings, setQuizSettings] = useState({
     shuffleQuestions: true,
     randomCount: 0, // 0이면 전체, 그 외엔 해당 개수만큼
-    shuffleOptions: false
+    shuffleOptions: false,
+    questionTypes: {
+      multiple_choice: true,
+      short_answer: true,
+      descriptive: true,
+      coding: true
+    }
   });
 
   // --- Timer ---
@@ -234,6 +240,15 @@ const Quiz: React.FC = () => {
             } catch (e) {
               console.error('Failed to parse retry questions:', e);
             }
+          }
+
+          // 문제 유형별 필터링
+          const enabledTypes = Object.entries(quizSettings.questionTypes)
+            .filter(([_, enabled]) => enabled)
+            .map(([type, _]) => type);
+          
+          if (enabledTypes.length > 0) {
+            data = data.filter(q => enabledTypes.includes(q.question_type));
           }
 
           // 랜덤 개수 선택
@@ -602,30 +617,89 @@ const Quiz: React.FC = () => {
 
       {showQuizSettings && (
         <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-settings-title">
-          <div className="modal">
+          <div className="modal" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
             <h2 id="quiz-settings-title" className="fluent-card__question-text">퀴즈 설정</h2>
             
-            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                <input 
-                  type="checkbox" 
-                  checked={quizSettings.shuffleQuestions}
-                  onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleQuestions: e.target.checked }))}
-                />
-                <span>문제 순서 섞기</span>
-              </label>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              
+              <div>
+                <h3 style={{ fontSize: '1rem', marginBottom: '0.75rem', opacity: 0.9 }}>기본 설정</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.shuffleQuestions}
+                      onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleQuestions: e.target.checked }))}
+                    />
+                    <span>문제 순서 섞기</span>
+                  </label>
 
-              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                <input 
-                  type="checkbox" 
-                  checked={quizSettings.shuffleOptions}
-                  onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleOptions: e.target.checked }))}
-                />
-                <span>객관식 보기 순서 섞기</span>
-              </label>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.shuffleOptions}
+                      onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleOptions: e.target.checked }))}
+                    />
+                    <span>객관식 보기 순서 섞기</span>
+                  </label>
+                </div>
+              </div>
 
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
+                <h3 style={{ fontSize: '1rem', marginBottom: '0.75rem', opacity: 0.9 }}>문제 유형</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.questionTypes.multiple_choice}
+                      onChange={(e) => setQuizSettings(prev => ({ 
+                        ...prev, 
+                        questionTypes: { ...prev.questionTypes, multiple_choice: e.target.checked }
+                      }))}
+                    />
+                    <span>객관식</span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.questionTypes.short_answer}
+                      onChange={(e) => setQuizSettings(prev => ({ 
+                        ...prev, 
+                        questionTypes: { ...prev.questionTypes, short_answer: e.target.checked }
+                      }))}
+                    />
+                    <span>단답형</span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.questionTypes.descriptive}
+                      onChange={(e) => setQuizSettings(prev => ({ 
+                        ...prev, 
+                        questionTypes: { ...prev.questionTypes, descriptive: e.target.checked }
+                      }))}
+                    />
+                    <span>서술형</span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={quizSettings.questionTypes.coding}
+                      onChange={(e) => setQuizSettings(prev => ({ 
+                        ...prev, 
+                        questionTypes: { ...prev.questionTypes, coding: e.target.checked }
+                      }))}
+                    />
+                    <span>코딩</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '1rem', opacity: 0.9 }}>
                   출제 문제 개수 (0 = 전체)
                 </label>
                 <input 
