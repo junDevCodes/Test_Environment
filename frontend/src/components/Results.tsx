@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 
 // Define types
 interface Result {
@@ -23,6 +23,7 @@ interface Answers {
 
 const Results: React.FC = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     // Receive answers from the navigation state
     const { results, questions, answers, elapsedSeconds } = location.state as { 
         results: Result[], 
@@ -42,6 +43,17 @@ const Results: React.FC = () => {
 
     const totalScore = results.reduce((acc, result) => acc + (result.is_correct ? 1 : 0), 0);
     const percentage = (totalScore / questions.length) * 100;
+    
+    // 오답 문제 추출
+    const wrongQuestions = results.filter(r => !r.is_correct).map(r => r.question_id);
+    
+    const handleRetryWrong = () => {
+        // 오답 문제만 다시 풀기 위해 localStorage에 저장
+        localStorage.setItem('retry_questions', JSON.stringify(wrongQuestions));
+        // subject 추출 (첫 번째 문제의 subject 사용)
+        const subject = questions[0]?.subject?.split('.')[0] || 'quiz';
+        navigate(`/quiz/${subject}`);
+    };
     
     const formatTime = (seconds: number) => {
         const hrs = Math.floor(seconds / 3600);
@@ -114,7 +126,17 @@ const Results: React.FC = () => {
                 })}
             </div>
 
-            <Link to="/" className="fluent-button" style={{marginTop: '2rem', textAlign: 'center'}}>홈화면 돌아가기</Link>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Link to="/" className="fluent-button">홈화면 돌아가기</Link>
+                {wrongQuestions.length > 0 && (
+                    <button 
+                        className="fluent-button fluent-button--primary" 
+                        onClick={handleRetryWrong}
+                    >
+                        오답 다시 풀기 ({wrongQuestions.length}문제)
+                    </button>
+                )}
+            </div>
         </div>
     );
 };

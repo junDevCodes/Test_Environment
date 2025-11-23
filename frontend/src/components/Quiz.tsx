@@ -214,7 +214,19 @@ const Quiz: React.FC = () => {
       // 따로 headers: { 'X-DB-SET': ... } 안 줘도 된다.
       api.get(`/api/questions/${subject}`)
         .then(response => {
-          const data: Question[] = response.data || [];
+          let data: Question[] = response.data || [];
+
+          // 오답 다시 풀기 모드 체크
+          const retryQuestions = localStorage.getItem('retry_questions');
+          if (retryQuestions) {
+            try {
+              const retryIds: number[] = JSON.parse(retryQuestions);
+              data = data.filter(q => retryIds.includes(q.id));
+              localStorage.removeItem('retry_questions'); // 한 번 사용 후 삭제
+            } catch (e) {
+              console.error('Failed to parse retry questions:', e);
+            }
+          }
 
           // 문제 순서 섞기 (기존 로직 유지)
           const shuffled = [...data];
