@@ -86,6 +86,32 @@ const Quiz: React.FC = () => {
 
   const [dbSets, setDbSets] = useState<string[]>([]);
   const [currentDbSet, setCurrentDbSet] = useState<string>('');
+  
+  // 타이머 관련 상태
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  // --- Timer ---
+  useEffect(() => {
+    if (!isTimerRunning) return;
+    
+    const interval = setInterval(() => {
+      setElapsedSeconds(prev => prev + 1);
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [isTimerRunning]);
+
+  const formatTime = (seconds: number) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hrs > 0) {
+      return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   // --- Progress Save/Restore ---
   const getProgressKey = () => `quiz_progress_${currentDbSet}_${subject}`;
@@ -98,11 +124,12 @@ const Quiz: React.FC = () => {
       answers,
       currentQuestionIndex,
       timestamp: Date.now(),
-      questionIds: questions.map(q => q.id)
+      questionIds: questions.map(q => q.id),
+      elapsedSeconds
     };
     
     localStorage.setItem(getProgressKey(), JSON.stringify(progressData));
-  }, [answers, currentQuestionIndex, questions, currentDbSet, subject]);
+  }, [answers, currentQuestionIndex, questions, currentDbSet, subject, elapsedSeconds]);
 
   // 진행도 복원 체크
   useEffect(() => {
@@ -141,7 +168,9 @@ const Quiz: React.FC = () => {
         const progress = JSON.parse(savedProgress);
         setAnswers(progress.answers || {});
         setCurrentQuestionIndex(progress.currentQuestionIndex || 0);
+        setElapsedSeconds(progress.elapsedSeconds || 0);
         setShowRestoreModal(false);
+        setIsTimerRunning(true);
       } catch (e) {
         console.error('Failed to restore progress:', e);
       }
@@ -150,7 +179,9 @@ const Quiz: React.FC = () => {
 
   const handleStartFresh = () => {
     localStorage.removeItem(getProgressKey());
+    setElapsedSeconds(0);
     setShowRestoreModal(false);
+    setIsTimerRunning(true);
   };
 
   // --- Data Fetching ---
@@ -198,6 +229,13 @@ const Quiz: React.FC = () => {
           setFeedback({});
           setUiMessage(null);
           setLoading(false);
+          
+          // 진행도 복원이 없으면 타이머 시작
+          const savedProgress = localStorage.getItem(getProgressKey());
+          if (!savedProgress || Object.keys(JSON.parse(savedProgress).answers || {}).length === 0) {
+            setElapsedSeconds(0);
+            setIsTimerRunning(true);
+          }
         })
         .catch(() => {
           setError('Failed to load questions. Please ensure the backend server is running.');
@@ -246,9 +284,15 @@ const Quiz: React.FC = () => {
     }));
     api.post(`/api/submit/${subject}`, payload)
       .then(response => {
-        // 제출 완료 시 진행도 삭제
+        // 제출 완료 시 진행도 삭제 및 타이머 정지
+        setIsTimerRunning(false);
         localStorage.removeItem(getProgressKey());
-        navigate('/results', { state: { results: response.data, questions, answers } });
+        navigate('/results', { state: { 
+          results: response.data, 
+          questions, 
+          answers,
+          elapsedSeconds 
+        } });
       })
       .catch(() => setError('Failed to submit answers.'));
   };
@@ -266,9 +310,15 @@ const Quiz: React.FC = () => {
         const answersForResults: { [key: number]: string } = {};
         questions.forEach(q => { answersForResults[q.id] = answers[q.id] ?? ''; });
         setShowEndModal(false);
-        // 제출 완료 시 진행도 삭제
+        // 제출 완료 시 진행도 삭제 및 타이머 정지
+        setIsTimerRunning(false);
         localStorage.removeItem(getProgressKey());
-        navigate('/results', { state: { results: response.data, questions, answers: answersForResults } });
+        navigate('/results', { state: { 
+          results: response.data, 
+          questions, 
+          answers: answersForResults,
+          elapsedSeconds 
+        } });
       })
       .catch(() => setError('Failed to submit answers.'));
   };
@@ -291,7 +341,7 @@ const Quiz: React.FC = () => {
 
   return (
     <div className="quiz-app-container">
-      <div className="fluent-card__actions" style={{ justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+      <div className="fluent-card__actions" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <button className="fluent-button" onClick={() => navigate('/')}>홈화면</button>
         {/* ⭐ 추가: 문제집 세트 선택 드롭다운 */}
         <div className="fluent-select-group">
@@ -310,6 +360,19 @@ const Quiz: React.FC = () => {
             ))}
           </select>
         </div>
+        
+        <div style={{ 
+          fontSize: '1.1rem',
+          fontWeight: '600',
+          color: 'var(--fluent-accent-blue)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem'
+        }}>
+          <span>⏱️</span>
+          <span>{formatTime(elapsedSeconds)}</span>
+        </div>
+        
         <button className="fluent-button fluent-button--primary" onClick={handleEndExam}>시험 종료</button>
       </div>
 

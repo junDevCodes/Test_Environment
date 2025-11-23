@@ -24,7 +24,12 @@ interface Answers {
 const Results: React.FC = () => {
     const location = useLocation();
     // Receive answers from the navigation state
-    const { results, questions, answers } = location.state as { results: Result[], questions: Question[], answers: Answers };
+    const { results, questions, answers, elapsedSeconds } = location.state as { 
+        results: Result[], 
+        questions: Question[], 
+        answers: Answers,
+        elapsedSeconds?: number 
+    };
 
     if (!results || !questions || !answers) {
         return (
@@ -37,6 +42,17 @@ const Results: React.FC = () => {
 
     const totalScore = results.reduce((acc, result) => acc + (result.is_correct ? 1 : 0), 0);
     const percentage = (totalScore / questions.length) * 100;
+    
+    const formatTime = (seconds: number) => {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        
+        if (hrs > 0) {
+            return `${hrs}시간 ${mins}분 ${secs}초`;
+        }
+        return `${mins}분 ${secs}초`;
+    };
 
     const getQuestionText = (id: number) => {
         const question = questions.find(q => q.id === id);
@@ -54,6 +70,11 @@ const Results: React.FC = () => {
                 <h1>Quiz Results</h1>
                 <h2>Your Score: {percentage.toFixed(0)}%</h2>
                 <p>({totalScore} out of {questions.length} correct)</p>
+                {elapsedSeconds !== undefined && (
+                    <p style={{ opacity: 0.8, fontSize: '1rem', marginTop: '0.5rem' }}>
+                        ⏱️ 소요 시간: {formatTime(elapsedSeconds)}
+                    </p>
+                )}
             </div>
 
             <div className="results-details">
