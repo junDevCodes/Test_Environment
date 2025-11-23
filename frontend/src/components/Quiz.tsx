@@ -343,6 +343,63 @@ const Quiz: React.FC = () => {
     // 바뀌면 useEffect([subject, currentDbSet])가 다시 돌면서 새 문제집에서 문제를 불러온다
   };
 
+  // --- Keyboard Shortcuts ---
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // input/textarea에 포커스가 있으면 단축키 무시
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') {
+        return;
+      }
+
+      const currentQuestion = questions[currentQuestionIndex];
+      if (!currentQuestion) return;
+
+      switch(e.key.toLowerCase()) {
+        case 'arrowright':
+        case 'n':
+          // Next
+          e.preventDefault();
+          if (currentQuestionIndex < questions.length - 1) {
+            handleNext();
+          }
+          break;
+        case 'arrowleft':
+        case 'p':
+          // Previous
+          e.preventDefault();
+          if (currentQuestionIndex > 0) {
+            handlePrevious();
+          }
+          break;
+        case 'enter':
+          // Check answer (if not already checked)
+          e.preventDefault();
+          if (!feedback[currentQuestion.id]) {
+            handleCheckAnswer();
+          }
+          break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+          // 객관식 선택 (1-5번)
+          if (currentQuestion.question_type === 'multiple_choice' && currentQuestion.options) {
+            const index = parseInt(e.key) - 1;
+            if (index >= 0 && index < currentQuestion.options.length) {
+              e.preventDefault();
+              handleAnswerChange(currentQuestion.id, currentQuestion.options[index]);
+            }
+          }
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentQuestionIndex, questions, feedback]);
+
   if (loading) return <div className="quiz-app-container"><h1>Loading Quiz...</h1></div>;
   if (error) return <div className="quiz-app-container error">{error}</div>;
   if (questions.length === 0) return <div className="quiz-app-container"><h1>No questions found.</h1></div>;
@@ -448,18 +505,33 @@ const Quiz: React.FC = () => {
 
       <div className="fluent-card__actions">
         <button onClick={handlePrevious} className="fluent-button" disabled={currentQuestionIndex === 0}>
-          Previous
+          ← Previous (P)
         </button>
 
         <button onClick={handleCheckAnswer} className="fluent-button" disabled={!!currentFeedback}>
-          Check Answer
+          Check (Enter)
         </button>
 
         {currentQuestionIndex < questions.length - 1 ? (
-          <button onClick={handleNext} className="fluent-button fluent-button--primary">Next</button>
+          <button onClick={handleNext} className="fluent-button fluent-button--primary">Next (N) →</button>
         ) : (
           <button onClick={handleSubmit} className="fluent-button fluent-button--primary">Submit Quiz</button>
         )}
+      </div>
+
+      {/* 키보드 단축키 안내 */}
+      <div style={{ 
+        marginTop: '1.5rem', 
+        padding: '1rem', 
+        background: 'rgba(255,255,255,0.05)', 
+        borderRadius: '4px',
+        fontSize: '0.85rem',
+        opacity: 0.7
+      }}>
+        <strong>⌨️ 키보드 단축키:</strong> 
+        <span style={{ marginLeft: '0.5rem' }}>
+          1-5: 객관식 선택 | N/→: 다음 | P/←: 이전 | Enter: 답안 확인
+        </span>
       </div>
 
       {showEndModal && (
