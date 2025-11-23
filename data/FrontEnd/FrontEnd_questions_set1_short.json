@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "subject": "[DOM] 요소 선택 메서드",
+        "question_text": "문서 내에서 CSS 선택자와 일치하는 첫 번째 요소를 반환하는 메서드의 이름을 정확히 작성하세요. (대소문자 구분)",
+        "question_type": "short_answer",
+        "options": [],
+        "model_answer": "querySelector",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "id": 2,
+        "subject": "[DOM] 요소 생성 메서드",
+        "question_text": "새로운 HTML 요소를 동적으로 생성하는 메서드의 이름을 정확히 작성하세요. (대소문자 구분)",
+        "question_type": "short_answer",
+        "options": [],
+        "model_answer": "createElement",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "id": 3,
+        "subject": "[JavaScript 기초] 변수 선언 키워드",
+        "question_text": "ES6에서 도입된 블록 레벨 스코프를 가지며 재할당이 불가능한 변수를 선언하는 키워드를 작성하세요.",
+        "question_type": "short_answer",
+        "options": [],
+        "model_answer": "const",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "id": 4,
+        "subject": "[ES6+] 템플릿 리터럴",
+        "question_text": "ES6 템플릿 리터럴을 사용할 때, 문자열을 감싸는 특수문자를 작성하세요.",
+        "question_type": "short_answer",
+        "options": [],
+        "model_answer": "`",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    },
+    {
+        "id": 5,
+        "subject": "[Event] 이벤트 리스너 등록",
+        "question_text": "요소에 이벤트 리스너를 등록하는 메서드의 이름을 정확히 작성하세요. (대소문자 구분)",
+        "question_type": "short_answer",
+        "options": [],
+        "model_answer": "addEventListener",
+        "keywords_full_credit": [],
+        "keywords_partial_credit": []
+    }
+]
+
