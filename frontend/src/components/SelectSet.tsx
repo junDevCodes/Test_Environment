@@ -61,7 +61,12 @@ const SelectSet: React.FC = () => {
               <button
                 className="fluent-button fluent-button--primary"
                 disabled={!canStart}
-                onClick={() => { if (selected) { setDbSet(selected); navigate('/quiz/all'); } }}
+                onClick={() => { 
+                  if (selected) { 
+                    setDbSet(selected); // localStorage와 axios 헤더에 저장
+                    navigate('/quiz/all'); // Quiz 컴포넌트에서 localStorage에서 읽음
+                  } 
+                }}
               >
                 시작
               </button>

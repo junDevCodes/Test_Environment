@@ -243,15 +243,23 @@ const Quiz: React.FC = () => {
 
   // --- Data Fetching ---
   useEffect(() => {
+      // localStorage에서 선택된 DB set 복원
+      const savedDbSet = localStorage.getItem('dbSet');
+      if (savedDbSet) {
+        setCurrentDbSet(savedDbSet);
+      }
+
       api.get('/api/sets')
         .then(res => {
           const sets: string[] = res.data || [];
           setDbSets(sets);
 
-          // 기본 선택 세트가 아직 없고, 서버가 준 세트가 있다면 첫 번째 세트로 자동 지정
-          if (sets.length > 0 && !currentDbSet) {
-            setCurrentDbSet(sets[0]);      // React state로 현재 세트 기록
-            setDbSet(sets[0]);             // 추가: axios 전역 헤더 X-DB-SET 세팅 + localStorage 저장
+          // localStorage에 저장된 값이 있으면 그것 사용, 없으면 첫 번째 세트로 자동 지정
+          if (savedDbSet && sets.includes(savedDbSet)) {
+            // 이미 savedDbSet으로 설정되어 있음
+          } else if (sets.length > 0) {
+            setCurrentDbSet(sets[0]);
+            setDbSet(sets[0]);
           }
         })
         .catch(() => {
