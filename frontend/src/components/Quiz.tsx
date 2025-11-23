@@ -90,6 +90,14 @@ const Quiz: React.FC = () => {
   // 타이머 관련 상태
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  
+  // 퀴즈 설정 관련
+  const [showQuizSettings, setShowQuizSettings] = useState(false);
+  const [quizSettings, setQuizSettings] = useState({
+    shuffleQuestions: true,
+    randomCount: 0, // 0이면 전체, 그 외엔 해당 개수만큼
+    shuffleOptions: false
+  });
 
   // --- Timer ---
   useEffect(() => {
@@ -228,14 +236,42 @@ const Quiz: React.FC = () => {
             }
           }
 
-          // 문제 순서 섞기 (기존 로직 유지)
-          const shuffled = [...data];
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+          // 랜덤 개수 선택
+          if (quizSettings.randomCount > 0 && data.length > quizSettings.randomCount) {
+            // 랜덤 샘플링
+            const shuffledForSampling = [...data];
+            for (let i = shuffledForSampling.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [shuffledForSampling[i], shuffledForSampling[j]] = [shuffledForSampling[j], shuffledForSampling[i]];
+            }
+            data = shuffledForSampling.slice(0, quizSettings.randomCount);
           }
 
-          setQuestions(shuffled);
+          // 문제 순서 섞기
+          let finalQuestions = [...data];
+          if (quizSettings.shuffleQuestions) {
+            for (let i = finalQuestions.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [finalQuestions[i], finalQuestions[j]] = [finalQuestions[j], finalQuestions[i]];
+            }
+          }
+
+          // 보기 섞기
+          if (quizSettings.shuffleOptions) {
+            finalQuestions = finalQuestions.map(q => {
+              if (q.question_type === 'multiple_choice' && q.options) {
+                const shuffledOptions = [...q.options];
+                for (let i = shuffledOptions.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+                }
+                return { ...q, options: shuffledOptions };
+              }
+              return q;
+            });
+          }
+
+          setQuestions(finalQuestions);
           setCurrentQuestionIndex(0);
           setAnswers({});
           setFeedback({});
@@ -411,7 +447,11 @@ const Quiz: React.FC = () => {
   return (
     <div className="quiz-app-container">
       <div className="fluent-card__actions" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <button className="fluent-button" onClick={() => navigate('/')}>홈화면</button>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button className="fluent-button" onClick={() => navigate('/')}>홈화면</button>
+          <button className="fluent-button" onClick={() => setShowQuizSettings(true)} title="퀴즈 설정">⚙️</button>
+        </div>
+        
         {/* ⭐ 추가: 문제집 세트 선택 드롭다운 */}
         <div className="fluent-select-group">
           <label style={{ fontSize: '0.8rem', opacity: 0.8, marginRight: '0.5rem' }}>
@@ -555,6 +595,58 @@ const Quiz: React.FC = () => {
             <div className="fluent-card__actions" style={{ marginTop: '1rem' }}>
               <button className="fluent-button" onClick={handleStartFresh}>처음부터 시작</button>
               <button className="fluent-button fluent-button--primary" onClick={handleRestoreProgress}>이어서 풀기</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showQuizSettings && (
+        <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="quiz-settings-title">
+          <div className="modal">
+            <h2 id="quiz-settings-title" className="fluent-card__question-text">퀴즈 설정</h2>
+            
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                <input 
+                  type="checkbox" 
+                  checked={quizSettings.shuffleQuestions}
+                  onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleQuestions: e.target.checked }))}
+                />
+                <span>문제 순서 섞기</span>
+              </label>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                <input 
+                  type="checkbox" 
+                  checked={quizSettings.shuffleOptions}
+                  onChange={(e) => setQuizSettings(prev => ({ ...prev, shuffleOptions: e.target.checked }))}
+                />
+                <span>객관식 보기 순서 섞기</span>
+              </label>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
+                  출제 문제 개수 (0 = 전체)
+                </label>
+                <input 
+                  type="number" 
+                  min="0"
+                  max={questions.length}
+                  value={quizSettings.randomCount}
+                  onChange={(e) => setQuizSettings(prev => ({ ...prev, randomCount: parseInt(e.target.value) || 0 }))}
+                  className="text-input"
+                  style={{ width: '100%' }}
+                />
+                <p style={{ fontSize: '0.8rem', opacity: 0.7, marginTop: '0.25rem' }}>
+                  현재 문제집 총 {questions.length}문제
+                </p>
+              </div>
+            </div>
+
+            <div className="fluent-card__actions" style={{ marginTop: '1.5rem' }}>
+              <button className="fluent-button fluent-button--primary" onClick={() => setShowQuizSettings(false)}>
+                확인
+              </button>
             </div>
           </div>
         </div>
