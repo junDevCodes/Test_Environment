@@ -1,6 +1,41 @@
-
 import React from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import remarkGfm from 'remark-gfm';
+
+// --- Shared Component (duplicated for now to avoid file creation overhead) ---
+const QuestionRenderer: React.FC<{ content: string }> = ({ content }) => {
+  return (
+    <div className="markdown-content">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          code({ node, inline, className, children, ...props }: any) {
+            const match = /language-(\w+)/.exec(className || '');
+            return !inline && match ? (
+              <SyntaxHighlighter
+                style={vscDarkPlus}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          }
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+};
 
 // Define types
 interface Result {
@@ -13,6 +48,7 @@ interface Result {
 
 interface Question {
     id: number;
+    subject: string;
     question_text: string;
     question_type?: 'multiple_choice' | 'short_answer' | 'descriptive' | 'coding';
 }
@@ -143,32 +179,36 @@ const Results: React.FC = () => {
                     const qType = getQuestionType(result.question_id);
                     const userAns = answers[result.question_id] || "(No answer provided)";
                     const scorePct = (result.score * 100).toFixed(0);
+                    
                     return (
                         <div key={result.question_id} className={`fluent-card result-card ${result.is_correct ? 'correct' : 'incorrect'}`}>
-                            <h4 className="fluent-card__question-text">{getQuestionText(result.question_id)}</h4>
+                            <h4 className="fluent-card__question-text">
+                                <QuestionRenderer content={getQuestionText(result.question_id)} />
+                            </h4>
 
-                            {qType === 'coding' ? (
-                                <>
-                                    <div className="result-card__user-answer">
-                                        <strong>Your Answer:</strong>
-                                        <pre className="code-block">{userAns}</pre>
-                                    </div>
-                                    <div>
-                                        <strong>Model Answer:</strong>
-                                        <pre className="code-block">{result.model_answer}</pre>
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="result-card__user-answer">
-                                        <strong>Your Answer:</strong> {userAns}
-                                    </div>
-                                    <p><strong>Model Answer:</strong> {result.model_answer}</p>
-                                </>
-                            )}
-                            <p><strong>Result:</strong> {result.is_correct ? 'Correct' : 'Incorrect'} (Score: {scorePct}%)</p>
+                            <div className="result-card__user-answer">
+                                <strong>Your Answer:</strong>
+                                {qType === 'coding' || qType === 'descriptive' ? (
+                                    <QuestionRenderer content={userAns} />
+                                ) : (
+                                    <div>{userAns}</div>
+                                )}
+                            </div>
+
+                            <div style={{ marginTop: '1rem' }}>
+                                <strong>Model Answer:</strong>
+                                <QuestionRenderer content={result.model_answer} />
+                            </div>
+
+                            <p style={{ marginTop: '1rem' }}>
+                                <strong>Result:</strong> {result.is_correct ? 'Correct' : 'Incorrect'} (Score: {scorePct}%)
+                            </p>
+                            
                             {result.explanation && (
-                                <p><strong>Explanation:</strong> {result.explanation}</p>
+                                <div style={{ marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
+                                    <strong>Explanation:</strong>
+                                    <QuestionRenderer content={result.explanation} />
+                                </div>
                             )}
                         </div>
                     );

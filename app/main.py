@@ -291,6 +291,9 @@ def read_questions(subject: str, request: Request):
     - 경로 파라미터 `subject`가 'all'/* 이면 전체, 아니면 subject 컬럼으로 필터
     """
     db_set = request.headers.get("X-DB-SET")
+    logger.info(f"[DEBUG] Received X-DB-SET header: {db_set}")
+    logger.info(f"[DEBUG] Subject parameter: {subject}")
+    
     if not db_set:
         raise HTTPException(
             status_code=400,
@@ -299,7 +302,8 @@ def read_questions(subject: str, request: Request):
 
     try:
         conn = _open_conn_by_set(db_set)
-    except FileNotFoundError:
+    except FileNotFoundError as e:
+        logger.error(f"[DEBUG] DB file not found: {db_set}, Error: {e}")
         raise HTTPException(status_code=404, detail=f"DB set '{db_set}' not found")
 
     cur = conn.cursor()
