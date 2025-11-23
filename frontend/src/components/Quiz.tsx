@@ -82,9 +82,76 @@ const Quiz: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [uiMessage, setUiMessage] = useState<{ type: 'error' | 'info'; text: string } | null>(null);
   const [showEndModal, setShowEndModal] = useState<boolean>(false);
+  const [showRestoreModal, setShowRestoreModal] = useState<boolean>(false);
 
-const [dbSets, setDbSets] = useState<string[]>([]);
+  const [dbSets, setDbSets] = useState<string[]>([]);
   const [currentDbSet, setCurrentDbSet] = useState<string>('');
+
+  // --- Progress Save/Restore ---
+  const getProgressKey = () => `quiz_progress_${currentDbSet}_${subject}`;
+
+  // 진행도 저장
+  useEffect(() => {
+    if (questions.length === 0) return;
+    
+    const progressData = {
+      answers,
+      currentQuestionIndex,
+      timestamp: Date.now(),
+      questionIds: questions.map(q => q.id)
+    };
+    
+    localStorage.setItem(getProgressKey(), JSON.stringify(progressData));
+  }, [answers, currentQuestionIndex, questions, currentDbSet, subject]);
+
+  // 진행도 복원 체크
+  useEffect(() => {
+    if (!subject || !currentDbSet || questions.length === 0) return;
+
+    const savedProgress = localStorage.getItem(getProgressKey());
+    if (!savedProgress) return;
+
+    try {
+      const progress = JSON.parse(savedProgress);
+      const savedTime = new Date(progress.timestamp);
+      const timeDiff = Date.now() - progress.timestamp;
+      
+      // 24시간 이내의 진행도만 복원 제안
+      if (timeDiff < 24 * 60 * 60 * 1000 && Object.keys(progress.answers).length > 0) {
+        // 저장된 문제 ID와 현재 문제 ID가 일치하는지 확인
+        const currentIds = questions.map(q => q.id).sort().join(',');
+        const savedIds = (progress.questionIds || []).sort().join(',');
+        
+        if (currentIds === savedIds) {
+          // 모달 표시 전에 이미 답변이 있으면 복원 안함
+          if (Object.keys(answers).length === 0) {
+            setShowRestoreModal(true);
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Failed to parse saved progress:', e);
+    }
+  }, [questions, subject, currentDbSet]);
+
+  const handleRestoreProgress = () => {
+    const savedProgress = localStorage.getItem(getProgressKey());
+    if (savedProgress) {
+      try {
+        const progress = JSON.parse(savedProgress);
+        setAnswers(progress.answers || {});
+        setCurrentQuestionIndex(progress.currentQuestionIndex || 0);
+        setShowRestoreModal(false);
+      } catch (e) {
+        console.error('Failed to restore progress:', e);
+      }
+    }
+  };
+
+  const handleStartFresh = () => {
+    localStorage.removeItem(getProgressKey());
+    setShowRestoreModal(false);
+  };
 
   // --- Data Fetching ---
   useEffect(() => {
@@ -179,6 +246,8 @@ const [dbSets, setDbSets] = useState<string[]>([]);
     }));
     api.post(`/api/submit/${subject}`, payload)
       .then(response => {
+        // 제출 완료 시 진행도 삭제
+        localStorage.removeItem(getProgressKey());
         navigate('/results', { state: { results: response.data, questions, answers } });
       })
       .catch(() => setError('Failed to submit answers.'));
@@ -197,6 +266,8 @@ const [dbSets, setDbSets] = useState<string[]>([]);
         const answersForResults: { [key: number]: string } = {};
         questions.forEach(q => { answersForResults[q.id] = answers[q.id] ?? ''; });
         setShowEndModal(false);
+        // 제출 완료 시 진행도 삭제
+        localStorage.removeItem(getProgressKey());
         navigate('/results', { state: { results: response.data, questions, answers: answersForResults } });
       })
       .catch(() => setError('Failed to submit answers.'));
@@ -324,6 +395,19 @@ const [dbSets, setDbSets] = useState<string[]>([]);
             <div className="fluent-card__actions" style={{ marginTop: '1rem' }}>
               <button className="fluent-button" onClick={() => setShowEndModal(false)}>취소</button>
               <button className="fluent-button fluent-button--primary" onClick={confirmEndExam}>종료</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showRestoreModal && (
+        <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="restore-progress-title">
+          <div className="modal">
+            <h2 id="restore-progress-title" className="fluent-card__question-text">이전 진행도 발견</h2>
+            <p style={{ opacity: 0.8 }}>저장된 진행도가 있습니다. 이어서 푸시겠습니까?</p>
+            <div className="fluent-card__actions" style={{ marginTop: '1rem' }}>
+              <button className="fluent-button" onClick={handleStartFresh}>처음부터 시작</button>
+              <button className="fluent-button fluent-button--primary" onClick={handleRestoreProgress}>이어서 풀기</button>
             </div>
           </div>
         </div>
