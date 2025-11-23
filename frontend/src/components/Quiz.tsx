@@ -111,25 +111,6 @@ const [dbSets, setDbSets] = useState<string[]>([]);
         });
     }, [subject, currentDbSet]); // 변경: currentDbSet을 의존성에 추가 → 세트 바뀌면 새 문제 로드
 
-  useEffect(() => {
-    api.get(`/api/questions/${subject}`)
-      .then(response => {
-        const data: Question[] = response.data || [];
-        // Shuffle questions order
-        const shuffled = [...data];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        setQuestions(shuffled);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Failed to load questions. Please ensure the backend server is running.');
-        setLoading(false);
-      });
-  }, [subject]);
-
   // --- Event Handlers ---
   const handleAnswerChange = (questionId: number, answer: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }));

@@ -1,0 +1,211 @@
+[
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "JavaScript의 var, let, const 세 가지 변수 선언 키워드의 스코프(Scope) 차이와 호이스팅(Hoisting) 시 초기화 동작 방식의 차이점을 서술하시오.",
+    "question_type": "descriptive",
+    "model_answer": "var는 함수 스코프를 가지며, 같은 이름으로 여러 번 선언해도 오류가 발생하지 않고 재할당도 가능하다. 호이스팅 시 변수 선언과 동시에 undefined로 초기화되어 선언 전 접근 시 undefined가 반환된다. let과 const는 블록 스코프를 가지며, 같은 이름으로 재선언하는 것은 불가능하다. let은 재할당이 가능하지만, const는 재할당이 불가능하다. 호이스팅은 발생하지만, 초기화되지 않아 변수 선언 이전에 접근하려 하면 TDZ(Temporal Dead Zone)에 의해 ReferenceError가 발생한다.",
+    "keywords_full_credit": ["var", "let", "const", "함수 스코프", "블록 스코프", "호이스팅", "초기화", "undefined", "TDZ"],
+    "keywords_partial_credit": ["재할당", "재선언", "ReferenceError"]
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "함수 선언식, 함수 표현식, 화살표 함수의 차이점을 호이스팅과 this 바인딩 관점에서 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "함수 선언식(function foo() {})은 호이스팅되어 선언 전에도 호출할 수 있으며, this는 호출 방식에 따라 동적으로 결정된다. 함수 표현식(const foo = function() {})은 변수 호이스팅만 발생하고 함수 자체는 호이스팅되지 않으므로 선언 전 호출 시 에러가 발생한다. this는 일반 함수와 동일하게 호출 방식에 따라 결정된다. 화살표 함수(const foo = () => {})는 함수 표현식의 일종으로 호이스팅되지 않으며, 가장 큰 특징은 자신만의 this를 가지지 않고 상위 스코프의 this를 계승(Lexical this)한다는 점이다.",
+    "keywords_full_credit": ["함수 선언식", "함수 표현식", "화살표 함수", "호이스팅", "this", "상위 스코프", "Lexical this"],
+    "keywords_partial_credit": ["동적", "바인딩", "계승"]
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "JavaScript의 원시 자료형(Primitive Type)과 참조 자료형(Reference Type)의 차이점을 메모리 저장 방식과 복사 동작을 중심으로 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "원시 자료형(Number, String, Boolean, null, undefined)은 불변(Immutable)이며 값 자체가 스택 메모리에 저장된다. 변수에 할당하거나 복사할 때 값 자체가 복사되므로, 원본과 복사본이 독립적으로 동작한다. 참조 자료형(Object, Array, Function)은 가변(Mutable)이며 실제 데이터는 힙 메모리에 저장되고, 변수에는 해당 데이터의 주소값(참조)이 저장된다. 변수를 복사하면 주소값이 복사되므로, 원본과 복사본이 같은 객체를 가리키게 되어 한쪽을 수정하면 다른 쪽에도 영향을 미친다.",
+    "keywords_full_credit": ["원시 자료형", "참조 자료형", "불변", "가변", "스택", "힙", "주소값", "복사"],
+    "keywords_partial_credit": ["메모리", "참조", "독립적"]
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "== 연산자와 === 연산자의 차이점과 권장 사용법을 예시와 함께 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "== 연산자(동등 연산자)는 값만 비교하며 암묵적 형변환을 허용하는 느슨한 비교를 수행한다. 예를 들어 5 == '5'는 문자열 '5'를 숫자로 변환한 후 비교하여 true를 반환한다. === 연산자(일치 연산자)는 값과 데이터 타입을 모두 비교하는 엄격한 비교를 수행한다. 5 === '5'는 타입이 다르므로 false를 반환한다. 암묵적 형변환은 예기치 않은 결과를 초래할 수 있으므로, 일반적으로 === 연산자 사용이 권장된다.",
+    "keywords_full_credit": ["==", "===", "동등 연산자", "일치 연산자", "암묵적 형변환", "타입"],
+    "keywords_partial_credit": ["값", "비교", "권장"]
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "for...in 반복문과 for...of 반복문의 차이점과 각각의 적절한 사용 상황을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "for...in 반복문은 객체의 열거 가능한 프로퍼티(키, Key)를 순회한다. 객체의 속성을 반복할 때 사용하며, 배열에 사용할 경우 인덱스(문자열)를 반환한다. for...of 반복문은 이터러블(iterable) 객체의 값(Value)을 순회한다. 배열, 문자열, Map, Set 등에 사용하며, 배열의 요소 값을 직접 반복할 때 적합하다. 객체는 기본적으로 이터러블이 아니므로 for...of를 직접 사용할 수 없다.",
+    "keywords_full_credit": ["for...in", "for...of", "객체", "키", "이터러블", "값", "배열"],
+    "keywords_partial_credit": ["순회", "프로퍼티", "인덱스"]
+  },
+  {
+    "subject": "[기초] 호이스팅",
+    "question_text": "호이스팅(Hoisting)의 개념과 var, let, const, 함수 선언식에서의 호이스팅 동작 차이를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "호이스팅은 변수와 함수 선언이 코드 실행 전에 해당 스코프의 최상단으로 끌어올려지는 것처럼 동작하는 JavaScript의 특징이다. var로 선언한 변수는 호이스팅되어 undefined로 초기화되므로 선언 전에 접근하면 undefined가 반환된다. let과 const도 호이스팅되지만 TDZ(Temporal Dead Zone)로 인해 초기화되지 않아 선언 전 접근 시 ReferenceError가 발생한다. 함수 선언식은 함수 전체가 호이스팅되어 선언 전에도 호출할 수 있지만, 함수 표현식은 변수 호이스팅만 발생하여 선언 전 호출 시 에러가 발생한다.",
+    "keywords_full_credit": ["호이스팅", "var", "let", "const", "함수 선언식", "undefined", "TDZ", "ReferenceError"],
+    "keywords_partial_credit": ["초기화", "최상단", "스코프"]
+  },
+  {
+    "subject": "[기초] Truthy & Falsy",
+    "question_text": "JavaScript의 Truthy와 Falsy 값의 개념과 대표적인 Falsy 값들을 나열하고, 조건문에서의 활용 예시를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "Truthy는 Boolean 문맥에서 true로 평가되는 값이고, Falsy는 false로 평가되는 값이다. JavaScript의 Falsy 값은 false, 0, -0, 0n, '', null, undefined, NaN이며, 이 외의 모든 값은 Truthy이다. 조건문에서 if (value) 형태로 값을 직접 검사하면 Falsy 값일 때 false로 평가되어 조건문이 실행되지 않는다. 예를 들어 빈 문자열이나 0을 확인할 때 명시적으로 === ''나 === 0으로 비교하는 대신 Falsy 특성을 활용할 수 있다.",
+    "keywords_full_credit": ["Truthy", "Falsy", "false", "0", "null", "undefined", "조건문"],
+    "keywords_partial_credit": ["Boolean", "평가", "빈 문자열"]
+  },
+  {
+    "subject": "[기초] 단축 평가",
+    "question_text": "논리 연산자(&&, ||)의 단축 평가(Short-circuit evaluation) 동작 원리와 활용 방법을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "단축 평가는 논리 연산 시 결과가 확정되면 나머지 피연산자를 평가하지 않는 동작이다. && 연산자는 첫 번째 피연산자가 Falsy이면 그 값을 반환하고, Truthy이면 두 번째 피연산자를 반환한다. || 연산자는 첫 번째 피연산자가 Truthy이면 그 값을 반환하고, Falsy이면 두 번째 피연산자를 반환한다. 이를 활용하여 기본값 설정(const value = input || 'default')이나 조건부 실행(isLoggedIn && showWelcome())을 간결하게 작성할 수 있다.",
+    "keywords_full_credit": ["단축 평가", "&&", "||", "Truthy", "Falsy", "기본값"],
+    "keywords_partial_credit": ["논리 연산자", "피연산자", "조건부"]
+  },
+  {
+    "subject": "[기초] 나머지 매개변수",
+    "question_text": "나머지 매개변수(Rest parameters)의 개념과 사용법, 그리고 전개 구문(Spread Syntax)과의 차이점을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "나머지 매개변수는 함수에 전달된 인자들을 배열로 수집하는 문법으로, ...args 형태로 사용한다. 가변 인자를 받을 수 있어 함수의 유연성을 높인다. 예를 들어 function sum(...numbers)는 여러 개의 인자를 배열로 받아 처리할 수 있다. 전개 구문은 배열이나 객체를 개별 요소로 펼치는 문법으로, 배열 복사([...arr])나 병합([...arr1, ...arr2])에 사용된다. 나머지 매개변수는 여러 값을 하나의 배열로 '수집'하고, 전개 구문은 하나의 배열을 여러 값으로 '펼친다'는 점에서 반대 개념이다.",
+    "keywords_full_credit": ["나머지 매개변수", "Rest parameters", "...", "전개 구문", "Spread", "배열", "수집", "펼치기"],
+    "keywords_partial_credit": ["가변 인자", "복사", "병합"]
+  },
+  {
+    "subject": "[객체] this 바인딩",
+    "question_text": "JavaScript에서 this가 가리키는 대상이 결정되는 방식을 함수 호출 방법(일반 함수, 메서드, 화살표 함수)에 따라 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "this는 함수 호출 방식에 따라 동적으로 결정된다. 일반 함수 호출 시 this는 전역 객체(브라우저에서는 window)를 가리킨다. 메서드로 호출 시(obj.method()) this는 메서드를 호출한 객체(obj)를 가리킨다. 화살표 함수는 자신만의 this를 가지지 않고, 함수가 정의된 위치의 상위 스코프의 this를 계승한다(Lexical this). 생성자 함수로 호출 시(new Func()) this는 새로 생성되는 인스턴스를 가리킨다.",
+    "keywords_full_credit": ["this", "일반 함수", "전역 객체", "메서드", "화살표 함수", "상위 스코프", "Lexical"],
+    "keywords_partial_credit": ["동적", "바인딩", "호출 방식"]
+  },
+  {
+    "subject": "[ES6] 구조 분해 할당",
+    "question_text": "구조 분해 할당(Destructuring Assignment)의 개념과 배열 및 객체에서의 사용 방법, 그리고 기본값 설정에 대해 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "구조 분해 할당은 배열이나 객체의 값을 추출하여 개별 변수에 할당하는 ES6 문법이다. 배열 구조 분해는 [a, b] = [1, 2] 형태로 인덱스 순서대로 값을 할당한다. 객체 구조 분해는 {name, age} = person 형태로 프로퍼티 이름과 일치하는 변수에 값을 할당한다. 기본값 설정은 const {name, age = 30} = person처럼 할당할 값이 없을 때 사용할 기본값을 지정할 수 있다. 중첩된 객체나 배열에도 적용 가능하며, 나머지 요소를 수집하는 ...rest 문법과 함께 사용할 수 있다.",
+    "keywords_full_credit": ["구조 분해 할당", "배열", "객체", "기본값", "프로퍼티"],
+    "keywords_partial_credit": ["추출", "변수", "할당"]
+  },
+  {
+    "subject": "[ES6] 전개 구문",
+    "question_text": "전개 구문(Spread Syntax)의 개념과 배열 및 객체에서의 활용 방법을 복사와 병합 관점에서 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "전개 구문은 ...을 사용하여 배열이나 객체를 개별 요소로 펼치는 ES6 문법이다. 배열에서는 [...arr]로 얕은 복사(shallow copy)를 수행하거나, [...arr1, ...arr2]로 여러 배열을 병합할 수 있다. 객체에서는 {...obj}로 복사하거나 {...obj1, ...obj2}로 병합한다. 병합 시 중복되는 프로퍼티는 뒤에 오는 값으로 덮어씌워진다. 함수 호출 시 func(...arr)처럼 배열을 개별 인자로 펼칠 수도 있다. 주의할 점은 얕은 복사만 수행하므로 중첩된 객체는 참조가 복사된다는 것이다.",
+    "keywords_full_credit": ["전개 구문", "Spread", "...", "배열", "객체", "복사", "병합", "얕은 복사"],
+    "keywords_partial_credit": ["펼치기", "개별 요소", "중첩"]
+  },
+  {
+    "subject": "[객체] 단축 속성명과 계산된 속성명",
+    "question_text": "ES6의 단축 속성명(Shorthand property names)과 계산된 속성명(Computed property names)의 개념과 사용 예시를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "단축 속성명은 변수명과 프로퍼티 키가 동일할 때 {name, age} 형태로 간결하게 작성할 수 있는 문법이다. const name = 'Alice'; const obj = {name}는 {name: name}과 동일하다. 계산된 속성명은 대괄호 []를 사용하여 표현식의 결과를 프로퍼티 키로 사용하는 문법이다. const key = 'name'; const obj = {[key]: 'Alice'}는 {name: 'Alice'}와 동일하다. 템플릿 리터럴과 함께 사용하여 {[`item_${i}`]: value} 형태로 동적인 키를 생성할 수도 있다.",
+    "keywords_full_credit": ["단축 속성명", "계산된 속성명", "프로퍼티", "키", "대괄호", "동적"],
+    "keywords_partial_credit": ["변수명", "표현식", "간결"]
+  },
+  {
+    "subject": "[배열] map, filter, reduce",
+    "question_text": "배열 메서드 map(), filter(), reduce()의 차이점과 각각의 용도를 예시와 함께 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "map()은 배열의 각 요소에 콜백 함수를 적용하고 그 결과로 새로운 배열을 반환한다. 배열의 각 요소를 변환할 때 사용하며, [1,2,3].map(x => x*2)는 [2,4,6]을 반환한다. filter()는 콜백 함수의 조건이 true인 요소만 모아 새로운 배열을 반환한다. 특정 조건에 맞는 요소를 추출할 때 사용하며, [1,2,3,4].filter(x => x>2)는 [3,4]를 반환한다. reduce()는 배열의 요소를 순회하며 누적값을 계산하여 단일 값을 반환한다. 합계, 곱셈 등 누적 계산에 사용하며, [1,2,3].reduce((acc,cur) => acc+cur, 0)은 6을 반환한다.",
+    "keywords_full_credit": ["map", "filter", "reduce", "새로운 배열", "콜백 함수", "조건", "누적값"],
+    "keywords_partial_credit": ["변환", "추출", "계산"]
+  },
+  {
+    "subject": "[배열] forEach vs map",
+    "question_text": "forEach()와 map() 메서드의 차이점과 각각의 적절한 사용 상황을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "forEach()는 배열의 각 요소에 대해 콜백 함수를 실행하지만 반환값이 없다(undefined 반환). 배열을 순회하면서 부수 효과(side effect)를 발생시키는 작업, 예를 들어 콘솔 출력, DOM 조작, 외부 변수 수정 등에 사용한다. map()은 각 요소에 콜백 함수를 적용한 결과로 새로운 배열을 반환한다. 원본 배열을 변경하지 않고 변환된 새로운 배열이 필요할 때 사용한다. forEach()는 중간에 break로 종료할 수 없지만, for 루프는 가능하다. 함수형 프로그래밍에서는 부수 효과가 없는 map()이 선호된다.",
+    "keywords_full_credit": ["forEach", "map", "반환값", "undefined", "새로운 배열", "부수 효과"],
+    "keywords_partial_credit": ["콜백 함수", "순회", "변환"]
+  },
+  {
+    "subject": "[JSON] 개념과 메서드",
+    "question_text": "JSON의 개념과 JavaScript 객체와의 차이점, 그리고 JSON.stringify()와 JSON.parse()의 용도를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "JSON(JavaScript Object Notation)은 데이터 교환을 위한 경량의 텍스트 기반 형식으로, 문자열 형태이다. JavaScript 객체 리터럴과 유사하지만, JSON은 문자열이며 키를 큰따옴표로 감싸야 하고, 함수나 undefined는 포함할 수 없다는 차이가 있다. JSON.stringify()는 JavaScript 값이나 객체를 JSON 문자열로 변환하여 서버 전송이나 로컬 스토리지 저장 시 사용한다. JSON.parse()는 JSON 문자열을 JavaScript 객체로 파싱하여 서버로부터 받은 데이터를 사용 가능한 객체로 변환할 때 사용한다.",
+    "keywords_full_credit": ["JSON", "JavaScript Object Notation", "문자열", "JSON.stringify", "JSON.parse", "데이터 교환"],
+    "keywords_partial_credit": ["객체", "변환", "파싱"]
+  },
+  {
+    "subject": "[클래스] 개념과 구조",
+    "question_text": "ES6 클래스(Class)의 개념과 constructor, 메서드, new 연산자의 역할을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "클래스는 객체를 생성하기 위한 템플릿으로, ES6에서 도입된 문법적 설탕(syntactic sugar)이다. constructor는 클래스의 인스턴스를 초기화하는 특수한 메서드로, new 연산자로 클래스를 호출할 때 자동으로 실행되며 속성을 초기화한다. 클래스 내부에 정의된 메서드는 인스턴스의 프로토타입에 추가되어 모든 인스턴스가 공유한다. new 연산자는 클래스로부터 새로운 인스턴스 객체를 생성하고, constructor를 호출하여 초기화한 후 인스턴스를 반환한다. 내부적으로는 프로토타입 기반 상속을 사용한다.",
+    "keywords_full_credit": ["클래스", "constructor", "메서드", "new", "인스턴스", "초기화"],
+    "keywords_partial_credit": ["템플릿", "프로토타입", "syntactic sugar"]
+  },
+  {
+    "subject": "[객체] Optional Chaining",
+    "question_text": "Optional Chaining(?.)의 개념과 사용 목적, 그리고 기존 방식과의 차이점을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "Optional Chaining(?.)은 중첩된 객체의 프로퍼티에 안전하게 접근하기 위한 ES2020 문법이다. obj?.user?.name처럼 사용하며, 중간에 null이나 undefined가 있어도 에러 없이 undefined를 반환한다. 기존에는 obj && obj.user && obj.user.name처럼 각 단계마다 존재 여부를 확인해야 했지만, Optional Chaining은 간결하게 표현할 수 있다. 메서드 호출(obj.method?.())이나 배열 접근(arr?.[0])에도 사용 가능하다. API 응답 등 데이터 구조가 불확실할 때 유용하며, 코드의 가독성과 안전성을 높인다.",
+    "keywords_full_credit": ["Optional Chaining", "?.", "null", "undefined", "중첩 객체", "안전", "에러 방지"],
+    "keywords_partial_credit": ["프로퍼티", "접근", "가독성"]
+  },
+  {
+    "subject": "[DOM] 개념과 역할",
+    "question_text": "DOM(Document Object Model)의 개념과 트리 구조, 그리고 JavaScript에서 DOM을 조작하는 이유를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "DOM은 HTML 문서를 객체 기반의 트리 구조로 표현한 모델로, 각 HTML 요소가 노드(Node)로 표현된다. 트리 구조는 최상위 document 객체를 루트로 하여 부모-자식 관계로 구성되며, 각 노드는 부모, 자식, 형제 노드를 가질 수 있다. JavaScript는 DOM API를 통해 HTML 구조, 스타일, 내용을 동적으로 조작할 수 있다. 이를 통해 사용자 상호작용에 반응하여 페이지를 업데이트하거나, 요소를 추가/삭제하거나, 스타일을 변경하는 등 동적인 웹 애플리케이션을 구현할 수 있다.",
+    "keywords_full_credit": ["DOM", "Document Object Model", "트리 구조", "노드", "객체", "JavaScript", "동적 조작"],
+    "keywords_partial_credit": ["HTML", "부모-자식", "API"]
+  },
+  {
+    "subject": "[DOM] querySelector vs querySelectorAll",
+    "question_text": "querySelector()와 querySelectorAll()의 차이점과 반환 타입, 그리고 각각의 적절한 사용 상황을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "querySelector()는 CSS 선택자와 일치하는 첫 번째 요소를 하나만 반환한다. 요소를 찾지 못하면 null을 반환하며, 반환 타입은 Element 또는 null이다. 단일 요소에 접근할 때 사용한다. querySelectorAll()은 일치하는 모든 요소를 NodeList로 반환한다. 일치하는 요소가 없으면 빈 NodeList를 반환한다. NodeList는 배열과 유사하지만 forEach()는 사용 가능하고 map(), filter() 등은 사용할 수 없다. 여러 요소를 선택하여 순회하거나 조작할 때 사용하며, Array.from()으로 배열로 변환하여 배열 메서드를 사용할 수 있다.",
+    "keywords_full_credit": ["querySelector", "querySelectorAll", "첫 번째", "모든 요소", "NodeList", "null"],
+    "keywords_partial_credit": ["CSS 선택자", "반환", "순회"]
+  },
+  {
+    "subject": "[DOM] textContent vs innerHTML",
+    "question_text": "textContent와 innerHTML의 차이점과 보안 측면에서의 주의사항을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "textContent는 요소의 텍스트 내용만 가져오거나 설정하며, HTML 태그를 해석하지 않고 그대로 문자열로 처리한다. innerHTML은 HTML 마크업을 포함한 내용을 가져오거나 설정하며, 태그를 HTML로 파싱하여 렌더링한다. 보안 측면에서 innerHTML은 XSS(Cross-Site Scripting) 공격에 취약하다. 사용자 입력을 innerHTML로 삽입하면 악의적인 스크립트가 실행될 수 있다. textContent는 모든 입력을 텍스트로만 처리하므로 XSS 공격을 방지할 수 있어 더 안전하다. 사용자 입력을 다룰 때는 textContent를 사용하거나, innerHTML 사용 시 입력을 sanitize해야 한다.",
+    "keywords_full_credit": ["textContent", "innerHTML", "텍스트", "HTML 태그", "XSS", "보안", "스크립트"],
+    "keywords_partial_credit": ["파싱", "렌더링", "사용자 입력"]
+  },
+  {
+    "subject": "[DOM] classList 메서드",
+    "question_text": "classList 프로퍼티와 그 메서드들(add, remove, toggle, contains)의 사용법과 장점을 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "classList는 요소의 CSS 클래스 목록을 관리하는 DOMTokenList 객체를 반환한다. add() 메서드는 클래스를 추가하고, remove()는 제거하며, toggle()은 클래스가 있으면 제거하고 없으면 추가한다. contains()는 특정 클래스의 존재 여부를 boolean으로 반환한다. classList를 사용하면 className 프로퍼티로 문자열을 직접 조작하는 것보다 간편하고 안전하다. 여러 클래스를 동시에 추가/제거할 수 있고(add('class1', 'class2')), 기존 클래스에 영향을 주지 않으며, 공백 처리 등의 오류를 방지할 수 있다.",
+    "keywords_full_credit": ["classList", "add", "remove", "toggle", "contains", "CSS 클래스"],
+    "keywords_partial_credit": ["DOMTokenList", "className", "간편"]
+  },
+  {
+    "subject": "[DOM] createElement와 appendChild",
+    "question_text": "document.createElement()와 appendChild()를 사용한 동적 DOM 요소 생성 과정을 단계별로 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "동적 DOM 요소 생성은 다음 단계로 이루어진다. 1) document.createElement(tagName)으로 새로운 요소를 메모리에 생성한다. 예: const div = document.createElement('div'). 2) 생성된 요소의 속성, 텍스트, 스타일 등을 설정한다. div.textContent = 'Hello', div.classList.add('box'). 3) 부모 요소를 선택한다. const parent = document.querySelector('#container'). 4) appendChild() 또는 append()로 부모 요소에 추가한다. parent.appendChild(div). 이때 요소가 실제 DOM 트리에 삽입되어 화면에 렌더링된다. append()는 여러 노드와 텍스트를 동시에 추가할 수 있어 더 유연하다.",
+    "keywords_full_credit": ["createElement", "appendChild", "동적", "생성", "부모 요소", "DOM 트리", "렌더링"],
+    "keywords_partial_credit": ["메모리", "속성", "append"]
+  },
+  {
+    "subject": "[이벤트] 버블링과 캡처링",
+    "question_text": "이벤트 버블링(Bubbling)과 이벤트 캡처링(Capturing)의 개념과 차이점, 그리고 이벤트 전파 순서를 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "이벤트 전파는 캡처링 단계, 타겟 단계, 버블링 단계의 3단계로 이루어진다. 이벤트 캡처링은 이벤트가 최상위 요소(document)에서 시작하여 타겟 요소까지 하위로 전파되는 과정이다. 이벤트 버블링은 타겟 요소에서 시작하여 상위 요소로 전파되어 최상위까지 올라가는 과정이다. 기본적으로 이벤트 핸들러는 버블링 단계에서 실행되며, addEventListener의 세 번째 인자를 true로 설정하면 캡처링 단계에서 실행된다. event.stopPropagation()으로 전파를 중단할 수 있다. 실무에서는 주로 버블링을 사용하며, 캡처링은 특수한 경우에만 사용한다.",
+    "keywords_full_credit": ["이벤트 버블링", "이벤트 캡처링", "전파", "타겟", "상위", "하위", "stopPropagation"],
+    "keywords_partial_credit": ["document", "addEventListener", "3단계"]
+  },
+  {
+    "subject": "[이벤트] 이벤트 위임",
+    "question_text": "이벤트 위임(Event Delegation)의 개념과 장점, 그리고 구현 방법을 event.target을 활용한 예시와 함께 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "이벤트 위임은 이벤트 버블링을 활용하여 여러 하위 요소 각각에 이벤트 리스너를 등록하는 대신, 상위 요소 하나에만 리스너를 등록하여 하위 요소들의 이벤트를 처리하는 기법이다. event.target으로 실제로 이벤트가 발생한 요소를 식별한다. 예: ul.addEventListener('click', (e) => { if (e.target.tagName === 'LI') { ... } }). 장점은 1) 메모리 효율성: 리스너 개수 감소, 2) 동적 요소: 나중에 추가된 요소도 자동으로 이벤트 처리, 3) 코드 간결성: 리스너 관리가 간편하다. 특히 리스트나 테이블처럼 많은 하위 요소가 있을 때 효과적이다.",
+    "keywords_full_credit": ["이벤트 위임", "Event Delegation", "버블링", "event.target", "상위 요소", "메모리", "동적 요소"],
+    "keywords_partial_credit": ["리스너", "효율성", "코드 간결"]
+  },
+  {
+    "subject": "[이벤트] preventDefault와 stopPropagation",
+    "question_text": "event.preventDefault()와 event.stopPropagation()의 차이점과 각각의 사용 목적을 예시와 함께 설명하시오.",
+    "question_type": "descriptive",
+    "model_answer": "preventDefault()는 브라우저의 기본 동작을 취소한다. 예를 들어 form의 submit 이벤트에서 preventDefault()를 호출하면 페이지 새로고침을 방지하고, a 태그 클릭 시 사용하면 페이지 이동을 막는다. 이벤트 전파에는 영향을 주지 않는다. stopPropagation()은 이벤트 전파(버블링/캡처링)를 중단한다. 하위 요소의 이벤트가 상위 요소로 전파되는 것을 막지만, 브라우저의 기본 동작은 막지 않는다. 예를 들어 버튼 클릭 시 부모 div의 클릭 이벤트가 실행되지 않도록 할 때 사용한다. 두 메서드는 서로 다른 목적을 가지며, 필요에 따라 함께 사용할 수 있다.",
+    "keywords_full_credit": ["preventDefault", "stopPropagation", "기본 동작", "이벤트 전파", "버블링", "form", "submit"],
+    "keywords_partial_credit": ["취소", "중단", "페이지 새로고침"]
+  }
+]
+

@@ -1,0 +1,2746 @@
+[
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 중 JavaScript의 원시 자료형(Primitive Type)이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "Number",
+      "String",
+      "Array",
+      "Boolean"
+    ],
+    "model_answer": "Array",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(typeof null);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"null\"",
+      "\"object\"",
+      "\"undefined\"",
+      "\"number\""
+    ],
+    "model_answer": "\"object\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "원시 자료형의 특징으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "가변(Mutable)이며 힙 메모리에 저장된다",
+      "불변(Immutable)이며 값 자체가 복사된다",
+      "주소값이 저장되고 복사된다",
+      "항상 객체 형태로 저장된다"
+    ],
+    "model_answer": "불변(Immutable)이며 값 자체가 복사된다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet a = 10;\nlet b = a;\na = 20;\nconsole.log(b);",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "20",
+      "undefined",
+      "null"
+    ],
+    "model_answer": "10",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "참조 자료형에 해당하지 않는 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "Object",
+      "Array",
+      "Function",
+      "undefined"
+    ],
+    "model_answer": "undefined",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet obj1 = { value: 10 };\nlet obj2 = obj1;\nobj1.value = 20;\nconsole.log(obj2.value);",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "20",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "20",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 중 JavaScript의 데이터 타입이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "Number",
+      "String",
+      "Character",
+      "Boolean"
+    ],
+    "model_answer": "Character",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(typeof undefined);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"undefined\"",
+      "\"null\"",
+      "\"object\"",
+      "\"string\""
+    ],
+    "model_answer": "\"undefined\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(typeof [1, 2, 3]);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"array\"",
+      "\"object\"",
+      "\"list\"",
+      "\"collection\""
+    ],
+    "model_answer": "\"object\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "참조 자료형의 특징으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "불변이며 스택에 저장된다",
+      "가변이며 힙 메모리에 저장되고 주소값이 복사된다",
+      "값 자체가 복사된다",
+      "재할당이 불가능하다"
+    ],
+    "model_answer": "가변이며 힙 메모리에 저장되고 주소값이 복사된다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(typeof function(){});",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"function\"",
+      "\"object\"",
+      "\"method\"",
+      "\"undefined\""
+    ],
+    "model_answer": "\"function\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 데이터 타입",
+    "question_text": "다음 중 null과 undefined에 대한 설명으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "null은 명시적으로 빈 값을 나타내고, undefined는 값이 할당되지 않은 상태이다",
+      "null과 undefined는 완전히 동일하다",
+      "typeof null은 \"null\"을 반환한다",
+      "undefined는 개발자가 직접 할당할 수 없다"
+    ],
+    "model_answer": "null은 명시적으로 빈 값을 나타내고, undefined는 값이 할당되지 않은 상태이다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(5 == '5');",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(5 === '5');",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "false",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "== 연산자와 === 연산자의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "==는 값만 비교하고, ===는 값과 타입을 모두 비교한다",
+      "==가 더 엄격한 비교이다",
+      "===는 문자열만 비교할 수 있다"
+    ],
+    "model_answer": "==는 값만 비교하고, ===는 값과 타입을 모두 비교한다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(true && false);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "null"
+    ],
+    "model_answer": "false",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(true || false);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "null"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet x = 5;\nconsole.log(++x);",
+    "question_type": "multiple_choice",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "undefined"
+    ],
+    "model_answer": "6",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet x = 5;\nconsole.log(x++);",
+    "question_type": "multiple_choice",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "undefined"
+    ],
+    "model_answer": "5",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(!true);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "null"
+    ],
+    "model_answer": "false",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "논리 연산자의 단축 평가(Short-circuit evaluation)에 대한 설명으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "모든 피연산자를 항상 평가한다",
+      "첫 번째 피연산자만 평가한다",
+      "결과가 확정되면 나머지 피연산자를 평가하지 않는다",
+      "에러를 방지하기 위한 문법이다"
+    ],
+    "model_answer": "결과가 확정되면 나머지 피연산자를 평가하지 않는다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 연산자",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(0 || 'hello');",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "\"hello\"",
+      "true",
+      "false"
+    ],
+    "model_answer": "\"hello\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "var 키워드의 특징이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "함수 스코프를 가진다",
+      "재선언이 가능하다",
+      "블록 스코프를 가진다",
+      "호이스팅이 발생한다"
+    ],
+    "model_answer": "블록 스코프를 가진다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "let 키워드의 특징으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "함수 스코프를 가진다",
+      "재선언이 가능하다",
+      "블록 스코프를 가지며 재할당은 가능하다",
+      "재할당이 불가능하다"
+    ],
+    "model_answer": "블록 스코프를 가지며 재할당은 가능하다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "const 키워드에 대한 설명으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "재할당이 가능하다",
+      "선언 후 나중에 초기화할 수 있다",
+      "블록 스코프를 가지며 재할당이 불가능하다",
+      "함수 스코프를 가진다"
+    ],
+    "model_answer": "블록 스코프를 가지며 재할당이 불가능하다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nif (true) {\n  let x = 10;\n}\nconsole.log(x);",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "undefined",
+      "null",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "ReferenceError 발생",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nif (true) {\n  var x = 10;\n}\nconsole.log(x);",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "undefined",
+      "null",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "10",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "TDZ(Temporal Dead Zone)에 대한 설명으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "var 변수가 초기화되지 않은 구간",
+      "let과 const가 호이스팅되지만 초기화되지 않아 참조할 수 없는 구간",
+      "함수가 실행되지 않는 구간",
+      "블록 스코프가 적용되지 않는 구간"
+    ],
+    "model_answer": "let과 const가 호이스팅되지만 초기화되지 않아 참조할 수 없는 구간",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(x);\nvar x = 10;",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "undefined",
+      "null",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "undefined",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nconsole.log(x);\nlet x = 10;",
+    "question_type": "multiple_choice",
+    "options": [
+      "10",
+      "undefined",
+      "null",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "ReferenceError 발생",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "블록 스코프가 적용되는 변수 선언 키워드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "var만",
+      "let만",
+      "let과 const",
+      "var, let, const 모두"
+    ],
+    "model_answer": "let과 const",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드에서 에러가 발생하는 줄은?\n\nconst PI = 3.14;\nPI = 3.14159;",
+    "question_type": "multiple_choice",
+    "options": [
+      "첫 번째 줄",
+      "두 번째 줄",
+      "에러 없음",
+      "두 줄 모두"
+    ],
+    "model_answer": "두 번째 줄",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "var로 선언한 변수의 호이스팅 동작은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "선언과 초기화가 모두 최상단으로 이동",
+      "선언은 최상단으로 이동하고 undefined로 초기화",
+      "호이스팅이 발생하지 않음",
+      "에러가 발생함"
+    ],
+    "model_answer": "선언은 최상단으로 이동하고 undefined로 초기화",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 중 재선언이 가능한 변수 선언 키워드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "var",
+      "let",
+      "const",
+      "모두 가능"
+    ],
+    "model_answer": "var",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nfor (var i = 0; i < 3; i++) {}\nconsole.log(i);",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "2",
+      "3",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "3",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 변수와 스코프",
+    "question_text": "다음 코드의 출력 결과는?\n\nfor (let i = 0; i < 3; i++) {}\nconsole.log(i);",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "2",
+      "3",
+      "ReferenceError 발생"
+    ],
+    "model_answer": "ReferenceError 발생",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 삼항 연산자의 결과는?\n\nlet result = (5 > 3) ? 'yes' : 'no';\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"yes\"",
+      "\"no\"",
+      "true",
+      "false"
+    ],
+    "model_answer": "\"yes\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nfor (let i = 0; i < 3; i++) {\n  console.log(i);\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "0 1 2",
+      "1 2 3",
+      "0 1 2 3",
+      "에러 발생"
+    ],
+    "model_answer": "0 1 2",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "for...in 반복문은 무엇을 순회하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "배열의 값",
+      "객체의 키(Key)",
+      "배열의 인덱스만",
+      "문자열의 문자"
+    ],
+    "model_answer": "객체의 키(Key)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "for...of 반복문은 무엇을 순회하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "객체의 키",
+      "이터러블의 값",
+      "객체의 값",
+      "함수의 매개변수"
+    ],
+    "model_answer": "이터러블의 값",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet arr = [10, 20, 30];\nfor (let value of arr) {\n  console.log(value);\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "0 1 2",
+      "10 20 30",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "10 20 30",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet obj = {a: 1, b: 2};\nfor (let key in obj) {\n  console.log(key);\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "1 2",
+      "a b",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "a b",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "switch 문에서 break를 생략하면 어떻게 되는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "에러가 발생한다",
+      "자동으로 종료된다",
+      "다음 case로 계속 실행된다 (fall-through)",
+      "무한 루프에 빠진다"
+    ],
+    "model_answer": "다음 case로 계속 실행된다 (fall-through)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nlet x = 0;\nwhile (x < 3) {\n  x++;\n}\nconsole.log(x);",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "2",
+      "3",
+      "무한 루프"
+    ],
+    "model_answer": "3",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "if 조건문에서 falsy 값이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "\"\"",
+      "[]",
+      "null"
+    ],
+    "model_answer": "[]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 중 falsy 값이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "false",
+      "0",
+      "\"false\"",
+      "null"
+    ],
+    "model_answer": "\"false\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nif (0) {\n  console.log('A');\n} else {\n  console.log('B');\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "A",
+      "B",
+      "AB",
+      "undefined"
+    ],
+    "model_answer": "B",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 제어문",
+    "question_text": "다음 코드의 출력 결과는?\n\nif ('hello') {\n  console.log('A');\n} else {\n  console.log('B');\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "A",
+      "B",
+      "AB",
+      "undefined"
+    ],
+    "model_answer": "A",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "함수 선언식과 함수 표현식의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "함수 선언식은 호이스팅되고, 함수 표현식은 호이스팅되지 않는다",
+      "함수 표현식만 매개변수를 받을 수 있다",
+      "함수 선언식은 return 값이 없다"
+    ],
+    "model_answer": "함수 선언식은 호이스팅되고, 함수 표현식은 호이스팅되지 않는다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 중 함수 표현식은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "function foo() {}",
+      "const foo = function() {}",
+      "foo()",
+      "return foo;"
+    ],
+    "model_answer": "const foo = function() {}",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "화살표 함수의 특징으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "자신만의 this를 가진다",
+      "상위 스코프의 this를 계승한다",
+      "생성자 함수로 사용할 수 있다",
+      "호이스팅이 발생한다"
+    ],
+    "model_answer": "상위 스코프의 this를 계승한다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 화살표 함수의 올바른 문법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "const add = (a, b) -> { return a + b }",
+      "const add = (a, b) => { return a + b }",
+      "const add = (a, b) : { return a + b }",
+      "const add = (a, b) >> { return a + b }"
+    ],
+    "model_answer": "const add = (a, b) => { return a + b }",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 코드의 출력 결과는?\n\nfunction add(a = 5, b = 10) {\n  return a + b;\n}\nconsole.log(add(3));",
+    "question_type": "multiple_choice",
+    "options": [
+      "15",
+      "13",
+      "8",
+      "undefined"
+    ],
+    "model_answer": "13",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "매개변수 기본값(Default parameters)에 대한 설명으로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "ES5에서 도입되었다",
+      "인자가 전달되지 않을 때 사용되는 기본값이다",
+      "항상 0으로 초기화된다",
+      "함수 표현식에서만 사용할 수 있다"
+    ],
+    "model_answer": "인자가 전달되지 않을 때 사용되는 기본값이다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "나머지 매개변수(Rest parameters)의 문법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "function foo(...args) {}",
+      "function foo(args...) {}",
+      "function foo(*args) {}",
+      "function foo(args*) {}"
+    ],
+    "model_answer": "function foo(...args) {}",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst double = x => x * 2;\nconsole.log(double(5));",
+    "question_type": "multiple_choice",
+    "options": [
+      "5",
+      "10",
+      "25",
+      "undefined"
+    ],
+    "model_answer": "10",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 코드의 출력 결과는?\n\ngreet();\nfunction greet() {\n  console.log('Hello');\n}",
+    "question_type": "multiple_choice",
+    "options": [
+      "Hello",
+      "undefined",
+      "에러 발생",
+      "null"
+    ],
+    "model_answer": "Hello",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 코드의 출력 결과는?\n\ngreet();\nconst greet = function() {\n  console.log('Hello');\n};",
+    "question_type": "multiple_choice",
+    "options": [
+      "Hello",
+      "undefined",
+      "에러 발생",
+      "null"
+    ],
+    "model_answer": "에러 발생",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[기초] 함수",
+    "question_text": "다음 코드의 출력 결과는?\n\nfunction sum(...numbers) {\n  return numbers.reduce((a, b) => a + b, 0);\n}\nconsole.log(sum(1, 2, 3));",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "6",
+      "123",
+      "undefined"
+    ],
+    "model_answer": "6",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 기본",
+    "question_text": "객체의 프로퍼티에 접근하는 방법이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "점 표기법 (obj.key)",
+      "대괄호 표기법 (obj['key'])",
+      "화살표 표기법 (obj->key)",
+      "모두 가능"
+    ],
+    "model_answer": "화살표 표기법 (obj->key)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 기본",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { name: 'Alice', age: 30 };\nconsole.log(obj.name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "\"name\"",
+      "undefined",
+      "null"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 기본",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { name: 'Alice' };\nconsole.log(obj['name']);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "\"name\"",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] this",
+    "question_text": "일반 함수에서 this는 무엇을 가리키는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "함수 자신",
+      "전역 객체 (window)",
+      "null",
+      "undefined"
+    ],
+    "model_answer": "전역 객체 (window)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] this",
+    "question_text": "메서드 호출 시 this는 무엇을 가리키는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "전역 객체",
+      "호출한 객체",
+      "window",
+      "undefined"
+    ],
+    "model_answer": "호출한 객체",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] this",
+    "question_text": "화살표 함수의 this는 무엇을 가리키는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "자신만의 this",
+      "상위 스코프의 this",
+      "window",
+      "null"
+    ],
+    "model_answer": "상위 스코프의 this",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] this",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = {\n  name: 'Alice',\n  greet: function() {\n    console.log(this.name);\n  }\n};\nobj.greet();",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "undefined",
+      "null",
+      "에러 발생"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] this",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = {\n  name: 'Alice',\n  greet: () => {\n    console.log(this.name);\n  }\n};\nobj.greet();",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "undefined",
+      "\"name\"",
+      "에러 발생"
+    ],
+    "model_answer": "undefined",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 메서드",
+    "question_text": "객체의 메서드(Method)란 무엇인가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "객체의 키",
+      "객체의 값",
+      "객체 프로퍼티로 할당된 함수",
+      "객체의 타입"
+    ],
+    "model_answer": "객체 프로퍼티로 할당된 함수",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 단축 속성명",
+    "question_text": "다음 코드와 동일한 것은?\n\nconst name = 'Alice';\nconst age = 30;\nconst obj = { name, age };",
+    "question_type": "multiple_choice",
+    "options": [
+      "{ name: name, age: age }",
+      "{ 'name', 'age' }",
+      "{ name(), age() }",
+      "{ [name], [age] }"
+    ],
+    "model_answer": "{ name: name, age: age }",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 계산된 속성명",
+    "question_text": "계산된 속성명(Computed property names)의 문법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "{ key: value }",
+      "{ [key]: value }",
+      "{ key = value }",
+      "{ key => value }"
+    ],
+    "model_answer": "{ [key]: value }",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 계산된 속성명",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst key = 'name';\nconst obj = { [key]: 'Alice' };\nconsole.log(obj.name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "undefined",
+      "\"key\"",
+      "\"name\""
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 구조 분해 할당",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst person = { name: 'Alice', age: 30 };\nconst { name, age } = person;\nconsole.log(name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "\"name\"",
+      "undefined",
+      "{ name: 'Alice', age: 30 }"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 구조 분해 할당",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst [a, b] = arr;\nconsole.log(a);",
+    "question_type": "multiple_choice",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "undefined"
+    ],
+    "model_answer": "1",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 구조 분해 할당",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst person = { name: 'Alice' };\nconst { name, age = 30 } = person;\nconsole.log(age);",
+    "question_type": "multiple_choice",
+    "options": [
+      "undefined",
+      "30",
+      "null",
+      "\"age\""
+    ],
+    "model_answer": "30",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 전개 구문",
+    "question_text": "전개 구문(Spread Syntax)의 문법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "...",
+      "***",
+      ">>",
+      "<<"
+    ],
+    "model_answer": "...",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 전개 구문",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4];\nconsole.log(arr2);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[1, 2, 3, 4]",
+      "[[1, 2], 3, 4]",
+      "[1, 2]",
+      "[3, 4]"
+    ],
+    "model_answer": "[1, 2, 3, 4]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 전개 구문",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj1 = { a: 1 };\nconst obj2 = { ...obj1, b: 2 };\nconsole.log(obj2);",
+    "question_type": "multiple_choice",
+    "options": [
+      "{ a: 1, b: 2 }",
+      "{ a: 1 }",
+      "{ b: 2 }",
+      "{ obj1, b: 2 }"
+    ],
+    "model_answer": "{ a: 1, b: 2 }",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] Optional Chaining",
+    "question_text": "Optional Chaining의 문법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "obj?.prop",
+      "obj->prop",
+      "obj..prop",
+      "obj::prop"
+    ],
+    "model_answer": "obj?.prop",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] Optional Chaining",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { user: { name: 'Alice' } };\nconsole.log(obj?.user?.name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "undefined",
+      "null",
+      "에러 발생"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] Optional Chaining",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { user: null };\nconsole.log(obj?.user?.name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "null",
+      "undefined",
+      "에러 발생",
+      "\"name\""
+    ],
+    "model_answer": "undefined",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[JSON] 기본",
+    "question_text": "JSON은 무엇의 약자인가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "JavaScript Object Notation",
+      "JavaScript Online Network",
+      "Java Standard Object Notation",
+      "JavaScript Open Network"
+    ],
+    "model_answer": "JavaScript Object Notation",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[JSON] 기본",
+    "question_text": "JSON 데이터의 형태는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "객체",
+      "배열",
+      "문자열",
+      "함수"
+    ],
+    "model_answer": "문자열",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[JSON] 메서드",
+    "question_text": "JavaScript 객체를 JSON 문자열로 변환하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "JSON.stringify()",
+      "JSON.parse()",
+      "JSON.convert()",
+      "JSON.toString()"
+    ],
+    "model_answer": "JSON.stringify()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[JSON] 메서드",
+    "question_text": "JSON 문자열을 JavaScript 객체로 변환하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "JSON.stringify()",
+      "JSON.parse()",
+      "JSON.toObject()",
+      "JSON.convert()"
+    ],
+    "model_answer": "JSON.parse()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[JSON] 메서드",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { name: 'Alice', age: 30 };\nconst json = JSON.stringify(obj);\nconsole.log(typeof json);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"object\"",
+      "\"string\"",
+      "\"json\"",
+      "\"number\""
+    ],
+    "model_answer": "\"string\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] forEach",
+    "question_text": "forEach() 메서드의 반환값은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "새로운 배열",
+      "undefined",
+      "원본 배열",
+      "true/false"
+    ],
+    "model_answer": "undefined",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] forEach",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\narr.forEach(num => console.log(num));",
+    "question_type": "multiple_choice",
+    "options": [
+      "1 2 3",
+      "[1, 2, 3]",
+      "6",
+      "undefined"
+    ],
+    "model_answer": "1 2 3",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] map",
+    "question_text": "map() 메서드의 반환값은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "undefined",
+      "원본 배열",
+      "새로운 배열",
+      "숫자"
+    ],
+    "model_answer": "새로운 배열",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] map",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst result = arr.map(num => num * 2);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[1, 2, 3]",
+      "[2, 4, 6]",
+      "[1, 4, 9]",
+      "6"
+    ],
+    "model_answer": "[2, 4, 6]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] map",
+    "question_text": "map()과 forEach()의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "map()은 새로운 배열을 반환하고, forEach()는 반환값이 없다",
+      "forEach()가 더 빠르다",
+      "map()은 객체만 순회한다"
+    ],
+    "model_answer": "map()은 새로운 배열을 반환하고, forEach()는 반환값이 없다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] filter",
+    "question_text": "filter() 메서드는 무엇을 반환하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "조건이 true인 요소들로 이루어진 새로운 배열",
+      "첫 번째 요소",
+      "true/false",
+      "undefined"
+    ],
+    "model_answer": "조건이 true인 요소들로 이루어진 새로운 배열",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] filter",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.filter(num => num > 3);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[1, 2, 3]",
+      "[4, 5]",
+      "[3, 4, 5]",
+      "5"
+    ],
+    "model_answer": "[4, 5]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] find",
+    "question_text": "find() 메서드는 무엇을 반환하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "조건 만족하는 모든 요소",
+      "조건 만족하는 첫 번째 요소",
+      "인덱스",
+      "true/false"
+    ],
+    "model_answer": "조건 만족하는 첫 번째 요소",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] find",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.find(num => num > 3);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[4, 5]",
+      "4",
+      "5",
+      "undefined"
+    ],
+    "model_answer": "4",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] some",
+    "question_text": "some() 메서드는 무엇을 반환하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "배열",
+      "하나라도 조건을 만족하면 true",
+      "모두 만족해야 true",
+      "첫 번째 요소"
+    ],
+    "model_answer": "하나라도 조건을 만족하면 true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] some",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst result = arr.some(num => num > 2);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "[3]",
+      "3"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] every",
+    "question_text": "every() 메서드는 무엇을 반환하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "배열",
+      "하나라도 조건을 만족하면 true",
+      "모두 조건을 만족해야 true",
+      "첫 번째 요소"
+    ],
+    "model_answer": "모두 조건을 만족해야 true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] every",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst result = arr.every(num => num > 0);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "[1, 2, 3]",
+      "undefined"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] reduce",
+    "question_text": "reduce() 메서드의 역할은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "배열 요소를 필터링",
+      "배열 크기를 줄임",
+      "누적값을 계산",
+      "배열을 정렬"
+    ],
+    "model_answer": "누적값을 계산",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] reduce",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3, 4];\nconst result = arr.reduce((acc, cur) => acc + cur, 0);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "4",
+      "10",
+      "[1, 2, 3, 4]"
+    ],
+    "model_answer": "10",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] reduce",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst result = arr.reduce((acc, cur) => acc * cur, 1);\nconsole.log(result);",
+    "question_type": "multiple_choice",
+    "options": [
+      "1",
+      "6",
+      "9",
+      "undefined"
+    ],
+    "model_answer": "6",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] 종합",
+    "question_text": "원본 배열을 변경하지 않는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "push()",
+      "map()",
+      "pop()",
+      "shift()"
+    ],
+    "model_answer": "map()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] 종합",
+    "question_text": "다음 중 새로운 배열을 반환하지 않는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "map()",
+      "filter()",
+      "forEach()",
+      "reduce()"
+    ],
+    "model_answer": "forEach()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[클래스] 기본",
+    "question_text": "클래스의 생성자 메서드 이름은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "init()",
+      "constructor()",
+      "create()",
+      "new()"
+    ],
+    "model_answer": "constructor()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[클래스] 기본",
+    "question_text": "클래스로 인스턴스를 생성할 때 사용하는 연산자는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "create",
+      "new",
+      "make",
+      "instance"
+    ],
+    "model_answer": "new",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[클래스] 기본",
+    "question_text": "다음 코드의 출력 결과는?\n\nclass Person {\n  constructor(name) {\n    this.name = name;\n  }\n}\nconst p = new Person('Alice');\nconsole.log(p.name);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Alice\"",
+      "\"name\"",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "\"Alice\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[클래스] 메서드",
+    "question_text": "다음 코드의 출력 결과는?\n\nclass Counter {\n  constructor() {\n    this.count = 0;\n  }\n  increment() {\n    this.count++;\n  }\n}\nconst c = new Counter();\nc.increment();\nconsole.log(c.count);",
+    "question_type": "multiple_choice",
+    "options": [
+      "0",
+      "1",
+      "undefined",
+      "에러 발생"
+    ],
+    "model_answer": "1",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[클래스] 기본",
+    "question_text": "클래스를 정의하는 키워드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "class",
+      "Class",
+      "object",
+      "def"
+    ],
+    "model_answer": "class",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[this] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nfunction greet() {\n  console.log(this);\n}\ngreet();",
+    "question_type": "multiple_choice",
+    "options": [
+      "undefined",
+      "null",
+      "전역 객체 (window)",
+      "함수 자신"
+    ],
+    "model_answer": "전역 객체 (window)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[this] 종합",
+    "question_text": "다음 코드에서 this가 가리키는 것은?\n\nconst obj = {\n  name: 'Alice',\n  greet() {\n    console.log(this.name);\n  }\n};\nobj.greet();",
+    "question_type": "multiple_choice",
+    "options": [
+      "전역 객체",
+      "obj 객체",
+      "undefined",
+      "window"
+    ],
+    "model_answer": "obj 객체",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 종합",
+    "question_text": "다음 중 ES6에서 추가된 기능이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "화살표 함수",
+      "let/const",
+      "var",
+      "템플릿 리터럴"
+    ],
+    "model_answer": "var",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[ES6] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst name = 'Alice';\nconst greeting = `Hello, ${name}!`;\nconsole.log(greeting);",
+    "question_type": "multiple_choice",
+    "options": [
+      "\"Hello, Alice!\"",
+      "\"Hello, ${name}!\"",
+      "\"Hello, name!\"",
+      "에러 발생"
+    ],
+    "model_answer": "\"Hello, Alice!\"",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst doubled = arr.map(x => x * 2).filter(x => x > 2);\nconsole.log(doubled);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[2, 4, 6]",
+      "[4, 6]",
+      "[1, 2, 3]",
+      "[6]"
+    ],
+    "model_answer": "[4, 6]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3, 4, 5];\nconst hasEven = arr.some(num => num % 2 === 0);\nconsole.log(hasEven);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "[2, 4]",
+      "undefined"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[배열] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 3, 5, 7];\nconst allOdd = arr.every(num => num % 2 === 1);\nconsole.log(allOdd);",
+    "question_type": "multiple_choice",
+    "options": [
+      "true",
+      "false",
+      "[1, 3, 5, 7]",
+      "undefined"
+    ],
+    "model_answer": "true",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;\nconsole.log(rest);",
+    "question_type": "multiple_choice",
+    "options": [
+      "{ a: 1 }",
+      "{ b: 2, c: 3 }",
+      "{ a: 1, b: 2, c: 3 }",
+      "undefined"
+    ],
+    "model_answer": "{ b: 2, c: 3 }",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[객체] 종합",
+    "question_text": "다음 코드의 출력 결과는?\n\nconst arr = [1, 2, 3];\nconst [first, ...rest] = arr;\nconsole.log(rest);",
+    "question_type": "multiple_choice",
+    "options": [
+      "[1]",
+      "[2, 3]",
+      "[1, 2, 3]",
+      "undefined"
+    ],
+    "model_answer": "[2, 3]",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM은 무엇의 약자인가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "Document Object Model",
+      "Data Object Method",
+      "Dynamic Object Management",
+      "Document Online Model"
+    ],
+    "model_answer": "Document Object Model",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM의 역할로 올바른 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "CSS를 작성한다",
+      "JavaScript가 HTML 문서를 동적으로 조작할 수 있게 한다",
+      "서버와 통신한다",
+      "이미지를 저장한다"
+    ],
+    "model_answer": "JavaScript가 HTML 문서를 동적으로 조작할 수 있게 한다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM은 어떤 구조로 표현되는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "리스트 구조",
+      "트리 구조",
+      "스택 구조",
+      "큐 구조"
+    ],
+    "model_answer": "트리 구조",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM 접근의 진입점(entry point) 객체는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "window",
+      "document",
+      "html",
+      "body"
+    ],
+    "model_answer": "document",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "브라우저 창을 나타내는 객체는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "document",
+      "window",
+      "browser",
+      "screen"
+    ],
+    "model_answer": "window",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM을 통해 조작할 수 있는 것이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "HTML 구조",
+      "스타일",
+      "내용",
+      "서버 데이터베이스"
+    ],
+    "model_answer": "서버 데이터베이스",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM 요소를 JavaScript 객체로 표현한 것을 무엇이라 하는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "노드(Node)",
+      "태그(Tag)",
+      "엘리먼트(Element)",
+      "노드와 엘리먼트 모두"
+    ],
+    "model_answer": "노드와 엘리먼트 모두",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "document 객체는 무엇을 나타내는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "브라우저 창",
+      "HTML 문서 전체",
+      "body 태그",
+      "head 태그"
+    ],
+    "model_answer": "HTML 문서 전체",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM 조작으로 할 수 있는 작업이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "요소 추가",
+      "요소 삭제",
+      "스타일 변경",
+      "서버 파일 저장"
+    ],
+    "model_answer": "서버 파일 저장",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 개요",
+    "question_text": "DOM 트리에서 각 HTML 요소는 무엇으로 표현되는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "리프(Leaf)",
+      "노드(Node)",
+      "브랜치(Branch)",
+      "루트(Root)"
+    ],
+    "model_answer": "노드(Node)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "CSS 선택자로 첫 번째 요소 하나를 선택하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "document.querySelector()",
+      "document.querySelectorAll()",
+      "document.getElementById()",
+      "document.getElement()"
+    ],
+    "model_answer": "document.querySelector()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "CSS 선택자로 모든 요소를 선택하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "document.querySelector()",
+      "document.querySelectorAll()",
+      "document.selectAll()",
+      "document.getElements()"
+    ],
+    "model_answer": "document.querySelectorAll()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "querySelectorAll()의 반환 타입은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "Array",
+      "NodeList",
+      "HTMLCollection",
+      "Object"
+    ],
+    "model_answer": "NodeList",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "다음 중 올바른 선택자 사용 예시는?\n\n<div id=\"app\"></div>",
+    "question_type": "multiple_choice",
+    "options": [
+      "document.querySelector('app')",
+      "document.querySelector('#app')",
+      "document.querySelector('id=app')",
+      "document.querySelector('.app')"
+    ],
+    "model_answer": "document.querySelector('#app')",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "클래스명으로 요소를 선택하는 올바른 방법은?\n\n<div class=\"container\"></div>",
+    "question_type": "multiple_choice",
+    "options": [
+      "document.querySelector('#container')",
+      "document.querySelector('.container')",
+      "document.querySelector('container')",
+      "document.querySelector('class=container')"
+    ],
+    "model_answer": "document.querySelector('.container')",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "querySelector()로 요소를 찾지 못했을 때 반환값은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "undefined",
+      "null",
+      "false",
+      "에러 발생"
+    ],
+    "model_answer": "null",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "다음 코드의 의미는?\n\ndocument.querySelectorAll('div');\n",
+    "question_type": "multiple_choice",
+    "options": [
+      "첫 번째 div 요소 선택",
+      "모든 div 요소 선택",
+      "id가 div인 요소 선택",
+      "class가 div인 요소 선택"
+    ],
+    "model_answer": "모든 div 요소 선택",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 선택",
+    "question_text": "querySelector()와 getElementById()의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "querySelector()는 CSS 선택자를 사용하고 더 범용적이다",
+      "getElementById()가 더 최신 메서드이다",
+      "querySelector()는 여러 요소를 선택한다"
+    ],
+    "model_answer": "querySelector()는 CSS 선택자를 사용하고 더 범용적이다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 생성/추가",
+    "question_text": "새로운 HTML 요소를 생성하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "document.createElement()",
+      "document.newElement()",
+      "document.addElement()",
+      "document.makeElement()"
+    ],
+    "model_answer": "document.createElement()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 생성/추가",
+    "question_text": "부모 요소의 마지막 자식으로 노드를 추가하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "appendChild()",
+      "addChild()",
+      "insertChild()",
+      "appendNode()"
+    ],
+    "model_answer": "appendChild()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 생성/추가",
+    "question_text": "다음 코드의 결과는?\n\nconst div = document.createElement('div');\ndiv.textContent = 'Hello';\ndocument.body.appendChild(div);",
+    "question_type": "multiple_choice",
+    "options": [
+      "에러 발생",
+      "body에 \"Hello\" 텍스트가 있는 div가 추가됨",
+      "아무 일도 일어나지 않음",
+      "Hello라는 새 요소가 생성됨"
+    ],
+    "model_answer": "body에 \"Hello\" 텍스트가 있는 div가 추가됨",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 생성/추가",
+    "question_text": "append()와 appendChild()의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "append()는 여러 노드와 텍스트를 추가할 수 있다",
+      "appendChild()가 더 최신 메서드다",
+      "append()는 반환값이 있다"
+    ],
+    "model_answer": "append()는 여러 노드와 텍스트를 추가할 수 있다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 삭제",
+    "question_text": "요소를 DOM에서 제거하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "remove()",
+      "delete()",
+      "destroy()",
+      "clear()"
+    ],
+    "model_answer": "remove()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 삭제",
+    "question_text": "부모 요소에서 자식 요소를 제거하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "removeChild()",
+      "deleteChild()",
+      "remove()",
+      "clear()"
+    ],
+    "model_answer": "removeChild()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 속성",
+    "question_text": "CSS 클래스를 추가하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.classList.add()",
+      "element.addClass()",
+      "element.class.add()",
+      "element.addClassName()"
+    ],
+    "model_answer": "element.classList.add()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 속성",
+    "question_text": "CSS 클래스를 제거하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.classList.remove()",
+      "element.removeClass()",
+      "element.class.delete()",
+      "element.removeClassName()"
+    ],
+    "model_answer": "element.classList.remove()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 속성",
+    "question_text": "CSS 클래스를 토글(있으면 제거, 없으면 추가)하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.classList.toggle()",
+      "element.classList.switch()",
+      "element.classList.change()",
+      "element.toggleClass()"
+    ],
+    "model_answer": "element.classList.toggle()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 속성",
+    "question_text": "요소의 속성값을 설정하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.setAttribute()",
+      "element.setProperty()",
+      "element.addAttribute()",
+      "element.set()"
+    ],
+    "model_answer": "element.setAttribute()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 속성",
+    "question_text": "요소의 속성값을 가져오는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.getAttribute()",
+      "element.getProperty()",
+      "element.attr()",
+      "element.get()"
+    ],
+    "model_answer": "element.getAttribute()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 콘텐츠",
+    "question_text": "요소의 텍스트 내용만 조작하는 프로퍼티는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "textContent",
+      "innerHTML",
+      "text",
+      "content"
+    ],
+    "model_answer": "textContent",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 콘텐츠",
+    "question_text": "HTML 태그를 포함하여 내용을 조작하는 프로퍼티는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "textContent",
+      "innerHTML",
+      "html",
+      "htmlContent"
+    ],
+    "model_answer": "innerHTML",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 콘텐츠",
+    "question_text": "textContent와 innerHTML의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "textContent는 텍스트만, innerHTML은 HTML 태그를 포함한다",
+      "innerHTML이 더 안전하다",
+      "textContent가 더 최신 프로퍼티다"
+    ],
+    "model_answer": "textContent는 텍스트만, innerHTML은 HTML 태그를 포함한다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 콘텐츠",
+    "question_text": "innerHTML 사용 시 주의해야 할 보안 문제는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "SQL Injection",
+      "XSS (Cross-Site Scripting)",
+      "CSRF",
+      "DDoS"
+    ],
+    "model_answer": "XSS (Cross-Site Scripting)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 스타일",
+    "question_text": "요소의 인라인 스타일을 조작하는 프로퍼티는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.style",
+      "element.css",
+      "element.styling",
+      "element.design"
+    ],
+    "model_answer": "element.style",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 스타일",
+    "question_text": "다음 코드의 결과는?\n\nconst div = document.querySelector('div');\ndiv.style.color = 'red';",
+    "question_type": "multiple_choice",
+    "options": [
+      "div의 텍스트 색상이 빨간색이 된다",
+      "div의 배경색이 빨간색이 된다",
+      "에러 발생",
+      "아무 일도 일어나지 않는다"
+    ],
+    "model_answer": "div의 텍스트 색상이 빨간색이 된다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 스타일",
+    "question_text": "CSS의 background-color를 JavaScript에서 접근하는 방법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.style.background-color",
+      "element.style.backgroundColor",
+      "element.style.bgColor",
+      "element.style['background-color']"
+    ],
+    "model_answer": "element.style.backgroundColor",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 스타일",
+    "question_text": "다음 중 올바른 스타일 설정 방법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "element.style.font-size = '16px'",
+      "element.style.fontSize = '16px'",
+      "element.style.fontsize = '16px'",
+      "element.style['font size'] = '16px'"
+    ],
+    "model_answer": "element.style.fontSize = '16px'",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 종합",
+    "question_text": "다음 코드의 실행 결과는?\n\nconst p = document.createElement('p');\np.textContent = 'Hello';\np.classList.add('greeting');\ndocument.body.appendChild(p);",
+    "question_type": "multiple_choice",
+    "options": [
+      "에러 발생",
+      "body에 'greeting' 클래스를 가진 p 요소가 추가되고 \"Hello\" 텍스트가 표시됨",
+      "빈 p 요소만 추가됨",
+      "아무 일도 일어나지 않음"
+    ],
+    "model_answer": "body에 'greeting' 클래스를 가진 p 요소가 추가되고 \"Hello\" 텍스트가 표시됨",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[DOM] 조작 - 종합",
+    "question_text": "classList 프로퍼티가 제공하는 메서드가 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "add()",
+      "remove()",
+      "toggle()",
+      "delete()"
+    ],
+    "model_answer": "delete()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "이벤트(Event)란 무엇인가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "함수",
+      "웹에서 발생하는 사건 (클릭, 키보드 입력 등)",
+      "변수",
+      "객체"
+    ],
+    "model_answer": "웹에서 발생하는 사건 (클릭, 키보드 입력 등)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "이벤트 핸들러(Handler)란 무엇인가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "이벤트 자체",
+      "이벤트 발생 시 실행되는 콜백 함수",
+      "DOM 요소",
+      "CSS 속성"
+    ],
+    "model_answer": "이벤트 발생 시 실행되는 콜백 함수",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "다음 중 이벤트 타입이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "click",
+      "keydown",
+      "hover",
+      "submit"
+    ],
+    "model_answer": "hover",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "마우스 클릭 이벤트의 이름은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "click",
+      "mouseclick",
+      "onclick",
+      "pressed"
+    ],
+    "model_answer": "click",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "키보드를 눌렀을 때 발생하는 이벤트는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "keypress",
+      "keydown",
+      "keypressed",
+      "keyboard"
+    ],
+    "model_answer": "keydown",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "폼(form) 제출 시 발생하는 이벤트는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "submit",
+      "send",
+      "post",
+      "form"
+    ],
+    "model_answer": "submit",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "input 요소의 값이 변경될 때 발생하는 이벤트는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "change",
+      "input",
+      "modify",
+      "update"
+    ],
+    "model_answer": "input",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 기초",
+    "question_text": "페이지 로딩이 완료되었을 때 발생하는 이벤트는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "load",
+      "ready",
+      "start",
+      "init"
+    ],
+    "model_answer": "load",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "이벤트를 등록하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "addEventListener()",
+      "addEvent()",
+      "on()",
+      "listen()"
+    ],
+    "model_answer": "addEventListener()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "addEventListener()의 첫 번째 인자는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "이벤트 핸들러 함수",
+      "이벤트 타입 (문자열)",
+      "이벤트 객체",
+      "DOM 요소"
+    ],
+    "model_answer": "이벤트 타입 (문자열)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "addEventListener()의 두 번째 인자는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "이벤트 타입",
+      "이벤트 핸들러 함수",
+      "옵션 객체",
+      "DOM 요소"
+    ],
+    "model_answer": "이벤트 핸들러 함수",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "다음 중 올바른 이벤트 등록 방법은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "btn.addEventListener('click', function() {})",
+      "btn.addEventListener(click, function() {})",
+      "btn.addEvent('click', function() {})",
+      "btn.on('click', function() {})"
+    ],
+    "model_answer": "btn.addEventListener('click', function() {})",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "다음 코드의 실행 결과는?\n\nconst btn = document.querySelector('button');\nbtn.addEventListener('click', () => {\n  console.log('Clicked!');\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "즉시 \"Clicked!\" 출력",
+      "버튼 클릭 시 \"Clicked!\" 출력",
+      "에러 발생",
+      "아무 일도 일어나지 않음"
+    ],
+    "model_answer": "버튼 클릭 시 \"Clicked!\" 출력",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 등록",
+    "question_text": "이벤트 리스너를 제거하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "removeEventListener()",
+      "deleteEventListener()",
+      "offEvent()",
+      "unlisten()"
+    ],
+    "model_answer": "removeEventListener()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "이벤트 핸들러의 첫 번째 매개변수로 전달되는 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "DOM 요소",
+      "이벤트 객체",
+      "이벤트 타입",
+      "undefined"
+    ],
+    "model_answer": "이벤트 객체",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "event.target이 가리키는 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "이벤트 핸들러가 부착된 요소",
+      "이벤트가 실제로 발생한 가장 안쪽 요소",
+      "부모 요소",
+      "window 객체"
+    ],
+    "model_answer": "이벤트가 실제로 발생한 가장 안쪽 요소",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "event.currentTarget이 가리키는 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "이벤트가 발생한 요소",
+      "이벤트 핸들러가 부착된 요소",
+      "자식 요소",
+      "document"
+    ],
+    "model_answer": "이벤트 핸들러가 부착된 요소",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "event.currentTarget과 동일한 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "event.target",
+      "this (일반 함수 내)",
+      "event.element",
+      "event.source"
+    ],
+    "model_answer": "this (일반 함수 내)",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "키보드 이벤트에서 입력된 키 값을 얻는 프로퍼티는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "event.key",
+      "event.keyCode",
+      "event.value",
+      "event.input"
+    ],
+    "model_answer": "event.key",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "다음 코드에서 클릭 시 출력되는 것은?\n\nconst div = document.querySelector('div');\ndiv.addEventListener('click', function(event) {\n  console.log(event.target);\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "'div'라는 문자열",
+      "클릭된 실제 요소",
+      "undefined",
+      "이벤트 타입"
+    ],
+    "model_answer": "클릭된 실제 요소",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 객체",
+    "question_text": "event.target과 event.currentTarget이 다를 수 있는 경우는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "항상 동일하다",
+      "이벤트 버블링 발생 시",
+      "이벤트 캡처링 발생 시",
+      "에러 발생 시"
+    ],
+    "model_answer": "이벤트 버블링 발생 시",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 버블링",
+    "question_text": "이벤트 버블링(Bubbling)이란?",
+    "question_type": "multiple_choice",
+    "options": [
+      "하위에서 상위로 이벤트가 전파되는 현상",
+      "상위에서 하위로 이벤트가 전파되는 현상",
+      "이벤트가 취소되는 현상",
+      "이벤트가 복제되는 현상"
+    ],
+    "model_answer": "하위에서 상위로 이벤트가 전파되는 현상",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 버블링",
+    "question_text": "이벤트 버블링은 어디까지 전파되는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "부모 요소까지",
+      "body까지",
+      "document까지",
+      "직계 부모만"
+    ],
+    "model_answer": "document까지",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 버블링",
+    "question_text": "이벤트 버블링을 중단하는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "event.stopPropagation()",
+      "event.stopBubbling()",
+      "event.cancel()",
+      "event.stop()"
+    ],
+    "model_answer": "event.stopPropagation()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 버블링",
+    "question_text": "이벤트 캡처링(Capturing)이란?",
+    "question_type": "multiple_choice",
+    "options": [
+      "하위에서 상위로 전파",
+      "상위에서 하위로 전파",
+      "이벤트 취소",
+      "이벤트 복제"
+    ],
+    "model_answer": "상위에서 하위로 전파",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 버블링",
+    "question_text": "다음 HTML에서 button 클릭 시 이벤트가 전파되는 순서는? (버블링)\n\n<div id=\"parent\">\n  <button id=\"child\">Click</button>\n</div>",
+    "question_type": "multiple_choice",
+    "options": [
+      "button → div",
+      "div → button",
+      "동시에 발생",
+      "전파되지 않음"
+    ],
+    "model_answer": "button → div",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "이벤트 위임(Event Delegation)이란?",
+    "question_type": "multiple_choice",
+    "options": [
+      "각 요소에 개별 리스너 등록",
+      "상위 요소에 리스너를 등록하여 하위 요소들의 이벤트를 처리",
+      "이벤트를 다른 요소로 전달",
+      "이벤트를 취소하는 기법"
+    ],
+    "model_answer": "상위 요소에 리스너를 등록하여 하위 요소들의 이벤트를 처리",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "이벤트 위임의 장점이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "메모리 효율성",
+      "동적 요소 처리 용이",
+      "코드 간결성",
+      "이벤트 실행 속도 향상"
+    ],
+    "model_answer": "이벤트 실행 속도 향상",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "이벤트 위임을 구현할 때 실제 클릭된 요소를 확인하는 프로퍼티는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "event.currentTarget",
+      "event.target",
+      "event.element",
+      "event.clicked"
+    ],
+    "model_answer": "event.target",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "다음 중 이벤트 위임을 사용하기 좋은 상황은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "단일 요소에만 이벤트 필요",
+      "많은 하위 요소에 동일한 이벤트 필요",
+      "이벤트가 필요 없음",
+      "전역 이벤트만 필요"
+    ],
+    "model_answer": "많은 하위 요소에 동일한 이벤트 필요",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "이벤트 위임이 동적 요소 처리에 유리한 이유는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "동적으로 추가된 요소도 자동으로 이벤트가 적용됨",
+      "동적 요소가 빠르게 생성됨",
+      "메모리를 적게 사용함",
+      "코드가 짧아짐"
+    ],
+    "model_answer": "동적으로 추가된 요소도 자동으로 이벤트가 적용됨",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 위임",
+    "question_text": "다음 코드는 이벤트 위임을 사용한 예시이다. 빈칸에 들어갈 것은?\n\nul.addEventListener('click', (e) => {\n  if (e._____.tagName === 'LI') {\n    console.log('리스트 클릭');\n  }\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "currentTarget",
+      "target",
+      "element",
+      "clicked"
+    ],
+    "model_answer": "target",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] preventDefault",
+    "question_text": "브라우저의 기본 동작을 막는 메서드는?",
+    "question_type": "multiple_choice",
+    "options": [
+      "event.preventDefault()",
+      "event.stopDefault()",
+      "event.cancel()",
+      "event.block()"
+    ],
+    "model_answer": "event.preventDefault()",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] preventDefault",
+    "question_text": "preventDefault()로 막을 수 있는 기본 동작이 아닌 것은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "form 제출 시 페이지 새로고침",
+      "a 태그 클릭 시 페이지 이동",
+      "이벤트 버블링",
+      "체크박스 체크/해제"
+    ],
+    "model_answer": "이벤트 버블링",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] preventDefault",
+    "question_text": "다음 코드의 역할은?\n\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "form을 삭제한다",
+      "form 제출을 막는다",
+      "form을 숨긴다",
+      "form 입력을 초기화한다"
+    ],
+    "model_answer": "form 제출을 막는다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] preventDefault",
+    "question_text": "preventDefault()와 stopPropagation()의 차이점은?",
+    "question_type": "multiple_choice",
+    "options": [
+      "차이가 없다",
+      "preventDefault()는 기본 동작을 막고, stopPropagation()은 이벤트 전파를 막는다",
+      "stopPropagation()이 더 강력하다",
+      "preventDefault()만 사용 가능하다"
+    ],
+    "model_answer": "preventDefault()는 기본 동작을 막고, stopPropagation()은 이벤트 전파를 막는다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 종합",
+    "question_text": "다음 코드에서 버튼 클릭 시 출력되는 값은?\n\nconst btn = document.querySelector('button');\nbtn.addEventListener('click', function() {\n  console.log(this);\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "window",
+      "button 요소",
+      "undefined",
+      "document"
+    ],
+    "model_answer": "button 요소",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 종합",
+    "question_text": "다음 코드에서 버튼 클릭 시 출력되는 값은?\n\nconst btn = document.querySelector('button');\nbtn.addEventListener('click', () => {\n  console.log(this);\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "window",
+      "button 요소",
+      "undefined",
+      "상위 스코프의 this"
+    ],
+    "model_answer": "상위 스코프의 this",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 종합",
+    "question_text": "동일한 요소에 여러 개의 이벤트 리스너를 등록할 수 있는가?",
+    "question_type": "multiple_choice",
+    "options": [
+      "불가능하다",
+      "가능하며 모두 실행된다",
+      "마지막 것만 실행된다",
+      "첫 번째 것만 실행된다"
+    ],
+    "model_answer": "가능하며 모두 실행된다",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  },
+  {
+    "subject": "[이벤트] 종합",
+    "question_text": "다음 코드의 실행 결과는?\n\nconst input = document.querySelector('input');\ninput.addEventListener('input', (e) => {\n  console.log(e.target.value);\n});",
+    "question_type": "multiple_choice",
+    "options": [
+      "input 초기값 출력",
+      "입력할 때마다 실시간으로 값 출력",
+      "엔터 입력 시 값 출력",
+      "포커스 이동 시 값 출력"
+    ],
+    "model_answer": "입력할 때마다 실시간으로 값 출력",
+    "keywords_full_credit": [],
+    "keywords_partial_credit": []
+  }
+]
