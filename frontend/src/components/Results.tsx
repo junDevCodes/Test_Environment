@@ -105,8 +105,32 @@ const Results: React.FC = () => {
         <div className="quiz-app-container">
             <div className="results-summary">
                 <h1>Quiz Results</h1>
-                <h2>Your Score: {percentage.toFixed(0)}%</h2>
-                <p>({totalScore} out of {questions.length} correct)</p>
+                
+                {/* 성적별 이모지 및 메시지 */}
+                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+                    {percentage >= 90 ? '🏆' : 
+                     percentage >= 80 ? '🎉' : 
+                     percentage >= 70 ? '😊' : 
+                     percentage >= 60 ? '🙂' : 
+                     percentage >= 50 ? '😐' : '😢'}
+                </div>
+                
+                <h2 style={{ marginBottom: '0.5rem' }}>Your Score: {percentage.toFixed(0)}%</h2>
+                
+                <p style={{ 
+                    fontSize: '1.1rem', 
+                    fontWeight: '600',
+                    color: percentage >= 70 ? '#38ef7d' : percentage >= 50 ? '#ffd93d' : '#f5576c',
+                    marginBottom: '0.25rem'
+                }}>
+                    {percentage >= 90 ? '완벽해요! 🌟' : 
+                     percentage >= 80 ? '훌륭해요! 👏' : 
+                     percentage >= 70 ? '잘했어요! 💪' : 
+                     percentage >= 60 ? '괜찮아요! 👍' : 
+                     percentage >= 50 ? '조금만 더 힘내요! 📚' : '다음엔 더 잘할 수 있어요! 💪'}
+                </p>
+                
+                <p style={{ opacity: 0.8 }}>({totalScore} out of {questions.length} correct)</p>
                 {elapsedSeconds !== undefined && (
                     <p style={{ opacity: 0.8, fontSize: '1rem', marginTop: '0.5rem' }}>
                         ⏱️ 소요 시간: {formatTime(elapsedSeconds)}

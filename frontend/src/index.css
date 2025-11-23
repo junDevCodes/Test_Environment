@@ -2048,3 +2048,251 @@ select:focus {
 .set-item:active {
     transform: translateY(0);
 }
+
+/* ========================================
+   DESIGN ENHANCEMENTS
+   ======================================== */
+
+/* --- Gradient Backgrounds --- */
+body {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d1b3d 50%, #1a1a2e 100%);
+    background-attachment: fixed;
+}
+
+/* --- Enhanced Card Design --- */
+.fluent-card {
+    background: linear-gradient(135deg, rgba(60, 60, 80, 0.95) 0%, rgba(40, 40, 60, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.fluent-card:hover {
+    box-shadow: 
+        0 12px 40px 0 rgba(31, 38, 135, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* --- Gradient Buttons --- */
+.fluent-button--primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.fluent-button--primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.fluent-button--primary:hover::before {
+    left: 100%;
+}
+
+.fluent-button--primary:hover {
+    background: linear-gradient(135deg, #7c8ff0 0%, #8a5bb0 100%);
+    box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+    transform: translateY(-2px);
+}
+
+/* --- Enhanced Progress Bar --- */
+.fluent-progress {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) inset;
+}
+
+.fluent-progress__bar {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
+    border-radius: 50px;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* --- Glowing Options --- */
+.fluent-option.selected {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    border-color: #667eea;
+    box-shadow: 
+        0 0 20px rgba(102, 126, 234, 0.4),
+        0 0 0 1px rgba(102, 126, 234, 0.3) inset;
+}
+
+.fluent-option.correct {
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.2) 0%, rgba(56, 239, 125, 0.2) 100%);
+    border-color: #11998e;
+    box-shadow: 
+        0 0 20px rgba(17, 153, 142, 0.4),
+        0 0 0 1px rgba(17, 153, 142, 0.3) inset;
+    animation: correctPulse 0.5s ease-out;
+}
+
+.fluent-option.incorrect {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+    border-color: #f5576c;
+    box-shadow: 
+        0 0 20px rgba(245, 87, 108, 0.4),
+        0 0 0 1px rgba(245, 87, 108, 0.3) inset;
+    animation: shake 0.4s ease-out;
+}
+
+@keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* --- Statistics Cards with Gradients --- */
+.quiz-app-container .fluent-card:has(.results-summary) {
+    background: linear-gradient(135deg, rgba(60, 60, 80, 0.98) 0%, rgba(40, 40, 60, 0.95) 100%);
+}
+
+/* --- Enhanced Inline Messages --- */
+.inline-message.success {
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.15) 0%, rgba(56, 239, 125, 0.15) 100%);
+    border-left: 4px solid #38ef7d;
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.2);
+}
+
+.inline-message.error {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.15) 0%, rgba(245, 87, 108, 0.15) 100%);
+    border-left: 4px solid #f5576c;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.2);
+}
+
+.inline-message.info {
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, rgba(0, 242, 254, 0.15) 100%);
+    border-left: 4px solid #4facfe;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.2);
+}
+
+/* --- Set Selection Enhancement --- */
+.set-item {
+    background: linear-gradient(135deg, rgba(60, 60, 80, 0.6) 0%, rgba(40, 40, 60, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.set-item.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    box-shadow: 
+        0 4px 20px rgba(102, 126, 234, 0.5),
+        0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+}
+
+.set-item:hover:not(.selected) {
+    background: linear-gradient(135deg, rgba(80, 80, 100, 0.7) 0%, rgba(60, 60, 80, 0.6) 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Modal Enhancement --- */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal {
+    background: linear-gradient(135deg, rgba(60, 60, 80, 0.98) 0%, rgba(40, 40, 60, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* --- Enhanced Input Fields --- */
+.text-input, .textarea-input, .fluent-select {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.text-input:focus, .textarea-input:focus, .fluent-select:focus {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* --- Code Block Enhancement --- */
+.code-block {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(79, 172, 254, 0.1) inset;
+}
+
+/* --- Timer Display Enhancement --- */
+.quiz-app-container div[style*="color: var(--fluent-accent-blue)"] {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+}
+
+/* --- Bookmark Button Enhancement --- */
+.fluent-button[title*="북마크"] {
+    transition: all 0.3s ease;
+}
+
+.fluent-button[title*="북마크"]:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.fluent-button[style*="var(--fluent-accent-blue)"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+}
+
+/* --- Results Score Enhancement --- */
+.results-summary h2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+}
+
+/* --- Floating Particles Background (Optional) --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(79, 172, 254, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.quiz-app-container {
+    position: relative;
+    z-index: 1;
+}

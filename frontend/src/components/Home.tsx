@@ -114,77 +114,109 @@ const Home: React.FC = () => {
             marginBottom: '1.5rem'
           }}>
             <div style={{ 
-              padding: '1rem', 
-              background: 'rgba(0, 120, 212, 0.1)', 
-              borderRadius: '4px',
-              textAlign: 'center'
+              padding: '1.25rem', 
+              background: 'linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.15) 100%)', 
+              borderRadius: '8px',
+              textAlign: 'center',
+              border: '1px solid rgba(79, 172, 254, 0.3)',
+              boxShadow: '0 4px 15px rgba(79, 172, 254, 0.2)'
             }}>
-              <div style={{ fontSize: '2rem', fontWeight: '600', color: 'var(--fluent-accent-blue)' }}>
+              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.5rem' }}>📝 총 시도</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#4facfe' }}>
                 {stats.totalAttempts}
               </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '0.25rem' }}>총 시도</div>
             </div>
 
             <div style={{ 
-              padding: '1rem', 
-              background: 'rgba(16, 124, 16, 0.1)', 
-              borderRadius: '4px',
-              textAlign: 'center'
+              padding: '1.25rem', 
+              background: 'linear-gradient(135deg, rgba(17, 153, 142, 0.2) 0%, rgba(56, 239, 125, 0.15) 100%)', 
+              borderRadius: '8px',
+              textAlign: 'center',
+              border: '1px solid rgba(56, 239, 125, 0.3)',
+              boxShadow: '0 4px 15px rgba(17, 153, 142, 0.2)'
             }}>
-              <div style={{ fontSize: '2rem', fontWeight: '600', color: 'var(--fluent-accent-green)' }}>
+              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.5rem' }}>🎯 평균 정답률</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#38ef7d' }}>
                 {stats.averageScore.toFixed(0)}%
               </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '0.25rem' }}>평균 정답률</div>
             </div>
 
             <div style={{ 
-              padding: '1rem', 
-              background: 'rgba(255, 255, 255, 0.05)', 
-              borderRadius: '4px',
-              textAlign: 'center'
+              padding: '1.25rem', 
+              background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.15) 100%)', 
+              borderRadius: '8px',
+              textAlign: 'center',
+              border: '1px solid rgba(102, 126, 234, 0.3)',
+              boxShadow: '0 4px 15px rgba(102, 126, 234, 0.2)'
             }}>
-              <div style={{ fontSize: '2rem', fontWeight: '600' }}>
+              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.5rem' }}>✍️ 푼 문제 수</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#667eea' }}>
                 {stats.totalQuestions}
               </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '0.25rem' }}>푼 문제 수</div>
             </div>
 
             <div style={{ 
-              padding: '1rem', 
-              background: 'rgba(255, 255, 255, 0.05)', 
-              borderRadius: '4px',
-              textAlign: 'center'
+              padding: '1.25rem', 
+              background: 'linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.15) 100%)', 
+              borderRadius: '8px',
+              textAlign: 'center',
+              border: '1px solid rgba(240, 147, 251, 0.3)',
+              boxShadow: '0 4px 15px rgba(240, 147, 251, 0.2)'
             }}>
-              <div style={{ fontSize: '2rem', fontWeight: '600' }}>
+              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '0.5rem' }}>⏰ 총 학습 시간</div>
+              <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#f093fb' }}>
                 {Math.floor(stats.totalTimeSpent / 60)}분
               </div>
-              <div style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '0.25rem' }}>총 학습 시간</div>
             </div>
           </div>
 
           {stats.recentScores.length > 0 && (
             <div>
-              <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', opacity: 0.9 }}>최근 5회 성적</h3>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-end', height: '100px' }}>
-                {stats.recentScores.map((score, idx) => (
-                  <div 
-                    key={idx} 
-                    style={{ 
-                      flex: 1, 
-                      background: 'var(--fluent-accent-blue)',
-                      height: `${score}%`,
-                      borderRadius: '4px 4px 0 0',
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      justifyContent: 'center',
-                      paddingBottom: '0.25rem',
-                      fontSize: '0.8rem',
-                      fontWeight: '600'
-                    }}
-                  >
-                    {score.toFixed(0)}%
-                  </div>
-                ))}
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', opacity: 0.9 }}>📈 최근 5회 성적</h3>
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-end', height: '120px', padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
+                {stats.recentScores.map((score, idx) => {
+                  const color = score >= 80 ? '#38ef7d' : score >= 60 ? '#4facfe' : '#f5576c';
+                  const gradient = score >= 80 
+                    ? 'linear-gradient(180deg, #38ef7d 0%, #11998e 100%)'
+                    : score >= 60 
+                    ? 'linear-gradient(180deg, #4facfe 0%, #667eea 100%)'
+                    : 'linear-gradient(180deg, #f5576c 0%, #f093fb 100%)';
+                  
+                  return (
+                    <div 
+                      key={idx} 
+                      style={{ 
+                        flex: 1, 
+                        background: gradient,
+                        height: `${Math.max(score, 10)}%`,
+                        borderRadius: '8px 8px 0 0',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        paddingTop: '0.5rem',
+                        fontSize: '0.85rem',
+                        fontWeight: '700',
+                        boxShadow: `0 -4px 15px ${color}66`,
+                        position: 'relative',
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer'
+                      }}
+                      title={`시도 ${idx + 1}: ${score.toFixed(1)}%`}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-5px) scale(1.05)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      }}
+                    >
+                      {score.toFixed(0)}%
+                      <div style={{ fontSize: '0.7rem', opacity: 0.7, marginTop: '0.25rem' }}>
+                        #{idx + 1}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
