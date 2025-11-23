@@ -91,6 +91,9 @@ const Quiz: React.FC = () => {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   
+  // 북마크 관련
+  const [bookmarkedQuestions, setBookmarkedQuestions] = useState<Set<number>>(new Set());
+  
   // 퀴즈 설정 관련
   const [showQuizSettings, setShowQuizSettings] = useState(false);
   const [quizSettings, setQuizSettings] = useState({
@@ -125,6 +128,46 @@ const Quiz: React.FC = () => {
       return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
     return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // --- Bookmark Management ---
+  const getBookmarkKey = () => `quiz_bookmarks_${currentDbSet}`;
+
+  useEffect(() => {
+    // 북마크 불러오기
+    const savedBookmarks = localStorage.getItem(getBookmarkKey());
+    if (savedBookmarks) {
+      try {
+        const bookmarkArray: number[] = JSON.parse(savedBookmarks);
+        setBookmarkedQuestions(new Set(bookmarkArray));
+      } catch (e) {
+        console.error('Failed to load bookmarks:', e);
+      }
+    }
+  }, [currentDbSet]);
+
+  const toggleBookmark = (questionId: number) => {
+    setBookmarkedQuestions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(questionId)) {
+        newSet.delete(questionId);
+      } else {
+        newSet.add(questionId);
+      }
+      // localStorage에 저장
+      localStorage.setItem(getBookmarkKey(), JSON.stringify(Array.from(newSet)));
+      return newSet;
+    });
+  };
+
+  const loadBookmarkedQuestions = () => {
+    const bookmarkedIds = Array.from(bookmarkedQuestions);
+    if (bookmarkedIds.length === 0) {
+      alert('북마크된 문제가 없습니다.');
+      return;
+    }
+    localStorage.setItem('retry_questions', JSON.stringify(bookmarkedIds));
+    window.location.reload(); // 문제 다시 로드
   };
 
   // --- Progress Save/Restore ---
@@ -462,9 +505,18 @@ const Quiz: React.FC = () => {
   return (
     <div className="quiz-app-container">
       <div className="fluent-card__actions" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button className="fluent-button" onClick={() => navigate('/')}>홈화면</button>
           <button className="fluent-button" onClick={() => setShowQuizSettings(true)} title="퀴즈 설정">⚙️</button>
+          {bookmarkedQuestions.size > 0 && (
+            <button 
+              className="fluent-button" 
+              onClick={loadBookmarkedQuestions}
+              title="북마크한 문제만 풀기"
+            >
+              ★ 북마크 ({bookmarkedQuestions.size})
+            </button>
+          )}
         </div>
         
         {/* ⭐ 추가: 문제집 세트 선택 드롭다운 */}
@@ -502,8 +554,22 @@ const Quiz: React.FC = () => {
 
       <ProgressBar current={currentQuestionIndex + 1} total={questions.length} />
       <div className="fluent-card">
-        <div style={{ opacity: 0.8, marginBottom: '0.25rem' }}>
-          {`${currentQuestionIndex + 1}. ${currentQuestion.subject || ''}`}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+          <div style={{ opacity: 0.8 }}>
+            {`${currentQuestionIndex + 1}. ${currentQuestion.subject || ''}`}
+          </div>
+          <button 
+            onClick={() => toggleBookmark(currentQuestion.id)}
+            className="fluent-button"
+            style={{ 
+              padding: '0.25rem 0.75rem', 
+              fontSize: '1.2rem',
+              background: bookmarkedQuestions.has(currentQuestion.id) ? 'var(--fluent-accent-blue)' : 'transparent'
+            }}
+            title={bookmarkedQuestions.has(currentQuestion.id) ? '북마크 제거' : '북마크 추가'}
+          >
+            {bookmarkedQuestions.has(currentQuestion.id) ? '★' : '☆'}
+          </button>
         </div>
         <div id={labelId} className="fluent-card__question-text" style={{ whiteSpace: 'pre-wrap' }}>
           {parseQuestionText(currentQuestion.question_text)}
