@@ -575,6 +575,14 @@ body {
 
 }
 
+/* 문제 텍스트 내 코드 블록 */
+.fluent-card__question-text .code-block {
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin: 0.75rem 0;
+    text-align: left;
+}
+
 /* --- Focus Visibility for Keyboard Navigation --- */
 .fluent-button:focus-visible {
     outline: 2px solid var(--fluent-accent-blue);

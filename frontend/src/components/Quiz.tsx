@@ -2,6 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { api, setDbSet } from '../lib/api';
 
+// --- Utility Functions ---
+// 코드 블록을 파싱하는 유틸리티 함수
+function parseQuestionText(text: string) {
+  // \n\n으로 문단을 분리
+  const parts = text.split('\n\n');
+  return parts.map((part, index) => {
+    // 코드처럼 보이는 부분 감지 (console.log, const, let, var, function, if, for 등으로 시작)
+    const isCode = /^(console\.|const |let |var |function |if |for |while |class |document\.|window\.|<[a-z]|{|\[)/.test(part.trim());
+    
+    if (isCode && part.trim().length > 0) {
+      return (
+        <pre key={index} className="code-block" style={{ 
+          margin: '0.75rem 0',
+          padding: '0.75rem 1rem',
+          backgroundColor: '#1a1a1a',
+          borderRadius: '4px',
+          fontSize: '0.9em'
+        }}>
+          <code>{part.trim()}</code>
+        </pre>
+      );
+    } else {
+      return <span key={index}>{part}{index < parts.length - 1 ? '\n\n' : ''}</span>;
+    }
+  });
+}
+
 // --- Type Definitions ---
 interface Question {
   id: number;
@@ -220,7 +247,9 @@ const [dbSets, setDbSets] = useState<string[]>([]);
         <div style={{ opacity: 0.8, marginBottom: '0.25rem' }}>
           {`${currentQuestionIndex + 1}. ${currentQuestion.subject || ''}`}
         </div>
-        <p id={labelId} className="fluent-card__question-text">{currentQuestion.question_text}</p>
+        <div id={labelId} className="fluent-card__question-text" style={{ whiteSpace: 'pre-wrap' }}>
+          {parseQuestionText(currentQuestion.question_text)}
+        </div>
 
         {currentQuestion.question_type === 'multiple_choice' && (
           <div className="fluent-options-group" role="radiogroup" aria-labelledby={labelId}>
